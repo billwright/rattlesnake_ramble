@@ -1,0 +1,15 @@
+<h1>All Races</h1>
+<hr/>
+
+<% @races.each do |race| %>
+  <div class="row">
+    
+    <div class="col-lg-8 well">
+      <h4><%= link_to race.name, " " %></h4>
+      <p><%= race.description %></p>
+      <p>
+        <span class='quiet'><small> <%= time_ago_in_words(race.created_at) %></small></span>
+      </p>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<h1>All Products</h1>
+<hr/>
+
+<% @products.each do |product| %>
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    
+    <div class="col-lg-8 well">
+      <h4><%= link_to product.description, " " %></h4>
+      <p>
+        <span class='quiet'><small> <%= time_ago_in_words(race.created_at) %></small></span>
+      </p>
+    </div>
+  </div>
+<% end %>

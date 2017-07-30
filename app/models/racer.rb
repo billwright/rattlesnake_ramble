@@ -13,4 +13,9 @@ class Racer < ActiveRecord::Base
   validates :gender, presence: true
   # validates :birth_date, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :birth_date, presence: true
+  
+  def name
+    self.first_name + ' ' + self.last_name
+  end
+  
 end

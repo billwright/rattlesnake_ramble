@@ -1,0 +1,19 @@
+<h1>All Racers</h1>
+<hr/>
+
+<% @racers.each do |racer| %>
+  <div class="row">
+    <div class="col-md-1">
+      <section class="racer_info center">
+        <%= gravatar_for racer, size: 100 %>
+      </section>
+    </div>
+
+    <div class="col-lg-8 well">
+      <h4><%= link_to racer.first_name + ' ' + racer.last_name, " " %></h4>
+      <p>
+        <span class='quiet'><small> <%= time_ago_in_words(racer.created_at) %></small></span>
+      </p>
+    </div>
+  </div>
+<% end %>

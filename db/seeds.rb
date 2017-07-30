@@ -9,7 +9,7 @@
 races = Race.create([
     { name: "Rattlesnake Ramble Odd-Year" },
     { name: "Rattlesnake Ramble Even-Year" },
-    { name: "Rattlesnake Ramble Kidsr" },
+    { name: "Rattlesnake Ramble Kids" },
   ])
   
 currentRace = races.first
@@ -29,3 +29,9 @@ products = Product.create([
     { description: "Black Cotton Hooded Sweatshirt, size large", quantity: 3 },
     { description: "Black Cotton Hooded Sweatshirt, size extra-large", quantity: 3 },
   ])
+  
+racers = Racer.create([
+        { first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: "Male", birth_date: "1962-04-26" },
+        { first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: "Male", birth_date: "1963-12-18" },
+        { first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: "Male", birth_date: "1998-01-29" },
+    ])
