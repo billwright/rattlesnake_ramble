@@ -1,0 +1,31 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#register {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+  font-size: 2em;
+  margin-right: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#register:hover {
+  color: white;
+  text-decoration: none;
+}
+
+body {
+  padding-top: 80px;
+}
+
+.nav_item {
+  margin-left: 25px;
+  float: left;
+  margin-top: 20px;
+}
