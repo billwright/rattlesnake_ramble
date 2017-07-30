@@ -15,14 +15,21 @@ ActiveRecord::Schema.define(version: 20170730170147) do
   create_table "products", force: :cascade do |t|
     t.string "description"
     t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "race_editions", force: :cascade do |t|
     t.date "date"
+    t.integer "race_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "race_entries", force: :cascade do |t|
-    t.time "time"
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "racers", force: :cascade do |t|
@@ -41,6 +48,8 @@ ActiveRecord::Schema.define(version: 20170730170147) do
     t.string "name"
     t.text "description"
     t.text "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -3,6 +3,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
     create_table :products do |t|
       t.string :description
       t.integer :quantity
+      t.timestamps
     end
   end
 end

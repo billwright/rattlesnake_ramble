@@ -5,7 +5,8 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version: 3.2.1
+* Ruby version: 2.3.1
+* 
 * Rails version: 5.1.2
 
 * System dependencies
@@ -20,6 +21,46 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+* Deployment instruction
+ 
+## Models
 
-* ...
+### Racers
+
+* first_name (required)
+* last_name (required)
+* email (required)
+* birth_date (required)
+* gender (required)
+* city
+* state
+ 
+### Races
+
+* name (required)
+* description
+* location
+
+### Race Editions
+
+* race (required)
+* date (required)
+
+### Race Entry
+
+* racer
+* race_edition
+* time
+
+### Products
+
+* description
+* quantity
+
+### Race Categories
+
+* name
+* race
+* 
+
+
