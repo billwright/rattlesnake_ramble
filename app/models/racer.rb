@@ -1,6 +1,8 @@
 require 'uri'
 
 class Racer < ActiveRecord::Base
+  has_many :race_entries
+  
   before_save {
     self.email = self.email.downcase  
   }
