@@ -1,0 +1,34 @@
+<p>
+  <h1><%= @racer.name %></h1>
+</p>
+<div class="row">
+  <div class="col-md-4 pull-right center">
+    <%= gravatar_for @racer, size: 200 %>
+    <p>
+    </p>
+  </div>
+  <div class="col-md-8">
+      <div class="table">
+      <table class="table">
+        
+        <tr>
+          <td>Age</td>
+          <td><%= @racer.current_age %></td>
+        </tr>
+        
+        <tr>
+          <td>Gender</td>
+          <td><%= @racer.gender %></td>
+        </tr>
+        
+        <tr>
+          <td>Home</td>
+          <td><%= @racer.home_location %></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<h5><%= link_to "Return to Racers Listing", racers_path, class: "btn btn-warning btn-small" %></h5>

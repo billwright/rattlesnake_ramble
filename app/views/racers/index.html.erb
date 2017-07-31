@@ -5,15 +5,16 @@
   <div class="row">
     <div class="col-md-1">
       <section class="racer_info center">
-        <%= gravatar_for racer, size: 100 %>
+        <%= gravatar_for racer, size: 80 %>
       </section>
     </div>
 
     <div class="col-lg-8 well">
-      <h4><%= link_to racer.first_name + ' ' + racer.last_name, " " %></h4>
+      <h4><%= link_to racer.first_name + ' ' + racer.last_name, racer_path(racer) %></h4>
       <p>
         <span class='quiet'><small> <%= time_ago_in_words(racer.created_at) %></small></span>
       </p>
     </div>
   </div>
+  <hr/>
 <% end %>

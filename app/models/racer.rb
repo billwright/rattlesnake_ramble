@@ -18,4 +18,21 @@ class Racer < ActiveRecord::Base
     self.first_name + ' ' + self.last_name
   end
   
+  def current_age
+    now = Time.now.utc.to_date
+    dob = self.birth_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+  
+  def home_location
+    address = ''
+    if (self.city) then
+      address += self.city
+    end
+    if (self.state) then
+      address += ", #{self.city}"
+    end    
+    address
+  end
+  
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get '/home', to: 'pages#home'
+  get '/enter', to: 'pages#enter'
   
   # get '/races', to: 'races#index'
   # get '/races/:id', to: 'races#show', as: 'race'
@@ -20,11 +21,4 @@ Rails.application.routes.draw do
   resources :race_entries
   resources :products
 
-  # get '/racers', to: 'racers#index'
-  # get '/racers/:id', to: 'racers#show', as: 'racer'
-  # get '/racers/new', to: 'racers#new', as: 'new_racer'
-  # post '/racers', to: 'racers#create'
-  # get '/racers/:id/edit', to: 'racers#edit', as: 'edit_racer'
-  # patch '/racers', to: 'racers#create'
-  # delete 'racers/:id', to: 'racers#destroy'
 end

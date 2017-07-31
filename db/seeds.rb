@@ -31,7 +31,7 @@ products = Product.create([
   ])
   
 racers = Racer.create([
-        { first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: "Male", birth_date: "1962-04-26" },
-        { first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: "Male", birth_date: "1963-12-18" },
-        { first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: "Male", birth_date: "1998-01-29" },
+        { first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: "Male", birth_date: "1962-04-26", city: "Superior", state: "Colorado" },
+        { first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: "Male", birth_date: "1963-12-18", city: "Superior", state: "Colorado" },
+        { first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: "Male", birth_date: "1998-01-29", city: "Superior", state: "Colorado" },
     ])
