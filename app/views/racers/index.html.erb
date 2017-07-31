@@ -1,5 +1,9 @@
 <%= render 'shared/page_title', title: "All Racers" %>
 
+<div class="col-md-12 pull-right new-model-button">
+  <%= link_to "New Racer", new_racer_path, class: "btn btn-success pull-left" %>
+</div>
+
 <% @racers.each do |racer| %>
   <div class="row">
     <div class="col-md-1">

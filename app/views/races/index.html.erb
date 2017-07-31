@@ -1,6 +1,10 @@
 <h1>All Races</h1>
 <hr/>
 
+<div class="col-md-12 pull-right new-model-button">
+  <%= link_to "New Race", new_race_path, class: "btn btn-success pull-left" %>
+</div>
+
 <% @races.each do |race| %>
   <div class="row">
     

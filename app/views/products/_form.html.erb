@@ -1,0 +1,15 @@
+<%= render 'shared/errors', model_object: @product %>
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @product do |f| %>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity %>
+      
+      <%= f.submit(@product.new_record? ? 'Create Product' : 'Update Product', class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>

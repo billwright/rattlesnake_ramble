@@ -1,6 +1,10 @@
 <h1>All Products</h1>
 <hr/>
 
+<div class="col-md-12 pull-right new-model-button">
+  <%= link_to "New Product", new_product_path, class: "btn btn-success pull-left" %>
+</div>
+
 <% @products.each do |product| %>
   <div class="row">
     <div class="col-md-1">
@@ -8,9 +12,14 @@
     </div>
     
     <div class="col-lg-8 well">
-      <h4><%= link_to product.description, " " %></h4>
+      <div class="col-lg-4 pull-left">
+        <h4><%= link_to product.description, " " %></h4>
+      </div>
+      <div class="col-lg-4 pull-right">
+        <h4><%= product.quantity %></h4>
+      </div>
       <p>
-        <span class='quiet'><small> <%= time_ago_in_words(race.created_at) %></small></span>
+        <span class='quiet'><small> <%= time_ago_in_words(product.created_at) %></small></span>
       </p>
     </div>
   </div>
