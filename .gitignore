@@ -29,3 +29,6 @@
 
 # Ignore RubyMine files
 .idea
+
+# Ignore rspec hidden file
+.rspec
