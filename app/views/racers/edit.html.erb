@@ -1,0 +1,46 @@
+<p>
+  <h1>Edit Racer <%= @racer.name %></h1>
+  <hr/>
+</p>
+
+<% if @racer.errors.any? %>
+  <div class="row">
+    <div class="alert alert-danger col-md-8 col-md-offset-2">
+      <h5>Please correct the following errors:</h5>
+      <ul>
+        <% @racer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @racer do |f| %>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
+      
+      <%= f.label :birth_date %>
+      <%= f.text_field :birth_date %>
+      
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+
+      <%= f.label :state %>
+      <%= f.text_field :state %>
+      
+      <%= f.submit 'Update Racer', class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

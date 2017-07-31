@@ -30,7 +30,7 @@ class Racer < ActiveRecord::Base
       address += self.city
     end
     if (self.state) then
-      address += ", #{self.city}"
+      address += ", #{self.state}"
     end    
     address
   end

@@ -25,6 +25,18 @@ class RacersController < ApplicationController
     end
   end
   
+  def edit
+    @racer = Racer.find(params[:id])
+  end
+  
+  def update
+    @racer = Racer.find(params[:id])
+    if @racer.update(recipe_params)
+      flash[:success] = "Your racer was updated successfully"
+      redirect_to racer_path(@racer)
+    end
+  end
+  
   private
   
     def recipe_params
