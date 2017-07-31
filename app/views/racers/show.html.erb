@@ -1,6 +1,5 @@
-<p>
-  <h1><%= @racer.name %></h1>
-</p>
+<%= render 'shared/page_title', title: @racer.name %>
+
 <div class="row">
   <div class="col-md-4 pull-right center">
     <%= gravatar_for @racer, size: 200 %>
