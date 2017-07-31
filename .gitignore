@@ -26,3 +26,6 @@
 .c9/
 .gitignore
 .bashrc
+
+# Ignore RubyMine files
+.idea
