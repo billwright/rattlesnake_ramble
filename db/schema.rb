@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20170730170147) do
   end
 
   create_table "race_entries", force: :cascade do |t|
+    t.integer "racer_id"
+    t.integer "race_edition_id"
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
