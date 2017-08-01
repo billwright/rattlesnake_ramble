@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170730170147) do
   create_table "racers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "gender"
+    t.integer "gender", default: 0
     t.string "email"
     t.string "city"
     t.string "state"

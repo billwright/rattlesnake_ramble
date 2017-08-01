@@ -13,7 +13,8 @@
       <%= f.text_field :email %>
 
       <%= f.label :gender %>
-      <%= f.text_field :gender %>
+      <!--<%= f.text_field :gender %>-->
+      <%= f.select :gender, Racer.genders.keys, {} %>
       
       <%= f.label :birth_date %>
       <%= f.text_field :birth_date %>

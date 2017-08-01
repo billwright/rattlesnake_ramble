@@ -1,5 +1,6 @@
 class Racer < ActiveRecord::Base
   has_many :race_entries
+  enum gender: [:male, :female]
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -14,7 +15,7 @@ class Racer < ActiveRecord::Base
   validates :birth_date, presence: true
   
   def name
-    first_name + ' ' last_name
+    first_name + ' ' + last_name
   end
   
   def current_age
