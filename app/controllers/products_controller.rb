@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(recipe_params)
       flash[:success] = "Your product was updated successfully"
-      redirect_to product_path(@product)
+      redirect_to products_path
     end
   end
   
