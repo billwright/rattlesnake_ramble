@@ -1,0 +1,12 @@
+<%= render 'shared/errors', model_object: @race_edition %>
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @race_edition do |f| %>
+      <%= f.label :date %>
+      <%= f.text_field :date %>
+      
+      <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>
