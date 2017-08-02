@@ -114,5 +114,15 @@ RSpec.describe Racer, type: :model do
       racer = build_stubbed(:racer, city: '', state: 'Colorado')
       expect(racer.home_location).to eq('Colorado')
     end
+
+    it 'functions the same when city is nil' do
+      racer = build_stubbed(:racer, city: nil, state: 'Colorado')
+      expect(racer.home_location).to eq('Colorado')
+    end
+
+    it 'functions the same when state is nil' do
+      racer = build_stubbed(:racer, city: 'Boulder', state: nil)
+      expect(racer.home_location).to eq('Boulder')
+    end
   end
 end
