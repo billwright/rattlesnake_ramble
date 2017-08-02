@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   
   def create
     # binding.pry
-    @product = Product.new(recipe_params)
+    @product = Product.new(obj_params)
     
     if @product.save
       flash[:success] = "Your product was created successfully!"
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   
   def update
     @product = Product.find(params[:id])
-    if @product.update(recipe_params)
+    if @product.update(obj_params)
       flash[:success] = "Your product was updated successfully"
       redirect_to products_path
     end
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
   
   private
   
-    def recipe_params
+    def obj_params
       params.require(:product).permit(:name, :description)
     end
 end

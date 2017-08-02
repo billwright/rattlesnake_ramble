@@ -4,7 +4,7 @@ class RacesController < ApplicationController
     @races = Race.all
   end
   
-    def show
+  def show
     @race = Race.find(params[:id])
     # binding.pry
   end
@@ -15,7 +15,7 @@ class RacesController < ApplicationController
   
   def create
     # binding.pry
-    @race = Race.new(recipe_params)
+    @race = Race.new(obj_params)
     
     if @race.save
       flash[:success] = "Your race was created successfully!"
@@ -31,7 +31,7 @@ class RacesController < ApplicationController
   
   def update
     @race = Race.find(params[:id])
-    if @race.update(recipe_params)
+    if @race.update(obj_params)
       flash[:success] = "Your race was updated successfully"
       redirect_to race_path(@race)
     end
@@ -39,7 +39,7 @@ class RacesController < ApplicationController
   
   private
   
-    def recipe_params
+    def obj_params
       params.require(:race).permit(:name, :description)
     end
 end

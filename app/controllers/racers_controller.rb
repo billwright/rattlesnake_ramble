@@ -15,7 +15,7 @@ class RacersController < ApplicationController
   
   def create
     # binding.pry
-    @racer = Racer.new(recipe_params)
+    @racer = Racer.new(obj_params)
     
     if @racer.save
       flash[:success] = "Your racer was created successfully!"
@@ -31,7 +31,7 @@ class RacersController < ApplicationController
   
   def update
     @racer = Racer.find(params[:id])
-    if @racer.update(recipe_params)
+    if @racer.update(obj_params)
       flash[:success] = "Your racer was updated successfully"
       redirect_to racer_path(@racer)
     end
@@ -39,7 +39,7 @@ class RacersController < ApplicationController
   
   private
   
-    def recipe_params
+    def obj_params
       params.require(:racer).permit(:first_name, :last_name, :email, :gender, :birth_date, :city, :state)
     end
 end

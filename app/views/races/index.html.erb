@@ -9,7 +9,7 @@
   <div class="row">
     
     <div class="col-lg-8 well">
-      <h4><%= link_to race.name, " " %></h4>
+      <h4><%= link_to race.name, race_path(race) %></h4>
       <p><%= race.description %></p>
       <p>
         <span class='quiet'><small> <%= time_ago_in_words(race.created_at) %></small></span>
