@@ -1,11 +1,11 @@
-class RacerEditionsController < ApplicationController
+class RaceEditionsController < ApplicationController
 
   def index
-    @race_edition_editions = RaceEdition.all
+    @race_edition = RaceEdition.all
   end
   
   def show
-    @race_edition = Raceedition.find(params[:id])
+    @race_edition = RaceEdition.find(params[:id])
     # binding.pry
   end
   
@@ -18,8 +18,8 @@ class RacerEditionsController < ApplicationController
     @race_edition = RaceEdition.new(obj_params)
     
     if @race_edition.save
-      flash[:success] = "Your racer was created successfully!"
-      redirect_to racer_editions_path
+      flash[:success] = "Your race edition was created successfully!"
+      redirect_to race_editions_path
     else
       render :new
     end
@@ -33,13 +33,13 @@ class RacerEditionsController < ApplicationController
     @race_edition = RaceEdition.find(params[:id])
     if @race_edition.update(obj_params)
       flash[:success] = "Your race edition was updated successfully"
-      redirect_to racer_path(@race_edition)
+      redirect_to race_edition_path(@race_edition)
     end
   end
   
   private
   
     def obj_params
-      params.require(:racer).permit(:date)
+      params.require(:race_edition).permit(:date)
     end
 end
