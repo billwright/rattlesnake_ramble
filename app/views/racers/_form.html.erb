@@ -14,17 +14,16 @@
 
       <%= f.label :gender %>
       <%= f.select :gender, Racer.genders.keys, {} %>
-      
+
       <%= f.label :birth_date %>
-      <%= f.text_field :birth_date %>
-      <!--<input type="text" data-provide='datepicker' name="racer[gender]" id="racer_gender" />-->
-      
+      <%= datepicker_input(form: f, field: :birth_date, default_date: {year: 1900, month: 0, day: 1}, default_view: 'decades') %>
+
       <%= f.label :city %>
       <%= f.text_field :city %>
 
       <%= f.label :state %>
       <%= f.text_field :state %>
-      
+
       <%= f.submit(@racer.new_record? ? 'Create Racer' : 'Update Racer', class: "btn btn-success") %>
     <% end %>
   </div>
