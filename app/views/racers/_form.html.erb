@@ -16,7 +16,11 @@
       <%= f.select :gender, Racer.genders.keys, {} %>
 
       <%= f.label :birth_date %>
-      <%= datepicker_input(form: f, field: :birth_date, default_date: {year: 1900, month: 0, day: 1}, default_view: 'decades') %>
+      <%= datepicker_input(form: f,
+                           field: :birth_date,
+                           existing_date: @racer.birth_date,
+                           default_date: {year: 1900, month: 0, day: 1},
+                           default_view: 'decades') %>
 
       <%= f.label :city %>
       <%= f.text_field :city %>
