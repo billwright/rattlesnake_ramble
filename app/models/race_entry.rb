@@ -9,7 +9,11 @@ class RaceEntry < ActiveRecord::Base
 
 
   def elapsed_time
-    ChronicDuration.output(time)
+    if time? then
+      ChronicDuration.output(time)
+    else
+      'NA'
+    end
   end
   
   def set_elapsed_time(time_string)

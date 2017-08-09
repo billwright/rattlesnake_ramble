@@ -39,6 +39,6 @@ racer_bill = Racer.create(first_name: "Bill", last_name: "Wright", email: "bill@
 racer_sheri = Racer.create(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
 racer_derek = Racer.create(first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: :male, birth_date: "1998-01-29", city: "Superior", state: "Colorado")
     
-RaceEntry.create(racer: racer_bill, race_edition: currentEdition)
-RaceEntry.create(racer: racer_sheri, race_edition: currentEdition)
-RaceEntry.create(racer: racer_derek, race_edition: currentEdition)
+RaceEntry.create(racer: racer_bill, race_edition: currentEdition, paid: true)
+RaceEntry.create(racer: racer_sheri, race_edition: currentEdition, paid: true)
+RaceEntry.create(racer: racer_derek, race_edition: currentEdition, paid: false)

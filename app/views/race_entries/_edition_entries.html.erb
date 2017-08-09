@@ -2,6 +2,7 @@
   <tr>
     <th>Racer</th>
     <th>Age</th>
+    <th>Paid?</th>
     <th>Time</th>
   </tr>
   
@@ -9,6 +10,7 @@
     <tr>
       <td><%= race_entry.racer.name %></td>
       <td><%= race_entry.racer.current_age %></td>
+      <td><%= race_entry.paid %></td>
       <td><%= race_entry.elapsed_time %></td>
     </tr>
   <% end %>
