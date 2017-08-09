@@ -17,7 +17,13 @@ Rails.application.routes.draw do
   # delete 'races/:id', to: 'races#destroy'
   resources :races
   resources :racers
-  resources :race_editions
+  
+  resources :race_editions do
+    member do
+      get 'enter'
+    end
+  end
+  
   resources :race_entries
   resources :products
 

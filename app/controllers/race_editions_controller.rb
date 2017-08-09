@@ -37,6 +37,11 @@ class RaceEditionsController < ApplicationController
     end
   end
   
+  def enter
+    @race_edition = RaceEdition.find(params[:id])
+    @racer = Racer.new
+  end
+  
   private
   
     def obj_params

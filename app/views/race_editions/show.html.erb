@@ -1,10 +1,13 @@
-<%= render 'shared/page_title', title: @race_edition.date %>
+<%= render 'shared/page_title', title: "Entrants for Race On: #{@race_edition.date}" %>
 
 <div class="row">
   <div class="col-md-8">
     <%= link_to "Edit", edit_race_edition_path(@race_edition), class: "btn btn-success pull-right" %>
-     
   </div>
 </div>
+
+<h5><%= link_to "Enter Race", enter_race_edition_path(@race_edition), class: "btn btn-warning btn-small" %></h5>
+
+<%= render 'race_entries/edition_entries' %>
 
 <h5><%= link_to "Return to Races Listing", races_path, class: "btn btn-warning btn-small" %></h5>

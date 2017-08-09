@@ -17,21 +17,28 @@ currentRace = races.first
 currentEdition = RaceEdition.create(race: currentRace, date: "2017-09-09")
 
 products = Product.create([
-    { description: "Men's Cotton 2017 Race Shirt, size small", quantity: 2 },
     { description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10 },
     { description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10 },
     { description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3 },
     { description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10 },
     { description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10 },
     { description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5 },
+    { description: "Men's Cotton Rattlesnake Ramble Shirt, size medium", quantity: 10 },
+    { description: "Men's Cotton Rattlesnake Ramble, size large", quantity: 10 },
+    { description: "Men's Cotton Rattlesnake Ramble, size extra-large", quantity: 3 },
+    { description: "Women's Rattlesnake Ramble Shirt, size small", quantity: 10 },
+    { description: "Women's Rattlesnake Ramble Shirt, size medium", quantity: 10 },
+    { description: "Women's Rattlesnake Ramble Shirt, size large", quantity: 3 },
     { description: "Black Cotton Hooded Sweatshirt, size small", quantity: 3 },
     { description: "Black Cotton Hooded Sweatshirt, size medium", quantity: 3 },
     { description: "Black Cotton Hooded Sweatshirt, size large", quantity: 3 },
     { description: "Black Cotton Hooded Sweatshirt, size extra-large", quantity: 3 },
   ])
   
-racers = Racer.create([
-        { first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado" },
-        { first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado" },
-        { first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: :male, birth_date: "1998-01-29", city: "Superior", state: "Colorado" },
-    ])
+racer_bill = Racer.create(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
+racer_sheri = Racer.create(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
+racer_derek = Racer.create(first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: :male, birth_date: "1998-01-29", city: "Superior", state: "Colorado")
+    
+RaceEntry.create(racer: racer_bill, race_edition: currentEdition)
+RaceEntry.create(racer: racer_sheri, race_edition: currentEdition)
+RaceEntry.create(racer: racer_derek, race_edition: currentEdition)
