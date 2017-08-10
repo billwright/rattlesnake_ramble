@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :race_editions do
     member do
       get 'enter'
+      post 'create_entry'
     end
   end
   
