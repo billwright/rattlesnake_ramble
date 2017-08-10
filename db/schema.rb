@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810080802) do
+ActiveRecord::Schema.define(version: 20170810083402) do
 
   create_table "products", force: :cascade do |t|
     t.string "description", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170810080802) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "paid", default: false
+    t.index ["racer_id", "race_edition_id"], name: "index_race_entries_on_racer_id_and_race_edition_id", unique: true
   end
 
   create_table "racers", force: :cascade do |t|
