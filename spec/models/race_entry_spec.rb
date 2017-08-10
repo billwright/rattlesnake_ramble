@@ -24,5 +24,12 @@ RSpec.describe RaceEntry, type: :model do
       expect(race_entry).to be_invalid
       expect(race_entry.errors.full_messages).to include("Race edition can't be blank")
     end
+``
+    it 'is invalid when a race_entry already exists for the racer and race_edition' do
+      existing_entry = create(:race_entry)
+      new_entry = build(:race_entry, racer: existing_entry.racer, race_edition: existing_entry.race_edition)
+      expect(new_entry).to be_invalid
+      expect(new_entry.errors.full_messages).to include('Racer may be added to a race_edition only once')
+    end
   end
 end

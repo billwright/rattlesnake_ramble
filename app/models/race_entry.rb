@@ -6,13 +6,9 @@ class RaceEntry < ActiveRecord::Base
      
   validates :racer, presence: true
   validates :race_edition, presence: true
+  validates_uniqueness_of :racer_id, scope: :race_edition_id,
+                          message: 'may be added to a race_edition only once'
 
-  after_initialize :default_values
-  
-  def default_values
-    self.paid = false if self.paid.nil?
-  end
-  
   def elapsed_time
     if time? then
       ChronicDuration.output(time)
