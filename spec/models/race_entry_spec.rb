@@ -32,4 +32,54 @@ RSpec.describe RaceEntry, type: :model do
       expect(new_entry.errors.full_messages).to include('Racer may be added to a race_edition only once')
     end
   end
+
+  describe '#elapsed_time' do
+    context 'when the time attribute is present' do
+      subject { build_stubbed(:race_entry, time: 1800) }
+
+      it 'returns a human-readable string representing elapsed time' do
+        expect(subject.elapsed_time).to eq('30 mins')
+      end
+    end
+
+    context 'when the time attribute is not present' do
+      subject { build_stubbed(:race_entry, time: nil) }
+
+      it 'returns "NA"' do
+        expect(subject.elapsed_time).to eq('NA')
+      end
+    end
+  end
+
+  describe '#elapsed_time=' do
+    context 'when passed a human-readable string' do
+      subject { build_stubbed(:race_entry, time: nil)}
+      let(:time_string) { '30 mins' }
+
+      it 'sets the time attribute to the equivalent number of seconds' do
+        subject.elapsed_time = time_string
+        expect(subject.time).to eq(1800)
+      end
+    end
+
+    context 'when passed an empty string' do
+      subject { build_stubbed(:race_entry, time: 1800)}
+      let(:time_string) { '' }
+
+      it 'sets the time attribute to nil' do
+        subject.elapsed_time = time_string
+        expect(subject.time).to be_nil
+      end
+    end
+
+    context 'when passed nil' do
+      subject { build_stubbed(:race_entry, time: 1800)}
+      let(:time_string) { nil }
+
+      it 'sets the time attribute to nil' do
+        subject.elapsed_time = time_string
+        expect(subject.time).to be_nil
+      end
+    end
+  end
 end
