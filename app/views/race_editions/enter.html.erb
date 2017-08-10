@@ -1,8 +1,10 @@
+<%= render 'shared/errors', model_object: @racer %>
+
 <%= render 'shared/page_title', title: "Enter Race" %>
 
-<% form_for @race_entry do |race_entry_form| %>
+<%= form_for @race_edition, method: :post, url: create_entry_race_edition_path(@race_edition) do |race_edition_form| %>
 
-    <% fields_for :racer, @race_entry.racer do |racer_fields| %>
+    <%= race_edition_form.fields_for :racers, @racer do |racer_fields| %>
       <%= racer_fields.label :first_name %>
       <%= racer_fields.text_field :first_name %>
     
@@ -29,6 +31,6 @@
       <%= racer_fields.text_field :state %>
     <% end %>
     
-    <%= race_entry_form.submit %>
+    <%= race_edition_form.submit 'Enter the race' %>
 
 <% end %>
