@@ -1,3 +1,34 @@
 <%= render 'shared/page_title', title: "Enter Race" %>
 
-<%= render 'racers/form' %>
+<% form_for @race_entry do |race_entry_form| %>
+
+    <% fields_for :racer, @race_entry.racer do |racer_fields| %>
+      <%= racer_fields.label :first_name %>
+      <%= racer_fields.text_field :first_name %>
+    
+      <%= racer_fields.label :last_name %>
+      <%= racer_fields.text_field :last_name %>
+    
+      <%= racer_fields.label :email %>
+      <%= racer_fields.text_field :email %>
+    
+      <%= racer_fields.label :gender %>
+      <%= racer_fields.select :gender, Racer.genders.keys, {} %>
+    
+      <%= racer_fields.label :birth_date %>
+      <%= datepicker_input(form: racer_fields,
+                           field: :birth_date,
+                           existing_date: nil,
+                           default_date: {year: 1900, month: 0, day: 1},
+                           default_view: 'decades') %>
+    
+      <%= racer_fields.label :city %>
+      <%= racer_fields.text_field :city %>
+    
+      <%= racer_fields.label :state %>
+      <%= racer_fields.text_field :state %>
+    <% end %>
+    
+    <%= race_entry_form.submit %>
+
+<% end %>

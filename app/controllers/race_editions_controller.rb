@@ -38,9 +38,14 @@ class RaceEditionsController < ApplicationController
   end
   
   def enter
+    Rails.logger.debug "In enter method of RaceEditionsController"
+    
     @race_edition = RaceEdition.find(params[:id])
-    @racer = Racer.new
+    @race_entry = RaceEntry.new
+    @race_entry.racer = Racer.new
+    @race_edition.race_entries << @race_entry
   end
+  
   
   private
   

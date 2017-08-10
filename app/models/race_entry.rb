@@ -7,7 +7,12 @@ class RaceEntry < ActiveRecord::Base
   validates :racer, presence: true
   validates :race_edition, presence: true
 
-
+  after_initialize :default_values
+  
+  def default_values
+    self.paid = false if self.paid.nil?
+  end
+  
   def elapsed_time
     if time? then
       ChronicDuration.output(time)
