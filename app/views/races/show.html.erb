@@ -8,17 +8,26 @@
   <div class="col-md-8">
     <%= link_to "Edit", edit_race_path(@race), class: "btn btn-success pull-right" %>
      
-    <% @race.race_editions.each do |race_edition| %>
-      <div class="row">
-        <div class="col-lg-8 well">
-          <h4><%= link_to race_edition.date, race_edition_path(race_edition) %></h4>
-          <p><%= race_edition.date %></p>
-          <p>
-            <span class='quiet'><small> <%= time_ago_in_words(race_edition.created_at) %></small></span>
-          </p>
-        </div>
-      </div>
-    <% end %>
+     
+     <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Entry Fee</th>
+          <th>Number of Entrants</th>
+        </tr>
+        
+        <% @race.race_editions.each do |race_edition| %>
+          <tr>
+            <td><%= link_to race_edition.name, race_edition_path(race_edition) %></td>
+            <td><%= race_edition.date %></td>
+            <td>$<%= race_edition.entry_fee %></td>
+            <td><%= race_edition.racers.size %></td>
+          </tr>
+        <% end %>
+      </table>
+
+   
   </div>
 </div>
 

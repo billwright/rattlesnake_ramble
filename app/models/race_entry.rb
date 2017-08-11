@@ -17,4 +17,20 @@ class RaceEntry < ActiveRecord::Base
     time_string ||= ''
     self.time = ChronicDuration.parse(time_string)
   end
+  
+  def paypal_url(return_path, entry_fee, race_edition, racer)
+    values = {
+        business: "bwright-facilitator@rattlesnakeramble.org",
+        cmd: "_xclick",
+        upload: 1,
+        return: "#{Rails.application.secrets.app_host}#{return_path}",
+        invoice: id,
+        amount: race_edition.entry_fee,
+        item_name: race_edition.name,
+        item_number: racer.id,
+        quantity: '1'
+    }
+    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+  end
+  
 end

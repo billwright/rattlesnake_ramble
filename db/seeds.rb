@@ -13,26 +13,28 @@ races = Race.create([
   ])
   
 currentRace = races.first
+kidsRace = races.last
 
-currentEdition = RaceEdition.create(race: currentRace, date: "2017-09-09")
+currentEdition = RaceEdition.create(race: currentRace, date: "2017-09-09", entry_fee: 25)
+kidsEdition = RaceEdition.create(race: kidsRace, date: "2017-09-09", entry_fee: 10)
 
 products = Product.create([
-    { description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10 },
-    { description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10 },
-    { description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3 },
-    { description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10 },
-    { description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10 },
-    { description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5 },
-    { description: "Men's Cotton Rattlesnake Ramble Shirt, size medium", quantity: 10 },
-    { description: "Men's Cotton Rattlesnake Ramble, size large", quantity: 10 },
-    { description: "Men's Cotton Rattlesnake Ramble, size extra-large", quantity: 3 },
-    { description: "Women's Rattlesnake Ramble Shirt, size small", quantity: 10 },
-    { description: "Women's Rattlesnake Ramble Shirt, size medium", quantity: 10 },
-    { description: "Women's Rattlesnake Ramble Shirt, size large", quantity: 3 },
-    { description: "Black Cotton Hooded Sweatshirt, size small", quantity: 3 },
-    { description: "Black Cotton Hooded Sweatshirt, size medium", quantity: 3 },
-    { description: "Black Cotton Hooded Sweatshirt, size large", quantity: 3 },
-    { description: "Black Cotton Hooded Sweatshirt, size extra-large", quantity: 3 },
+    { description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25 },
+    { description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10, price: 25 },
+    { description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3, price: 25 },
+    { description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10, price: 25 },
+    { description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25 },
+    { description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5, price: 25 },
+    { description: "Men's Cotton Rattlesnake Ramble Shirt, size medium", quantity: 10, price: 25 },
+    { description: "Men's Cotton Rattlesnake Ramble, size large", quantity: 10, price: 25 },
+    { description: "Men's Cotton Rattlesnake Ramble, size extra-large", quantity: 3, price: 25 },
+    { description: "Women's Rattlesnake Ramble Shirt, size small", quantity: 10, price: 25 },
+    { description: "Women's Rattlesnake Ramble Shirt, size medium", quantity: 10, price: 25 },
+    { description: "Women's Rattlesnake Ramble Shirt, size large", quantity: 3, price: 25 },
+    { description: "Black Cotton Hooded Sweatshirt, size small", quantity: 5, price: 40 },
+    { description: "Black Cotton Hooded Sweatshirt, size medium", quantity: 5, price: 40 },
+    { description: "Black Cotton Hooded Sweatshirt, size large", quantity: 5, price: 40 },
+    { description: "Black Cotton Hooded Sweatshirt, size extra-large", quantity: 3, price: 40 },
   ])
   
 racer_bill = Racer.create(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")

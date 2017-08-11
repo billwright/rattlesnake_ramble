@@ -6,7 +6,7 @@ class CreateRaceEntries < ActiveRecord::Migration[5.1]
       t.integer :time
       t.boolean :paid, default: false
       t.timestamps
-      t.index [:race_edition, :racer], unique: true
+      # t.index [:race_edition, :racer], unique: true, name: "index_race_entries_on_racer_id_and_race_edition_id"
     end
   end
 end

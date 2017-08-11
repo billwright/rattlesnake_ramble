@@ -6,6 +6,9 @@
       <%= f.label :date %>
       <%= f.text_field :date %>
       
+      <%= f.label "Entry Fee" %>
+      <%= f.text_field :entry_fee %>
+      
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
     <% end %>
   </div>

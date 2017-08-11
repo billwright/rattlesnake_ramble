@@ -45,7 +45,8 @@ class RaceEditionsController < ApplicationController
     if @racer.save
       @race_edition.racers << @racer
       flash[:success] = "Thank you for entering #{@race_edition.name}"
-      redirect_to race_edition_path(@race_edition)
+      # redirect_to race_edition_path(@race_edition)
+      redirect_to RaceEntry.paypal_url(paid_path, 20, @race_edition, @racer)
     else
       render 'enter'
     end

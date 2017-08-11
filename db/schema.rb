@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810083402) do
+ActiveRecord::Schema.define(version: 20170730170147) do
 
   create_table "products", force: :cascade do |t|
     t.string "description", null: false
     t.integer "quantity", null: false
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,24 +23,27 @@ ActiveRecord::Schema.define(version: 20170810083402) do
   create_table "race_editions", force: :cascade do |t|
     t.integer "race_id", null: false
     t.date "date", null: false
+    t.integer "entry_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_race_editions_on_race_id"
   end
 
   create_table "race_entries", force: :cascade do |t|
-    t.integer "racer_id", null: false
     t.integer "race_edition_id", null: false
+    t.integer "racer_id", null: false
     t.integer "time"
+    t.boolean "paid", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "paid", default: false
-    t.index ["racer_id", "race_edition_id"], name: "index_race_entries_on_racer_id_and_race_edition_id", unique: true
+    t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
+    t.index ["racer_id"], name: "index_race_entries_on_racer_id"
   end
 
   create_table "racers", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.integer "gender", default: 0, null: false
+    t.integer "gender", default: 0
     t.string "email", null: false
     t.string "city"
     t.string "state"
