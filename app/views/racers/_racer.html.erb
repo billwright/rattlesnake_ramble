@@ -1,0 +1,26 @@
+<% fields_for 'racer', @racer do |racer_form| %>
+      <%= racer_form.label :first_name %>
+      <%= racer_form.text_field :first_name %>
+
+      <%= racer_form.label :last_name %>
+      <%= racer_form.text_field :last_name %>
+
+      <%= racer_form.label :email %>
+      <%= racer_form.text_field :email %>
+
+      <%= racer_form.label :gender %>
+      <%= racer_form.select :gender, Racer.genders.keys, {} %>
+
+      <%= racer_form.label :birth_date %>
+      <%= datepicker_input(form: racer_form,
+                           field: :birth_date,
+                           existing_date: @racer.birth_date,
+                           default_date: {year: 1900, month: 0, day: 1},
+                           default_view: 'decades') %>
+
+      <%= racer_form.label :city %>
+      <%= racer_form.text_field :city %>
+
+      <%= racer_form.label :state %>
+      <%= racer_form.text_field :state %>
+<% end %>

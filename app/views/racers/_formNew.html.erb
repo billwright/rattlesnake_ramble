@@ -1,0 +1,12 @@
+<%= render 'shared/errors', model_object: @racer %>
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @racer do |f| %>
+    
+      <% render 'racer' %>
+      
+      <%= f.submit(@racer.new_record? ? 'Create Racer' : 'Update Racer', class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>

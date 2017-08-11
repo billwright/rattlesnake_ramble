@@ -40,6 +40,6 @@ class RaceEntriesController < ApplicationController
   private
   
     def obj_params
-      params.require(:race_entry).permit(:racer, :race_edition)
+      params.require(:race_entry).permit(:racer_id, :race_edition_id, :time)
     end
 end
