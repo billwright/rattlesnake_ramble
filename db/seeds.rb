@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 races = Race.create([
-    { name: "Rattlesnake Ramble Trail Race" description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
+    { name: "Rattlesnake Ramble Trail Race", description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
     { name: "Rattlesnake Ramble Trail Race Even-Year", description: "A 4.25-mile Y-course that goes out-and-back on the Eldorado Trail before doing the same on the Fowler Trail." },
     { name: "Rattlesnake Ramble Kids Race", description: "A 1.7-mile out-and-back course on the main road through Eldorado Canyon. The Kids Race is for 12 & Under only." },
   ])
