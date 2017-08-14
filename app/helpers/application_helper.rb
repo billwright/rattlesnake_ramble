@@ -20,4 +20,5 @@ module ApplicationHelper
                     placeholder: 'mm/dd/yyyy',
                     data: {provide: 'datepicker', date_default_view_date: default_date, date_start_view: start_view}
   end
+  
 end

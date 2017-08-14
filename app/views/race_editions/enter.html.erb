@@ -1,6 +1,6 @@
 <%= render 'shared/errors', model_object: @racer %>
 
-<%= render 'shared/page_title', title: "Enter Race" %>
+<%= render 'shared/page_title', title: "Enter #{@race_edition.name}" %>
 
 <%= form_for @race_edition, method: :post, url: create_entry_race_edition_path(@race_edition) do |race_edition_form| %>
 
@@ -28,9 +28,9 @@
       <%= racer_fields.text_field :city %>
     
       <%= racer_fields.label :state %>
-      <%= racer_fields.text_field :state %>
+      <%= racer_fields.select :state, StatesHelper::STATES  %>
     <% end %>
     
-    <%= race_edition_form.submit 'Enter the race' %>
+    <%= race_edition_form.submit 'Enter the race', class: 'btn-lg btn-success' %>
 
 <% end %>

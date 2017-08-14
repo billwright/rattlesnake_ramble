@@ -7,9 +7,10 @@ class RaceEdition < ActiveRecord::Base
 
   validates :race_id, presence: true
   validates :date, presence: true
+  validates :entry_fee, presence: true
 
   def name
-    race.name + ':' + date.to_s
+    race.name + ' on ' + date.to_s
   end
 
 end

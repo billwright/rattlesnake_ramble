@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/home', to: 'pages#home'
   get '/enter', to: 'pages#enter'
+  get '/thanks', to: 'pages#thanks'
   
   # get '/races', to: 'races#index'
   # get '/races/:id', to: 'races#show', as: 'race'
@@ -25,7 +26,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :race_entries
+  resources :race_entries do
+    member do
+      get 'successful_entry'  
+      get 'cancelled_payment'
+    end
+  end
+  
   resources :products
 
 end
