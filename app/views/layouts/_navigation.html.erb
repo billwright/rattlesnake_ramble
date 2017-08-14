@@ -4,18 +4,24 @@
        <div class="nav_item">
         <%= link_to "Rattlesnake Ramble", root_path, class: "btn btn-lg btn-success", id: "logo" %>
       </div>
+      <!--<div class="nav_item">-->
+      <!--  <%= link_to "Register", enter_path, class: "btn btn-default btn-info" %>-->
+      <!--</div>-->
+      <!-- <div class="nav_item">-->
+      <!--  <%= link_to "Races", races_path, class: "btn btn-default btn-warning" %>-->
+      <!--</div>-->
+      <!-- <div class="nav_item">-->
+      <!--  <%= link_to "Racers", racers_path, class: "btn btn-default btn-warning" %>-->
+      <!--</div>    -->
+      <!-- <div class="nav_item">-->
+      <!--  <%= link_to "Entries", race_entries_path, class: "btn btn-default btn-warning" %>-->
+      <!--</div>    -->
       <div class="nav_item">
-        <%= link_to "Register", enter_path, class: "btn btn-default btn-info" %>
-      </div>
-       <div class="nav_item">
-        <%= link_to "Races", races_path, class: "btn btn-default btn-warning" %>
-      </div>
-       <div class="nav_item">
-        <%= link_to "Racers", racers_path, class: "btn btn-default btn-warning" %>
-      </div>    
-       <div class="nav_item">
-        <%= link_to "Entries", race_entries_path, class: "btn btn-default btn-warning" %>
-      </div>    
+        <%= link_to "Long Course Entrants", race_edition_path(RaceEdition.find(1)), class: "btn btn-default btn-warning" %>
+      </div> 
+      <div class="nav_item">
+        <%= link_to "Kids Course Entrants", race_edition_path(RaceEdition.find(2)), class: "btn btn-default btn-warning" %>
+      </div> 
        <div class="nav_item">
         <%= link_to "Products", products_path, class: "btn btn-default btn-warning" %>
       </div> 
