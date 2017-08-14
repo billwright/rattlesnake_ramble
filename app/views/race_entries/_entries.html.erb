@@ -8,7 +8,7 @@
   
   <% @race_entries.each do |race_entry| %>
     <tr>
-      <td><%= race_entry.racer.name %></td>
+      <td><%= link_to race_entry.racer.name, race_entry_path(race_entry)  %></td>
       <td><%= race_entry.race_edition.name %></td>
       <td><%= race_entry.paid %></td>
       <td><%= race_entry.elapsed_time %></td>

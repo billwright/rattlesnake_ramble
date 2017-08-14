@@ -32,7 +32,7 @@ class RaceEntriesController < ApplicationController
   def update
     @race_entry = RaceEntry.find(params[:id])
     if @race_entry.update(obj_params)
-      flash[:success] = "Your race edition was updated successfully"
+      flash[:success] = "Your race entry was updated successfully"
       redirect_to race_entry_path(@race_entry)
     end
   end
@@ -55,6 +55,6 @@ class RaceEntriesController < ApplicationController
   private
   
     def obj_params
-      params.require(:race_entry).permit(:racer, :race_edition)
+      params.require(:race_entry).permit(:racer, :race_edition, :paid, :time)
     end
 end

@@ -3,11 +3,12 @@
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_entry do |f| %>
-      <%= f.label :racer %>
-      <%= f.text_field :racer %>
 
-      <!--<%= f.label :time %>-->
-      <!--<%= f.text_field :time %>-->
+      <%= f.label 'paid?' %>
+      <%= f.select :paid, [true, false], {} %>
+      
+      <%= f.label :time %>
+      <%= f.text_field :time %>
       
       <%= f.submit(@race_entry.new_record? ? 'Create Race Entry' : 'Update Race Entry', class: "btn btn-success") %>
     <% end %>

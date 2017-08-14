@@ -25,4 +25,8 @@ class RaceEntry < ActiveRecord::Base
     time = ChronicDuration.parse(time_string)
   end
   
+  def name
+    "#{racer.name}'s entry into #{race_edition.name}"
+  end
+  
 end

@@ -1,10 +1,5 @@
-<%= render 'shared/page_title', title: "Race Date: #{@race_entry.date}" %>
+<%= render 'shared/page_title', title: @race_entry.name %>
 
-<div class="row">
-  <div class="col-md-8">
-    <%= link_to "Edit", edit_race_entry_path(@race_entry), class: "btn btn-success pull-right" %>
-     
-  </div>
-</div>
+<%= render 'form' %>
 
 <h5><%= link_to "Return to Race Entries Listing", races_path, class: "btn btn-warning btn-small" %></h5>
