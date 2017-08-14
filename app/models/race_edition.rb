@@ -1,6 +1,6 @@
 class RaceEdition < ActiveRecord::Base
   belongs_to :race
-  has_many :race_entries
+  has_many :race_entries, dependent: :destroy
   has_many :racers, through: :race_entries
 
   accepts_nested_attributes_for :racers

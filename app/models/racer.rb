@@ -1,5 +1,5 @@
 class Racer < ActiveRecord::Base
-  has_many :race_entries
+  has_many :race_entries, dependent: :destroy
   enum gender: [:male, :female]
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
