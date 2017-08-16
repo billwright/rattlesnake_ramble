@@ -40,22 +40,28 @@ Things you may want to cover:
 * name (required)
 * description
 * location
+* editions
 
 ### Race Editions
 
 * race (required)
 * date (required)
+* entry_fee
+* entries
 
 ### Race Entry
 
-* racer
-* race_edition
-* time
+* racer (required)
+* race_edition (required)
+* time (filled in after finishing race)
+* paid? (defaults to false and set to true with confirmation of payment)
 
 ### Products
 
-* description
-* quantity
+* description (required)
+* quantity (required)
+* price (required)
+* images (optional series of images to show the product)
 
 ### Race Categories
 
