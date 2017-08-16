@@ -20,7 +20,10 @@
           <%= image_tag product_image.url, alt: product_image.alt_text, size: '100x100' %>
         <% end %>
       </div>
-      <div class="col-lg-2 pull-right">
+      <div class="col-lg-1">
+        <h4>Cost: $<%= product.price %></h4>
+      </div>
+      <div class="col-lg-1">
         <h4>Remaining quantity: <%= product.quantity %></h4>
       </div>
     </div>
