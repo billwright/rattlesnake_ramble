@@ -43,7 +43,7 @@ class RaceEditionsController < ApplicationController
     @racer = Racer.new(obj_params[:racers_attributes]['0'])
 
     if @racer.save
-      race_entry = RaceEntry.create(:race_edition => @race_edition, :racer => @racer)
+      race_entry = RaceEntry.create(race_edition: @race_edition, racer: @racer)
       flash[:success] = "Thank you for entering #{@race_edition.name}"
       redirect_to paypal_url(race_entry)
     else
