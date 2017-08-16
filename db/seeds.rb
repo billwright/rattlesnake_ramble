@@ -18,24 +18,48 @@ kidsRace = races.last
 currentEdition = RaceEdition.create(race: currentRace, date: "2017-09-09", entry_fee: 25)
 kidsEdition = RaceEdition.create(race: kidsRace, date: "2017-09-09", entry_fee: 10)
 
-products = Product.create([
-    { description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25 },
-    { description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10, price: 25 },
-    { description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3, price: 25 },
-    { description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10, price: 25 },
-    { description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25 },
-    { description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5, price: 25 },
-    { description: "Men's Cotton Rattlesnake Ramble Shirt, size medium", quantity: 10, price: 25 },
-    { description: "Men's Cotton Rattlesnake Ramble, size large", quantity: 10, price: 25 },
-    { description: "Men's Cotton Rattlesnake Ramble, size extra-large", quantity: 3, price: 25 },
-    { description: "Women's Rattlesnake Ramble Shirt, size small", quantity: 10, price: 25 },
-    { description: "Women's Rattlesnake Ramble Shirt, size medium", quantity: 10, price: 25 },
-    { description: "Women's Rattlesnake Ramble Shirt, size large", quantity: 3, price: 25 },
-    { description: "Black Cotton Hooded Sweatshirt, size small", quantity: 5, price: 40 },
-    { description: "Black Cotton Hooded Sweatshirt, size medium", quantity: 5, price: 40 },
-    { description: "Black Cotton Hooded Sweatshirt, size large", quantity: 5, price: 40 },
-    { description: "Black Cotton Hooded Sweatshirt, size extra-large", quantity: 3, price: 40 },
-  ])
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3, price: 25)
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
+
+prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5, price: 25)
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoMensShirtFront.png', alt_text: "Men's Race Shirt Front")
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoMensShirtFront.png', alt_text: "Men's Race Shirt Front")
+prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoMensShirtFront.png', alt_text: "Men's Race Shirt Front")
+
+prod = Product.create(description: "Women's Rattlesnake Ramble Shirt, size small", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+prod = Product.create(description: "Women's Rattlesnake Ramble Shirt, size medium", quantity: 10, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+prod = Product.create(description: "Women's Rattlesnake Ramble Shirt, size large", quantity: 3, price: 25)
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtFront.png', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RRMainLogoWomensShirtBack.png', alt_text: "Women's Race Shirt Back")
+
+prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size small", quantity: 5, price: 40)
+ProductImage.create(product: prod, url: 'SweatshirtMainLogoFront.png', alt_text: "Sweatshirt Front")
+prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size medium", quantity: 5, price: 40)
+ProductImage.create(product: prod, url: 'SweatshirtMainLogoFront.png', alt_text: "Sweatshirt Front")
+prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size large", quantity: 5, price: 40)
+ProductImage.create(product: prod, url: 'SweatshirtMainLogoFront.png', alt_text: "Sweatshirt Front")
+prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size extra-large", quantity: 3, price: 40)
+ProductImage.create(product: prod, url: 'SweatshirtMainLogoFront.png', alt_text: "Sweatshirt Front")
   
 racer_bill = Racer.create(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
 racer_sheri = Racer.create(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
