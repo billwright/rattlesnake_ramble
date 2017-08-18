@@ -74,6 +74,9 @@ class RaceEditionsController < ApplicationController
 
   end
 
+  def racer_emails
+  end
+
 
   private
 
