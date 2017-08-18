@@ -1,0 +1,16 @@
+<table class="table">
+
+  <% if @race_edition.racers.present? %>
+      <tr>
+        <th>Email</th>
+      </tr>
+
+      <% @race_edition.racers.each do |racer| %>
+          <tr>
+            <td><%= racer.email %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <p><strong>No racers entered.</strong></p>
+  <% end %>
+</table>

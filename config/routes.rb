@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     member do
       get 'enter'
       post 'create_entry'
+      get 'racer_emails'
     end
   end
   
