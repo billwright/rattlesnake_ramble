@@ -9,6 +9,7 @@ RSpec.describe Product, type: :model do
       product = build_stubbed(:product)
       expect(product.description).to be_present
       expect(product.quantity).to be_present
+      expect(product.price).to be_present
       expect(product).to be_valid
     end
 
