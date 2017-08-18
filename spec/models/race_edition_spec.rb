@@ -9,6 +9,7 @@ RSpec.describe RaceEdition, type: :model do
       race_edition = build_stubbed(:race_edition)
       expect(race_edition.race_id).to be_present
       expect(race_edition.date).to be_present
+      expect(race_edition.entry_fee).to be_present
       expect(race_edition).to be_valid
     end
 
