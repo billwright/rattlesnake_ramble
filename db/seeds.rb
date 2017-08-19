@@ -34,20 +34,20 @@ Product.all.each do |prod|
 end
 
 prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
-ProductImage.create(product: prod, url: 'RR2017MensShirtFront.jpg', alt_text: "Men's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
 prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size large", quantity: 10, price: 25)
-ProductImage.create(product: prod, url: 'RR2017MensShirtFront.jpg', alt_text: "Men's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
 prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size extra-large", quantity: 3, price: 25)
-ProductImage.create(product: prod, url: 'RR2017MensShirtFront.jpg', alt_text: "Men's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017MensShirtFront.png', alt_text: "Men's Race Shirt Front")
 
 prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size small", quantity: 10, price: 25)
-ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.jpg', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
 ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
 prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
-ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.jpg', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
 ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
 prod = Product.create(description: "Women's Cotton 2017 Race Shirt, size large", quantity: 5, price: 25)
-ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.jpg', alt_text: "Women's Race Shirt Front")
+ProductImage.create(product: prod, url: 'RR2017WomensShirtFront.png', alt_text: "Women's Race Shirt Front")
 ProductImage.create(product: prod, url: 'RR2017WomensShirtBack.png', alt_text: "Women's Race Shirt Back")
 
 prod = Product.create(description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)

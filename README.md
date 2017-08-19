@@ -66,16 +66,42 @@ Things you may want to cover:
 ### Race Categories
 
 * name
-* race
 * gender
 * minimum_age
 * maximum_age
 
+Examples:
+  | Under 20 Male | :male   |  0 |  20 |
+  | 20-29 Male    | :male   | 20 |  29 |
+  | 60+ Female    | :female | 60 | 200 |
+  | 50-59 Female  | :female | 50 |  59 |
+
 ### Race Placement Package
 
 * name
-* remove
-* 
+* num_overall_finishers_to_remove_from_categories (defaults to 3)
+* num_masters_finishers_to_remove_from_categories (defaults to 3)
+* starting_masters_age (defaults to 40)
+* categories
+
+Examples:
+  | Rattlesnake Ramble Long Course | 3 | 3 | 40 |
+  | Rattlesnake Ramble Kids Course | 0 | 0 | 40 |
+  
+  
+Placement Test:
+
+Given the following results:
+
+|   Name    | Age | Gender | Seconds |
+| Joe Smith | 35  |  Male  |   1750  |
+| Jim Smith | 41  |  Male  |   2000  |
+| Sue Smith | 25  | Female |   2100  |
+| Pam Smith | 33  | Female |   2250  |
+| Bob Smith | 51  |  Male  |   2500  |
+| Sal Smith | 42  |  Male  |   1950  |
+| Cal Smith | 21  |  Male  |   1800  |
+| Sam Smith | 32  |  Male  |   1900  |
 
 #### Useful Aliases
 ```bash
