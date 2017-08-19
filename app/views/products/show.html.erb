@@ -1,5 +1,11 @@
-<%= render 'shared/page_title', title: "Product" %>
+<%= render 'shared/page_title', title: @product.description %>
 
-<%= render 'form' %>
+<!--<%= render 'form' %>-->
+
+<h3 align="center">Price: $<%= @product.price %></h3>
+
+<% @product.product_images.each do | product_image | %>
+  <%= image_tag product_image.url, alt: product_image.alt_text %>
+<% end %>
 
 <h5><%= link_to "Return to Products Listing", products_path, class: "btn btn-warning btn-small" %></h5>
