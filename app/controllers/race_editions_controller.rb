@@ -50,31 +50,35 @@ class RaceEditionsController < ApplicationController
       render 'enter'
     end
   end
-  
+
   def paypal_url(race_entry)
     item_number = "RaceEdition#{@race_edition.id}-Racer#{race_entry.racer.id}"
     values = {
-      business: "bwright@rattlesnakeramble.org",
-      cmd: "_xclick",
-      upload: 1,
-      return: "#{Rails.application.secrets.app_host}#{successful_entry_race_entry_path(race_entry)}",
-      cancel_return: "#{Rails.application.secrets.app_host}#{cancelled_payment_race_entry_path(race_entry)}",
-      invoice: "RaceEntry#{race_entry.id}",
-      amount: @race_edition.entry_fee,
-      item_name: @race_edition.name,
-      item_number: item_number,
-      quantity: '1',
-      shipping: 0,
-      handling: 0,
-      no_shipping: 1,
-      no_note: 1,
+        business: "bwright@rattlesnakeramble.org",
+        cmd: "_xclick",
+        upload: 1,
+        return: "#{Rails.application.secrets.app_host}#{successful_entry_race_entry_path(race_entry)}",
+        cancel_return: "#{Rails.application.secrets.app_host}#{cancelled_payment_race_entry_path(race_entry)}",
+        invoice: "RaceEntry#{race_entry.id}",
+        amount: @race_edition.entry_fee,
+        item_name: @race_edition.name,
+        item_number: item_number,
+        quantity: '1',
+        shipping: 0,
+        handling: 0,
+        no_shipping: 1,
+        no_note: 1,
     }
-    
+
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 
   end
 
   def racer_emails
+    all_entries = @race_edition.race_entries.eager_load(:racer)
+    paid_filter = params[:filter] && (params[:filter][:paid] == 'true')
+    filtered_entries = paid_filter.nil? ? all_entries : all_entries.where(paid: paid_filter)
+    @racers = filtered_entries.map(&:racer)
   end
 
 
