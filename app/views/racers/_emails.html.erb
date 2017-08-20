@@ -1,3 +1,5 @@
-<% racers.each do |racer| %>
-    <p><%= racer.email %></p>
-<% end %>
+<p>
+  <% racers.each do |racer| %>
+    <%= racer.email %>,
+  <% end %>
+</p>
