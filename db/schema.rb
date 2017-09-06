@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815182454) do
+ActiveRecord::Schema.define(version: 20170906154037) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
-    t.string "url"
+    t.string "url", null: false
     t.string "alt_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,7 +35,9 @@ ActiveRecord::Schema.define(version: 20170815182454) do
     t.integer "entry_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", null: false
     t.index ["race_id"], name: "index_race_editions_on_race_id"
+    t.index ["slug"], name: "index_race_editions_on_slug", unique: true
   end
 
   create_table "race_entries", force: :cascade do |t|
@@ -67,6 +69,9 @@ ActiveRecord::Schema.define(version: 20170815182454) do
     t.text "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", null: false
+    t.index ["name"], name: "index_races_on_name", unique: true
+    t.index ["slug"], name: "index_races_on_slug", unique: true
   end
 
 end
