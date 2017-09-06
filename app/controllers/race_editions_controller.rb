@@ -92,7 +92,6 @@ class RaceEditionsController < ApplicationController
   end
 
   def set_race_edition
-    @race_edition = RaceEdition.find(params[:id])
+    @race_edition = RaceEdition.friendly.find(params[:id])
   end
-
 end

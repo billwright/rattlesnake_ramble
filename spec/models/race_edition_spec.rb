@@ -24,5 +24,12 @@ RSpec.describe RaceEdition, type: :model do
       expect(race_edition).to be_invalid
       expect(race_edition.errors.full_messages).to include("Race can't be blank")
     end
+
+    it 'is invalid when created with a duplicate race on the same date' do
+      existing_race_edition = create(:race_edition)
+      race_edition = build_stubbed(:race_edition, race: existing_race_edition.race, date: existing_race_edition.date)
+      expect(race_edition).to be_invalid
+      expect(race_edition.errors.full_messages).to include('Race has already been taken')
+    end
   end
 end
