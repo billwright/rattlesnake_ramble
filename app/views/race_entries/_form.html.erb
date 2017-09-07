@@ -4,12 +4,18 @@
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_entry do |f| %>
 
-      <%= f.label 'paid?' %>
+      <%= f.label 'Racer name:' %>
+      <%= "#{@race_entry.racer.name}" %><hr/>
+
+        <%= f.label :bib_number %>
+        <%= f.text_field :bib_number, autofocus: true %>
+
+        <%= f.label 'paid?' %>
       <%= f.select :paid, [true, false], {} %>
-      
+
       <%= f.label :time %>
       <%= f.text_field :time %>
-      
+
       <%= f.submit(@race_entry.new_record? ? 'Create Race Entry' : 'Update Race Entry', class: "btn btn-success") %>
     <% end %>
   </div>
