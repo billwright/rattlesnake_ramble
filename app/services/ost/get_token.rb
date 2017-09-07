@@ -4,9 +4,10 @@ module OST
       full_url = "#{ENV['OST_URL']}#{OST::Constants::AUTH_ENDPOINT}"
       response = RestClient.post(full_url, {user: {email: ENV['OST_RR_EMAIL'],
                                                    password: ENV['OST_RR_PASSWORD']}})
-      JSON.parse(response.body)['token']
+      OST::Response.new(response)
+
     rescue RestClient::ExceptionWithResponse => e
-      e.response
+      OST::Response.new(e.response)
     end
   end
 end

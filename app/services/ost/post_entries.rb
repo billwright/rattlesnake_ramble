@@ -1,12 +1,8 @@
 module OST
   class PostEntries
     def self.perform(args)
-      post_entries = new(args)
-      post_entries.perform
-      post_entries.response
+      new(args).perform
     end
-
-    attr_reader :response
 
     def initialize(args)
       @race_edition = args[:race_edition]
@@ -15,23 +11,15 @@ module OST
     end
 
     def perform
-      self.response = RestClient.post(import_url, translated_effort_data, {Authorization: "Bearer #{token}"})
+      response = RestClient.post(import_url, translated_effort_data, {Authorization: "Bearer #{token}"})
+      OST::Response.new(response)
     rescue RestClient::ExceptionWithResponse => e
-      self.response = e.response
-    end
-
-    def response_body
-      JSON.parse(response.body)
-    end
-
-    def errors
-      response_body['errors']
+      OST::Response.new(e.response)
     end
 
     private
 
     attr_reader :race_edition, :ost_event_id, :token
-    attr_writer :response
 
     def import_url
       ENV['OST_URL'] + import_endpoint

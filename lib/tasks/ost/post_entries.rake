@@ -18,17 +18,16 @@ namespace :ost do
     ost_event_id = args[:ost_event_id]
 
     print 'Authenticating with OpenSplitTime...'
-    response = OST::GetToken.perform
+    auth_response = OST::GetToken.perform
 
-    if response.is_a?(String)
-      puts 'authenticated'
-    else
-      abort("Aborted: Authentication failed with status #{response.code}\n" +
-                "Headers: #{JSON.parse(response.headers)}\n" +
-                "Body: #{JSON.parse(response.body)}")
+    unless auth_response.successful?
+      abort("Aborted: Authentication failed with status #{auth_response.code}\n" +
+                "Headers: #{auth_response.headers}\n" +
+                "Body: #{JSON.parse(auth_response.body)}")
     end
 
-    token = response
+    puts 'authenticated'
+    token = auth_response.token
 
     begin
       race_edition = RaceEdition.where(id: race_edition_id).or(RaceEdition.where(slug: race_edition_id)).eager_load(race_entries: :racer).first
@@ -38,16 +37,13 @@ namespace :ost do
     puts "Located race_edition: #{race_edition.name}"
 
     puts "Posting data to opensplittime.org event #{ost_event_id}"
-    ost_response = OST::PostEntries.perform(race_edition: race_edition, ost_event_id: ost_event_id, token: token)
-    abort('Aborted: No response received from opensplittime.org') unless ost_response.present?
+    post_response = OST::PostEntries.perform(race_edition: race_edition, ost_event_id: ost_event_id, token: token)
+    abort('Aborted: No response received from opensplittime.org') unless post_response.present?
 
-    response_body = JSON.parse(ost_response.body)
-    puts response_body
-
-    if ost_response.code == 201
-      puts "Posted #{response_body['data'].size} entries"
+    if post_response.successful?
+      puts "Posted #{ActionController::Base.helpers.pluralize(post_response.data&.size, 'entry')}"
     else
-      puts 'Request failed'
+      puts "Post failed: #{post_response.errors}"
     end
 
     elapsed_time = (Time.current - start_time).round(2)
