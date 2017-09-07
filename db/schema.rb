@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906154037) do
+ActiveRecord::Schema.define(version: 20170906210843) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170906154037) do
     t.boolean "paid", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bib_number"
     t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
     t.index ["racer_id"], name: "index_race_entries_on_racer_id"
   end
