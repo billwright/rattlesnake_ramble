@@ -16,7 +16,7 @@ RSpec.describe OST::PostEntries do
     it 'sends a data payload to RestClient' do
       allow(RestClient).to receive(:post)
       OST::PostEntries.perform(race_edition: race_edition, ost_event_id: 'test-event', token: token)
-      expect(RestClient).to have_received(:post).with(anything, a_string_including('data', 'data_format', 'unique_key'), anything)
+      expect(RestClient).to have_received(:post).with(anything, hash_including(:data, :data_format, :unique_key), anything)
     end
 
     it 'sends the given token to RestClient in an Authorization header' do
