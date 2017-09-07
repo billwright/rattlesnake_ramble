@@ -1,22 +1,27 @@
-namespace :post_entries do
+namespace :ost do
   desc 'Posts all 2017 race_entry and related racer data to OpenSplitTime.org'
-  task to_ost_for_2017: :environment do
-    Rake::Task['post_entries:to_ost'].invoke('rattlesnake-ramble-trail-race-on-2017-09-09', '2017-rattlesnake-ramble')
-    Rake::Task['post_entries:to_ost'].invoke('rattlesnake-ramble-kids-race-on-2017-09-09', '2017-rattlesnake-ramble-kids-race')
+  task post_entries_2017: :environment do
+    editions = {'rattlesnake-ramble-trail-race-on-2017-09-09' => '2017-rattlesnake-ramble',
+                'rattlesnake-ramble-kids-race-on-2017-09-09' => '2017-rattlesnake-ramble-kids-race'}
+
+    editions.each do |race_edition_id, ost_event_id|
+      Rake::Task['ost:post_entries'].invoke(race_edition_id, ost_event_id)
+      Rake::Task['ost:post_entries'].reenable
+    end
   end
 
 
   desc 'Posts race_entry data from a specified race_edition to a specified opensplittime race_edition'
-  task :to_ost, [:race_edition_id, :ost_event_id] => :environment do |_, args|
+  task :post_entries, [:race_edition_id, :ost_event_id] => :environment do |_, args|
     start_time = Time.current
     race_edition_id = args[:race_edition_id]
     ost_event_id = args[:ost_event_id]
 
-    puts 'Authenticating with OpenSplitTime'
+    print 'Authenticating with OpenSplitTime...'
     response = OST::GetToken.perform
 
     if response.is_a?(String)
-      puts 'Authenticated'
+      puts 'authenticated'
     else
       abort("Aborted: Authentication failed with status #{response.code}\n" +
                 "Headers: #{JSON.parse(response.headers)}\n" +
@@ -46,6 +51,6 @@ namespace :post_entries do
     end
 
     elapsed_time = (Time.current - start_time).round(2)
-    puts "\nFinished post_entries:to_ost for race_edition: #{race_edition.name} to opensplittime event #{ost_event_id} in #{elapsed_time} seconds"
+    puts "Finished post_entries:to_ost for race_edition: #{race_edition_id} to opensplittime event #{ost_event_id} in #{elapsed_time} seconds\n\n"
   end
 end
