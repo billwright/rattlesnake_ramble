@@ -7,7 +7,8 @@ module OST
                        birthdate: {racer: :birth_date},
                        email: {racer: :email},
                        city: {racer: :city},
-                       state_code: {racer: :state}}
+                       state_code: {racer: :state},
+                       bib_number: :bib_number}
 
     def self.perform(race_entry)
       new(race_entry).perform
