@@ -19,12 +19,16 @@ module OST
     end
 
     def perform
-      TRANSLATION_KEY.map { |ost_attribute, rr_attribute| [ost_attribute, race_entry_value(rr_attribute)] }.to_h
+      {type: 'efforts', attributes: translate_attributes}
     end
 
     private
 
     attr_reader :race_entry
+
+    def translate_attributes
+      TRANSLATION_KEY.map { |ost_attribute, rr_attribute| [ost_attribute, race_entry_value(rr_attribute)] }.to_h
+    end
 
     def race_entry_value(attribute)
       if attribute.is_a?(Symbol)
