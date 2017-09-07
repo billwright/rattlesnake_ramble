@@ -32,3 +32,6 @@
 
 # Ignore rspec hidden file
 .rspec
+
+# Ignore environment files that may contain sensitive data
+.env
