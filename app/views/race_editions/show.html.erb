@@ -7,7 +7,11 @@
   </div>
 
   <div class="col-md-4">
-    <p><%= @race_edition.race_entries.size %> entered. <%= [100 - @race_edition.race_entries.size, 0].max %> entries available.</p>
+    <p><%= @race_edition.race_entries.size %> entered. 
+    <% if (100 - @race_edition.race_entries.size > 0) %>
+      <%= "#{100 - @race_edition.race_entries.size} entries available." %> 
+    <% end %>
+    </p>
   </div>
       
 </div>

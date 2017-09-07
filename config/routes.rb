@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/home', to: 'pages#home'
   get '/enter', to: 'pages#enter'
   get '/thanks', to: 'pages#thanks'
+  get '/charity', to: 'pages#charity'
   
   # get '/races', to: 'races#index'
   # get '/races/:id', to: 'races#show', as: 'race'

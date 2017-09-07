@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906154037) do
+ActiveRecord::Schema.define(version: 20170906210843) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
-    t.string "url", null: false
+    t.string "url"
     t.string "alt_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,7 +35,8 @@ ActiveRecord::Schema.define(version: 20170906154037) do
     t.integer "entry_fee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug", null: false
+    t.string "slug"
+    t.index ["race_id", "date"], name: "index_race_editions_on_race_id_and_date", unique: true
     t.index ["race_id"], name: "index_race_editions_on_race_id"
     t.index ["slug"], name: "index_race_editions_on_slug", unique: true
   end
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170906154037) do
     t.boolean "paid", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bib_number"
     t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
     t.index ["racer_id"], name: "index_race_entries_on_racer_id"
   end
@@ -69,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170906154037) do
     t.text "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug", null: false
+    t.string "slug"
     t.index ["name"], name: "index_races_on_name", unique: true
     t.index ["slug"], name: "index_races_on_slug", unique: true
   end
