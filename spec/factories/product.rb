@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :product do
-    description FFaker::Product.product
+    description { FFaker::Product.product }
     quantity { rand(0..20) }
     price { rand(10..1000) }
 

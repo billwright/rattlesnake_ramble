@@ -5,7 +5,7 @@
     <%= form_for @race_entry do |f| %>
 
       <%= f.label 'Racer name:' %>
-      <%= "#{@race_entry.racer.name}" %><hr/>
+      <%= "#{@race_entry.racer&.name}" %><hr/>
 
         <%= f.label :bib_number %>
         <%= f.text_field :bib_number, autofocus: true %>
