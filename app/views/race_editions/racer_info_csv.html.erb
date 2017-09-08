@@ -2,9 +2,9 @@
 
 CSV for all racers entered - to import into a spreadsheet
 
-  <p>Name, Bib Number, Age, Entry Paid?</p>
+  <p>Last Name, First Name, Bib Number, Age, Entry Paid?</p>
   <% @race_edition.race_entries.each do |race_entry| %>
-      <p><%= "#{race_entry.racer.name}, #{race_entry.bib_number}, #{race_entry.racer.current_age}, #{race_entry.paid}" %></p>
+      <p><%= "#{race_entry.racer.last_name}, #{race_entry.racer.first_name}, #{race_entry.bib_number}, #{race_entry.racer.current_age}, #{race_entry.paid}" %></p>
   <% end %>
   
 <h5><%= link_to 'Return to Races Listing', races_path, class: 'btn btn-warning btn-small' %></h5>
