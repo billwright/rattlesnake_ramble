@@ -5,6 +5,8 @@ require 'rails_helper'
 # t.text "location"
 
 RSpec.describe Race, type: :model do
+  it { is_expected.to strip_attribute(:name).collapse_spaces }
+
   describe '#initialize' do
     it 'is valid when created with a name' do
       race = build_stubbed(:race)

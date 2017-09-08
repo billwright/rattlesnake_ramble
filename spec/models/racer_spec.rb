@@ -10,6 +10,11 @@ require 'rails_helper'
 
 RSpec.describe Racer, type: :model do
   include ActiveSupport::Testing::TimeHelpers
+  it { is_expected.to strip_attribute(:first_name).collapse_spaces }
+  it { is_expected.to strip_attribute(:last_name).collapse_spaces }
+  it { is_expected.to strip_attribute(:city).collapse_spaces }
+  it { is_expected.to strip_attribute(:state).collapse_spaces }
+  it { is_expected.to strip_attribute(:email).collapse_spaces }
 
   describe '#initialize' do
     it 'is valid when created with first_name, last_name, gender, email, and birth_date' do
