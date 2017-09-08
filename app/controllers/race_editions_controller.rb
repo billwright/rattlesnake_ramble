@@ -83,7 +83,9 @@ class RaceEditionsController < ApplicationController
     @racers = filtered_entries.map(&:racer)
   end
 
-
+  def racer_info_csv
+  end
+  
   private
 
   def obj_params
