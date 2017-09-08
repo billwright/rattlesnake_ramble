@@ -1,7 +1,8 @@
 class RaceEntriesController < ApplicationController
 
   def index
-    @race_entries = RaceEntry.all
+    # @race_entries = RaceEntry.all
+    @race_entries = RaceEntry.joins(:racer).order('racers.last_name')
   end
   
   def show
