@@ -2,7 +2,7 @@ class RaceEntriesController < ApplicationController
 
   def index
     sort = params[:sort] || 'racers.last_name'
-    @race_entries ||= RaceEntry.includes(:racer, :race_edition).order(sort)
+    @race_entries = RaceEntry.includes(:racer, :race_edition).order(sort)
   end
   
   def show
