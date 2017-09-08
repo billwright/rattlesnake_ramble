@@ -1,11 +1,11 @@
 <table class="table">
   <tr>
-    <th>Racer</th>
+    <th><%= link_to 'Racer', race_entries_path(sort: 'racers.last_name') %></th>
     <th>Race</th>
-    <th>Age</th>
-    <th>Bib #</th>
-    <th>Paid?</th>
-    <th>Time</th>
+    <th><%= link_to 'Age', race_entries_path(sort: 'racers.birth_date desc') %></th>
+    <th><%= link_to 'Bib #', race_entries_path(sort: 'bib_number') %></th>
+    <th><%= link_to 'Paid?', race_entries_path(sort: 'paid') %></th>
+    <th><%= link_to 'Time', race_entries_path(sort: 'time') %></th>
   </tr>
   
   <% @race_entries.each do |race_entry| %>

@@ -9,8 +9,6 @@ class RaceEntry < ActiveRecord::Base
   validates_uniqueness_of :racer_id, scope: :race_edition_id,
                           message: 'may be added to a race_edition only once'
 
-  default_scope { order('bib_number ASC') }
-
   after_initialize :default_values
 
   def default_values
