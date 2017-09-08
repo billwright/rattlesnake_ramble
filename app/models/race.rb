@@ -1,5 +1,6 @@
 class Race < ActiveRecord::Base
   extend FriendlyId
+  strip_attributes collapse_spaces: true
 
   has_many :race_editions
   validates :name, presence: true, length: { minimum: 5, maximum: 100 }

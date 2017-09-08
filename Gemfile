@@ -43,6 +43,7 @@ gem 'american_date', '~> 1.1'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rest-client', '~> 2.0'
 gem 'dotenv-rails', '~> 2.2'
+gem 'strip_attributes', '~> 1.8'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
