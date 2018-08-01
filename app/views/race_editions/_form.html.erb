@@ -3,8 +3,19 @@
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_edition do |f| %>
+    
+      <%= f.label :name %>
+
       <%= f.label :date %>
-      <%= f.text_field :date %>
+      <%= datepicker_input(form: f,
+                           field: :date,
+                          # existing_date: :date,
+                           default_date: {year: 2018, month: 9, day: 15},
+                           default_view: 'decades') %>
+                           
+      <%= f.label :entry_fee %>
+      <%= f.text_field :entry_fee %>
+
       
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
     <% end %>

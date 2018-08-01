@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @race_edition do |f| %>
+      <%= f.label :race %>
+      <%= f.text_field @race.name %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit(@race_edition.new_record? ? 'Create Race' : 'Update Race', class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>
