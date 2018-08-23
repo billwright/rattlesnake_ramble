@@ -1,23 +1,32 @@
-<%= render 'shared/page_title', title: "Entrants for #{@race_edition.name}" %>
+<%= render 'shared/page_title', title: "Entrants for #{@presenter.name}" %>
 
 <div class="row">
   <div class="col-md-8 well">
-    <%= @race_edition.race.description %>
-    <!--<%= link_to "Edit", edit_race_edition_path(@race_edition), class: "btn btn-success pull-right" %>-->
+    <%= @presenter.race.description %>
+    <!--<%= link_to "Edit", edit_race_edition_path(@presenter), class: "btn btn-success pull-right" %>-->
   </div>
 
   <div class="col-md-4">
-    <p><%= @race_edition.race_entries.size %> entered. 
-    <% if (100 - @race_edition.race_entries.size > 0) %>
-      <%= "#{100 - @race_edition.race_entries.size} entries available." %> 
+    <p><%= @presenter.race_entries.size %> entered. 
+    <% if (100 - @presenter.race_entries.size > 0) %>
+      <%= "#{100 - @presenter.race_entries.size} entries available." %> 
     <% end %>
     </p>
   </div>
       
 </div>
 
-<h5><%= link_to "Enter Race", enter_race_edition_path(@race_edition), class: "btn btn-warning btn-small" %></h5>
+<hr/>
+<h4>Currently Signed Up:</h4>
+<div class="row">
+  <% @presenter.category_size_map.each do |category_name, size| %>
+    <div class="col-xs-6"><%= "#{category_name}: #{size}" %></div>
+  <% end %>
+</div>
+<hr/>
 
-<%= render 'race_entries/edition_entries' %>
+<h5><%= link_to "Enter Race", enter_race_edition_path(@presenter), class: "btn btn-warning btn-small" %></h5>
+
+<%= render 'race_entries/edition_entries', view_object: @presenter %>
 
 <h5><%= link_to "Return to Races Listing", races_path, class: "btn btn-warning btn-small" %></h5>
