@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'chronic_duration'
 
 class RaceEntry < ActiveRecord::Base
@@ -10,6 +12,8 @@ class RaceEntry < ActiveRecord::Base
                           message: 'may be added to a race_edition only once'
 
   after_initialize :default_values
+
+  attr_accessor :category_name
 
   def default_values
     self.paid = false if self.paid.nil?

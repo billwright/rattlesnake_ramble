@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RaceEditionsController < ApplicationController
   before_action :set_race_edition, except: [:index, :new, :create]
 
@@ -6,7 +8,8 @@ class RaceEditionsController < ApplicationController
   end
 
   def show
-    # binding.pry
+    race_edition = RaceEdition.where(id: @race_edition).includes(:race, race_entries: :racer).first
+    @presenter = RaceEditionPresenter.new(race_edition)
   end
 
   def new
@@ -14,7 +17,6 @@ class RaceEditionsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @race_edition = RaceEdition.new(obj_params)
 
     if @race_edition.save

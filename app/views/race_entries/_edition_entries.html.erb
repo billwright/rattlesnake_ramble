@@ -8,14 +8,14 @@
     <th>Time</th>
   </tr>
   
-  <% @race_edition.race_entries.each do |race_entry| %>
+  <% view_object.race_entries.each do |race_entry| %>
     <tr>
       <td><%= race_entry.racer.name %></td>
       <td><%= race_entry.bib_number %></td>
       <td><%= race_entry.racer.current_age %></td>
       <td><%= race_entry.paid %></td>
       <td>
-      <% if not race_entry.paid %>
+      <% unless race_entry.paid %>
         <a href="<%= paypal_url(race_entry) %>"><image src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"></image></a>
       <% end %>
       </td>
