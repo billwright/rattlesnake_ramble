@@ -2,7 +2,7 @@
 
 class RaceEditionPresenter < SimpleDelegator
 
-  ADULT_CATEGORY_KEYS = %i[men_under_20 women_under_20 men_20s women_20s men_30s women_30s men_masters women_masters]
+  ADULT_CATEGORY_KEYS = %i[men_under_20 women_under_20 men_20s women_20s men_30s women_30s men_40s women_40s men_50s women_50s men_60_plus women_60_plus]
   KIDS_CATEGORY_KEYS = %i[boys girls]
 
   def initialize(race_edition)
@@ -18,7 +18,7 @@ class RaceEditionPresenter < SimpleDelegator
   private
 
   def categories
-    category_keys.map { |name| Results::Categories.find(name) }
+    category_keys.map { |key| Results::Categories.find(key) }
   end
 
   def category_keys
