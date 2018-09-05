@@ -93,6 +93,25 @@ RSpec.describe Racer, type: :model do
       end
     end
 
+    context 'when email is nil' do
+      let(:email) { nil }
+
+      it 'does not raise an error and makes no changes' do
+        expect { subject.run_callbacks :save }.not_to raise_error
+        expect(subject.email).to be_nil
+      end
+    end
+
+    context 'when birth_date year is provided as four digits' do
+      let(:birth_date) { '1/1/1990' }
+
+      it 'makes no change' do
+        expect(subject.birth_date.year).to eq(1990)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(1990)
+      end
+    end
+
     context 'when birth_date year is provided as two digits that are between 0 and the current two-digit year' do
       let(:birth_date) { '1/1/08' }
 
@@ -110,6 +129,15 @@ RSpec.describe Racer, type: :model do
         expect(subject.birth_date.year).to eq(88)
         subject.run_callbacks :save
         expect(subject.birth_date.year).to eq(1988)
+      end
+    end
+
+    context 'when birth_date is nil' do
+      let(:birth_date) { nil }
+
+      it 'does not raise an error and makes no changes' do
+        expect { subject.run_callbacks :save }.not_to raise_error
+        expect(subject.birth_date).to be_nil
       end
     end
   end
