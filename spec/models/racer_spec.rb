@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # t.string "first_name"
@@ -73,6 +75,41 @@ RSpec.describe Racer, type: :model do
         racer = build_stubbed(:racer, email: email)
         expect(racer).to be_invalid
         expect(racer.errors.full_messages).to include('Email is invalid')
+      end
+    end
+  end
+
+  describe 'before_save callbacks' do
+    subject { build(:racer, email: email, birth_date: birth_date) }
+    let(:email) { 'mail@example.com' }
+    let(:birth_date) { '1/1/1970' }
+
+    context 'when email contains uppercase characters' do
+      let(:email) { 'Bill.Wright@Example.com' }
+
+      it 'changes email to lowercase' do
+        subject.run_callbacks :save
+        expect(subject.email).to eq('bill.wright@example.com')
+      end
+    end
+
+    context 'when birth_date year is provided as two digits that are between 0 and the current two-digit year' do
+      let(:birth_date) { '1/1/08' }
+
+      it 'adds 2000 to the year' do
+        expect(subject.birth_date.year).to eq(8)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(2008)
+      end
+    end
+
+    context 'when birth_date year is provided as two digits that are between the current two-digit year and 99' do
+      let(:birth_date) { '1/1/88' }
+
+      it 'adds 1900 to the year' do
+        expect(subject.birth_date.year).to eq(88)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(1988)
       end
     end
   end
