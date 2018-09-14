@@ -105,7 +105,7 @@ RSpec.describe Racer, type: :model do
       let(:email) { 'Bill.Wright@Example.com' }
 
       it 'changes email to lowercase' do
-        subject.run_callbacks :save
+        subject.run_callbacks :validation
         expect(subject.email).to eq('bill.wright@example.com')
       end
     end
@@ -114,7 +114,7 @@ RSpec.describe Racer, type: :model do
       let(:email) { nil }
 
       it 'does not raise an error and makes no changes' do
-        expect { subject.run_callbacks :save }.not_to raise_error
+        expect { subject.run_callbacks :validation }.not_to raise_error
         expect(subject.email).to be_nil
       end
     end
@@ -124,7 +124,7 @@ RSpec.describe Racer, type: :model do
 
       it 'makes no change' do
         expect(subject.birth_date.year).to eq(1990)
-        subject.run_callbacks :save
+        subject.run_callbacks :validation
         expect(subject.birth_date.year).to eq(1990)
       end
     end
@@ -134,7 +134,7 @@ RSpec.describe Racer, type: :model do
 
       it 'adds 2000 to the year' do
         expect(subject.birth_date.year).to eq(8)
-        subject.run_callbacks :save
+        subject.run_callbacks :validation
         expect(subject.birth_date.year).to eq(2008)
       end
     end
@@ -144,7 +144,7 @@ RSpec.describe Racer, type: :model do
 
       it 'adds 1900 to the year' do
         expect(subject.birth_date.year).to eq(88)
-        subject.run_callbacks :save
+        subject.run_callbacks :validation
         expect(subject.birth_date.year).to eq(1988)
       end
     end
@@ -153,8 +153,17 @@ RSpec.describe Racer, type: :model do
       let(:birth_date) { nil }
 
       it 'does not raise an error and makes no changes' do
-        expect { subject.run_callbacks :save }.not_to raise_error
+        expect { subject.run_callbacks :validation }.not_to raise_error
         expect(subject.birth_date).to be_nil
+      end
+    end
+
+    context 'when creating a record with a two-digit birthdate' do
+      let(:racer) { build(:racer, birth_date: '01/01/70') }
+
+      it 'fixes the birthdate then validates and saves it' do
+        expect { racer.save }.not_to raise_error
+        expect(racer.birth_date).to eq(Date.parse('01/01/1970'))
       end
     end
   end

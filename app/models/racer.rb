@@ -5,7 +5,7 @@ class Racer < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  before_save do
+  before_validation do
     downcase_email
     modernize_birth_date
   end
