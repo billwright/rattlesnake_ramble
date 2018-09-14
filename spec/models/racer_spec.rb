@@ -77,6 +77,23 @@ RSpec.describe Racer, type: :model do
         expect(racer.errors.full_messages).to include('Email is invalid')
       end
     end
+
+    it 'permits birth_dates after 1900 and before the current date' do
+      racer = build_stubbed(:racer, birth_date: '1980-01-01')
+      expect(racer).to be_valid
+    end
+
+    it 'rejects birth_dates before 1900' do
+      racer = build_stubbed(:racer, birth_date: '1800-01-01')
+      expect(racer).to be_invalid
+      expect(racer.errors.full_messages).to include("Birth date can't be before 1900")
+    end
+
+    it 'rejects birth_dates after the current date' do
+      racer = build_stubbed(:racer, birth_date: '2030-01-01')
+      expect(racer).to be_invalid
+      expect(racer.errors.full_messages).to include("Birth date can't be in the future")
+    end
   end
 
   describe 'before_save callbacks' do
