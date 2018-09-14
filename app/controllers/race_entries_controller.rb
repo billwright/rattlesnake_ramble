@@ -37,6 +37,14 @@ class RaceEntriesController < ApplicationController
       redirect_to race_entries_path
     end
   end
+
+  def destroy
+    @race_entry = RaceEntry.find(params[:id])
+    if @race_entry.destroy
+      flash[:success] = "Your race entry was deleted"
+      redirect_to race_entries_path
+    end
+  end
   
   def successful_entry
     race_entry = RaceEntry.find(params[:id])

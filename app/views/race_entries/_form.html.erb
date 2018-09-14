@@ -18,5 +18,10 @@
 
       <%= f.submit(@race_entry.new_record? ? 'Create Race Entry' : 'Update Race Entry', class: "btn btn-success") %>
     <% end %>
+
+    <hr/>
+    <% unless @race_entry.new_record? %>
+      <%= link_to 'Delete Race Entry', race_entry_path(@race_entry), method: :delete, data: {confirm: 'Delete this entry?'}, class: 'btn btn-danger btn-block' %>
+    <% end %>
   </div>
 </div>
