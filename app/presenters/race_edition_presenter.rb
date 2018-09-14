@@ -17,7 +17,7 @@ class RaceEditionPresenter < SimpleDelegator
   end
 
   def sorted_race_entries
-    race_entries.joins(:racer).order(params[:sort])
+    race_entries.joins(:racer).order(sort_param)
   end
 
   private
@@ -38,5 +38,9 @@ class RaceEditionPresenter < SimpleDelegator
       category.age_range.include?(racer.current_age) && category.genders.include?(racer.gender)
     end
     race_entry.category_name = category.name
+  end
+
+  def sort_param
+    params[:sort] || 'race_entries.bib_number,racers.last_name'
   end
 end
