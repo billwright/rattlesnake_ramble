@@ -35,7 +35,7 @@ RSpec.describe RaceEntry, type: :model do
     end
 
     it 'is invalid when a bib_number already exists within the race_edition' do
-      existing_entry = create(:race_entry)
+      existing_entry = create(:race_entry, :with_bib_number)
       new_entry = build(:race_entry, bib_number: existing_entry.bib_number, race_edition: existing_entry.race_edition)
       expect(new_entry).to be_invalid
       expect(new_entry.errors.full_messages).to include('Bib number may not be duplicated within a race edition')

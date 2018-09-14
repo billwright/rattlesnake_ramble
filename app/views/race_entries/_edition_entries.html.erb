@@ -1,14 +1,14 @@
 <table class="table">
   <tr>
-    <th>Racer</th>
-    <th>Bib #</th>
-    <th>Age</th>
-    <th>Paid?</th>
+    <th><%= link_to 'Racer', request.params.merge(sort: 'racers.last_name') %></th>
+    <th><%= link_to 'Bib #', request.params.merge(sort: 'race_entries.bib_number,racers.last_name') %></th>
+    <th><%= link_to 'Age', request.params.merge(sort: 'racers.birth_date desc') %></th>
+    <th><%= link_to 'Paid?', request.params.merge(sort: 'race_entries.paid,race_entries.bib_number,racers.last_name') %></th>
     <th></th>
-    <th>Time</th>
+    <th><%= link_to 'Time', request.params.merge(sort: 'race_entries.time') %></th>
   </tr>
   
-  <% view_object.race_entries.each do |race_entry| %>
+  <% view_object.sorted_race_entries.each do |race_entry| %>
     <tr>
       <td><%= race_entry.racer.name %></td>
       <td><%= race_entry.bib_number %></td>

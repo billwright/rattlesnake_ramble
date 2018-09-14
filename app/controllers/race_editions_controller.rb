@@ -9,7 +9,7 @@ class RaceEditionsController < ApplicationController
 
   def show
     race_edition = RaceEdition.where(id: @race_edition).includes(:race, race_entries: :racer).first
-    @presenter = RaceEditionPresenter.new(race_edition)
+    @presenter = RaceEditionPresenter.new(race_edition, params)
   end
 
   def new
