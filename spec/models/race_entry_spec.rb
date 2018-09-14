@@ -3,6 +3,8 @@ require 'rails_helper'
 # t.integer "racer_id"
 # t.integer "race_edition_id"
 # t.integer "time"
+# t.boolean "paid", default: false
+# t.integer "bib_number"
 
 RSpec.describe RaceEntry, type: :model do
   describe '#initialize' do
