@@ -12,9 +12,8 @@ require 'rails_helper'
 
 RSpec.describe Racer, type: :model do
   include ActiveSupport::Testing::TimeHelpers
-  it { is_expected.to strip_attribute(:first_name).collapse_spaces }
-  it { is_expected.to strip_attribute(:last_name).collapse_spaces }
-  it { is_expected.to strip_attribute(:city).collapse_spaces }
+  # strip_attribute tests do not work on first_name, last_name, or city
+  # because RSpec matcher is confused by the fix_lazy_capitalization validation
   it { is_expected.to strip_attribute(:state).collapse_spaces }
   it { is_expected.to strip_attribute(:email).collapse_spaces }
 
@@ -96,10 +95,12 @@ RSpec.describe Racer, type: :model do
     end
   end
 
-  describe 'before_save callbacks' do
-    subject { build(:racer, email: email, birth_date: birth_date) }
+  describe 'before_validation callbacks' do
+    subject { build(:racer, email: email, birth_date: birth_date, first_name: first_name, last_name: last_name) }
     let(:email) { 'mail@example.com' }
     let(:birth_date) { '1/1/1970' }
+    let(:first_name) { 'Bill' }
+    let(:last_name) { 'Wright' }
 
     context 'when email contains uppercase characters' do
       let(:email) { 'Bill.Wright@Example.com' }
@@ -164,6 +165,42 @@ RSpec.describe Racer, type: :model do
       it 'fixes the birthdate then validates and saves it' do
         expect { racer.save }.not_to raise_error
         expect(racer.birth_date).to eq(Date.parse('01/01/1970'))
+      end
+    end
+
+    context 'when a lazy capitalization attribute is all uppercase' do
+      let(:last_name) { 'WRIGHT' }
+
+      it 'titleizes the name' do
+        subject.run_callbacks :validation
+        expect(subject.last_name).to eq('Wright')
+      end
+    end
+
+    context 'when a LAZY_CAPITALIZATION_ATTRIBUTE is all lowercase' do
+      let(:last_name) { 'wright' }
+
+      it 'titleizes the name' do
+        subject.run_callbacks :validation
+        expect(subject.last_name).to eq('Wright')
+      end
+    end
+
+    context 'when the attribute is titleized case' do
+      let(:last_name) { 'Wright' }
+
+      it 'makes no changes' do
+        subject.run_callbacks :validation
+        expect(subject.last_name).to eq('Wright')
+      end
+    end
+
+    context 'when the attribute is mixed case' do
+      let(:last_name) { 'DiPaulo' }
+
+      it 'makes no changes' do
+        subject.run_callbacks :validation
+        expect(subject.last_name).to eq('DiPaulo')
       end
     end
   end

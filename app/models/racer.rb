@@ -4,10 +4,12 @@ class Racer < ActiveRecord::Base
   strip_attributes collapse_spaces: true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  LAZY_CAPITALIZATION_ATTRIBUTES = [:first_name, :last_name, :city]
 
   before_validation do
     downcase_email
     modernize_birth_date
+    fix_lazy_capitalization
   end
 
   validates :first_name, presence: true
@@ -44,6 +46,17 @@ class Racer < ActiveRecord::Base
       self.birth_date += 2000.years
     elsif birth_date.year <= Date.today.year % 100 + 100
       self.birth_date += 1900.years
+    end
+  end
+
+  def fix_lazy_capitalization
+    LAZY_CAPITALIZATION_ATTRIBUTES.each do |attribute|
+      value = send(attribute)
+      next unless value.present?
+
+      if (value == value.upcase) || (value == value.downcase)
+        self.assign_attributes(attribute => value.titleize)
+      end
     end
   end
 end
