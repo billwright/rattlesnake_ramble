@@ -40,6 +40,12 @@ RSpec.describe RaceEntry, type: :model do
       expect(new_entry).to be_invalid
       expect(new_entry.errors.full_messages).to include('Bib number may not be duplicated within a race edition')
     end
+
+    it 'allows multiple nil bib_numbers' do
+      existing_entry = create(:race_entry, bib_number: nil)
+      new_entry = build(:race_entry, bib_number: nil, race_edition: existing_entry.race_edition)
+      expect(new_entry).to be_valid
+    end
   end
 
   describe '#elapsed_time' do

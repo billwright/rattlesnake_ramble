@@ -10,7 +10,7 @@ class RaceEntry < ActiveRecord::Base
   validates :race_edition, presence: true
   validates_uniqueness_of :racer_id, scope: :race_edition_id,
                           message: 'may be added to a race_edition only once'
-  validates_uniqueness_of :bib_number, scope: :race_edition_id,
+  validates_uniqueness_of :bib_number, scope: :race_edition_id, allow_nil: true,
                           message: 'may not be duplicated within a race edition'
 
   after_initialize :default_values
