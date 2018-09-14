@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # t.string "first_name"
@@ -73,6 +75,86 @@ RSpec.describe Racer, type: :model do
         racer = build_stubbed(:racer, email: email)
         expect(racer).to be_invalid
         expect(racer.errors.full_messages).to include('Email is invalid')
+      end
+    end
+
+    it 'permits birth_dates after 1900 and before the current date' do
+      racer = build_stubbed(:racer, birth_date: '1980-01-01')
+      expect(racer).to be_valid
+    end
+
+    it 'rejects birth_dates before 1900' do
+      racer = build_stubbed(:racer, birth_date: '1800-01-01')
+      expect(racer).to be_invalid
+      expect(racer.errors.full_messages).to include("Birth date can't be before 1900")
+    end
+
+    it 'rejects birth_dates after the current date' do
+      racer = build_stubbed(:racer, birth_date: '2030-01-01')
+      expect(racer).to be_invalid
+      expect(racer.errors.full_messages).to include("Birth date can't be in the future")
+    end
+  end
+
+  describe 'before_save callbacks' do
+    subject { build(:racer, email: email, birth_date: birth_date) }
+    let(:email) { 'mail@example.com' }
+    let(:birth_date) { '1/1/1970' }
+
+    context 'when email contains uppercase characters' do
+      let(:email) { 'Bill.Wright@Example.com' }
+
+      it 'changes email to lowercase' do
+        subject.run_callbacks :save
+        expect(subject.email).to eq('bill.wright@example.com')
+      end
+    end
+
+    context 'when email is nil' do
+      let(:email) { nil }
+
+      it 'does not raise an error and makes no changes' do
+        expect { subject.run_callbacks :save }.not_to raise_error
+        expect(subject.email).to be_nil
+      end
+    end
+
+    context 'when birth_date year is provided as four digits' do
+      let(:birth_date) { '1/1/1990' }
+
+      it 'makes no change' do
+        expect(subject.birth_date.year).to eq(1990)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(1990)
+      end
+    end
+
+    context 'when birth_date year is provided as two digits that are between 0 and the current two-digit year' do
+      let(:birth_date) { '1/1/08' }
+
+      it 'adds 2000 to the year' do
+        expect(subject.birth_date.year).to eq(8)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(2008)
+      end
+    end
+
+    context 'when birth_date year is provided as two digits that are between the current two-digit year and 99' do
+      let(:birth_date) { '1/1/88' }
+
+      it 'adds 1900 to the year' do
+        expect(subject.birth_date.year).to eq(88)
+        subject.run_callbacks :save
+        expect(subject.birth_date.year).to eq(1988)
+      end
+    end
+
+    context 'when birth_date is nil' do
+      let(:birth_date) { nil }
+
+      it 'does not raise an error and makes no changes' do
+        expect { subject.run_callbacks :save }.not_to raise_error
+        expect(subject.birth_date).to be_nil
       end
     end
   end

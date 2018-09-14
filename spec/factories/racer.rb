@@ -4,7 +4,7 @@ FactoryGirl.define do
     last_name { FFaker::Name.last_name }
     gender { FFaker::Gender.random }
     email { FFaker::Internet.disposable_email }
-    birth_date { FFaker::Time.date }
+    birth_date { Date.current - rand(10..80).years }
 
     trait :male do
       gender :male
