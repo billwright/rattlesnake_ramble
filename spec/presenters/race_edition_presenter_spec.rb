@@ -16,7 +16,7 @@ RSpec.describe RaceEditionPresenter do
 
   describe '#categories' do
     context 'when the race does not include "kids" in the name' do
-      let(:race) { build_stubbed(:race, name: '2018 Ramble') }
+      let(:race) { build_stubbed(:race, name: '2019 Ramble') }
 
       it 'uses the adult categories' do
         expect(subject.category_size_map.size).to eq(12)
@@ -25,7 +25,7 @@ RSpec.describe RaceEditionPresenter do
     end
 
     context 'when the race includes "kids" in the name' do
-      let(:race) { build_stubbed(:race, name: '2018 Ramble Kids') }
+      let(:race) { build_stubbed(:race, name: '2019 Ramble Kids') }
 
       it 'uses the kids categories' do
         expect(subject.category_size_map.size).to eq(2)

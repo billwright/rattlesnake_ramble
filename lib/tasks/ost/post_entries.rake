@@ -21,6 +21,17 @@ namespace :ost do
     end
   end
 
+  desc 'Posts all 2019 race_entry and related racer data to OpenSplitTime.org'
+  task post_entries_2019: :environment do
+    editions = {'rattlesnake-ramble-trail-race-on-2019-09-14' => '2019-rattlesnake-ramble',
+                'rattlesnake-ramble-kids-race-on-2019-09-14' => '2019-rattlesnake-ramble-kids-run'}
+
+    editions.each do |race_edition_id, ost_event_id|
+      Rake::Task['ost:post_entries'].invoke(race_edition_id, ost_event_id)
+      Rake::Task['ost:post_entries'].reenable
+    end
+  end
+
 
   desc 'Posts race_entry data from a specified race_edition to a specified opensplittime event'
   task :post_entries, [:race_edition_id, :ost_event_id] => :environment do |_, args|
