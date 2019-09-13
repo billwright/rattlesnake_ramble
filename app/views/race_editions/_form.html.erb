@@ -5,16 +5,23 @@
     <%= form_for @race_edition do |f| %>
     
       <%= f.label :name %>
+      <%= f.text_field :name %>
 
       <%= f.label :date %>
       <%= datepicker_input(form: f,
                            field: :date,
-                          # existing_date: :date,
+                           existing_date: @race_edition.date,
                            default_date: {year: 2019, month: 9, day: 14},
                            default_view: 'decades') %>
                            
       <%= f.label :entry_fee %>
       <%= f.text_field :entry_fee %>
+
+      <%= f.label 'Male start offset (minutes)' %>
+      <%= f.text_field :male_offset_minutes %>
+
+      <%= f.label 'Female start offset (minutes)' %>
+      <%= f.text_field :female_offset_minutes %>
 
       
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>

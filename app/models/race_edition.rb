@@ -16,4 +16,24 @@ class RaceEdition < ActiveRecord::Base
   def name
     "#{race&.name} on #{date}"
   end
+
+  def male_offset_minutes
+    male_offset / 60.0
+  end
+
+  def male_offset_minutes=(minutes)
+    return unless minutes.present?
+
+    self.male_offset = minutes.to_f * 60
+  end
+
+  def female_offset_minutes
+    female_offset / 60.0
+  end
+
+  def female_offset_minutes=(minutes)
+    return unless minutes.present?
+
+    self.female_offset = minutes.to_f * 60
+  end
 end

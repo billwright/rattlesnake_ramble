@@ -19,12 +19,17 @@ module OST
     end
 
     def perform
-      {type: 'efforts', attributes: translate_attributes}
+      hash = {type: 'efforts', attributes: translate_attributes}
+      offset = racer.male? ? male_offset : female_offset
+      hash[:attributes][:scheduled_start_offset] = offset
+      hash
     end
 
     private
 
     attr_reader :race_entry
+    delegate :race_edition, :racer, to: :race_entry
+    delegate :male_offset, :female_offset, to: :race_edition
 
     def translate_attributes
       TRANSLATION_KEY.map { |ost_attribute, rr_attribute| [ost_attribute, race_entry_value(rr_attribute)] }.to_h
