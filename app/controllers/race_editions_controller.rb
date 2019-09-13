@@ -28,12 +28,15 @@ class RaceEditionsController < ApplicationController
   end
 
   def edit
+    @race_edition = RaceEdition.friendly.find(params[:id])
   end
 
   def update
     if @race_edition.update(obj_params)
       flash[:success] = "Your race edition was updated successfully"
       redirect_to race_edition_path(@race_edition)
+    else
+      render :edit
     end
   end
 
