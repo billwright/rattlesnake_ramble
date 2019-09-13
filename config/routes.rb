@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :races
   resources :racers
   
-  resources :race_editions do
+  resources :race_editions, except: :index do
     member do
       get 'enter'
       post 'create_entry'
