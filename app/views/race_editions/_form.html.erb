@@ -5,6 +5,7 @@
     <%= form_for @race_edition do |f| %>
     
       <%= f.label :name %>
+      <%= f.text_field :name %>
 
       <%= f.label :date %>
       <%= datepicker_input(form: f,
@@ -15,6 +16,12 @@
                            
       <%= f.label :entry_fee %>
       <%= f.text_field :entry_fee %>
+
+      <%= f.label :male_offset_minutes %>
+      <%= f.text_field 'Male start offset (minutes)' %>
+
+      <%= f.label :female_offset_minutes %>
+      <%= f.text_field 'Female start offset (minutes)' %>
 
       
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
