@@ -60,4 +60,45 @@ RSpec.describe RaceEdition, type: :model do
       end
     end
   end
+
+  describe 'male_offset_minutes=' do
+    let(:race_edition) { build_stubbed(:race_edition, male_offset: existing_male_offset) }
+    before { race_edition.male_offset_minutes = male_offset_minutes }
+
+    context 'when existing offset is 0' do
+      let(:existing_male_offset) { 0 }
+
+      context 'when set to a positive value' do
+        let(:male_offset_minutes) { 15 }
+        it 'sets male_offset to the expected value' do
+          expect(race_edition.male_offset).to eq(15 * 60)
+        end
+      end
+
+      context 'when set to a negative value' do
+        let(:male_offset_minutes) { -15 }
+        it 'sets male_offset to the expected value' do
+          expect(race_edition.male_offset).to eq(-15 * 60)
+        end
+      end
+    end
+
+    context 'when existing offset is not 0' do
+      let(:existing_male_offset) { 900 }
+
+      context 'when set to a positive value' do
+        let(:male_offset_minutes) { 5 }
+        it 'sets male_offset to the expected value' do
+          expect(race_edition.male_offset).to eq(5 * 60)
+        end
+      end
+
+      context 'when set to a negative value' do
+        let(:male_offset_minutes) { -5 }
+        it 'sets male_offset to the expected value' do
+          expect(race_edition.male_offset).to eq(-5 * 60)
+        end
+      end
+    end
+  end
 end
