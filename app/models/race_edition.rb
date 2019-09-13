@@ -26,4 +26,14 @@ class RaceEdition < ActiveRecord::Base
 
     self.male_offset = minutes * 60
   end
+
+  def female_offset_minutes
+    female_offset / 60.0
+  end
+
+  def female_offset_minutes=(minutes)
+    return unless minutes.present?
+
+    self.female_offset = minutes * 60
+  end
 end
