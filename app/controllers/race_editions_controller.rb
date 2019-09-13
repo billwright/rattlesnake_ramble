@@ -3,10 +3,6 @@
 class RaceEditionsController < ApplicationController
   before_action :set_race_edition, except: [:index, :new, :create]
 
-  def index
-    @race_edition = RaceEdition.all
-  end
-
   def show
     race_edition = RaceEdition.where(id: @race_edition).includes(:race, race_entries: :racer).first
     @presenter = RaceEditionPresenter.new(race_edition, params)
