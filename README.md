@@ -6,7 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version: 2.3.1
-* 
+
 * Rails version: 5.1.2
 
 * System dependencies
@@ -112,6 +112,27 @@ alias test='rake test'
 alias resetdb='rake db:reset'
 alias rebuilddb='rake db:schema:load'
 alias start='rails server -b $IP -p $PORT'
+alias pushToHeroku='git push heroku master'
 ```
 
+## Updating entries
 
+#### Getting racer emails, unpaid racer emailss
+
+http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-2019-09-14/racer_emails
+
+On this page are three buttons: All, Paid, Unpaid
+
+#### Updating payment and bib number for entrants
+
+http://www.rattlesnakeramble.org/race_entries 
+
+Make sure to find the entry for the correct race editions
+
+#### Updating racer information, like birth date
+
+http://www.rattlesnakeramble.org/racers
+
+#### Exporting racer information to a spreadsheet
+
+http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-2019-09-14/racer_info_csv
