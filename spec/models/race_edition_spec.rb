@@ -32,4 +32,32 @@ RSpec.describe RaceEdition, type: :model do
       expect(race_edition.errors.full_messages).to include('Race has already been taken')
     end
   end
+
+  describe '#male_offset_minutes' do
+    subject { race_edition.male_offset_minutes }
+    let(:race_edition) { build_stubbed(:race_edition, male_offset: male_offset) }
+    let(:male_offset) { 0 }
+
+    context 'when male_offset is 0' do
+      it 'returns 0' do
+        expect(subject).to eq(0)
+      end
+    end
+
+    context 'when male_offset is a number of seconds divisible by 60' do
+      let(:male_offset) { 15 * 60 }
+      it 'returns the equivalent number of minutes as a float' do
+        expect(subject).to eq(15)
+        expect(subject).to be_a(Float)
+      end
+    end
+
+    context 'when male_offset is a number of seconds not divisible by 60' do
+      let(:male_offset) { 90 }
+      it 'returns the equivalent number of minutes as a float' do
+        expect(subject).to eq(1.5)
+        expect(subject).to be_a(Float)
+      end
+    end
+  end
 end
