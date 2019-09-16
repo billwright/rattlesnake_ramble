@@ -19,8 +19,10 @@
       <%= f.label 'Female start offset (minutes)' %>
       <%= f.text_field :female_offset_minutes %>
 
-      
+      <hr/>
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
+      <hr/>
+      <%= link_to '[ Cancel ]', @race_edition.new_record? ? races_path : race_edition_path(@race_edition) %>
     <% end %>
   </div>
 </div>
