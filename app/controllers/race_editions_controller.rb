@@ -35,6 +35,13 @@ class RaceEditionsController < ApplicationController
     end
   end
 
+  def destroy
+    if @race_edition.destroy
+      flash[:success] = "Your race edition was deleted"
+      redirect_to races_path
+    end
+  end
+
   def enter
     @racer = Racer.new
   end

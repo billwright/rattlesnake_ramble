@@ -26,6 +26,9 @@
       <hr/>
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
       <hr/>
+      <% unless @race_edition.new_record? %>
+        <%= link_to 'Delete Race Edition', race_edition_path(@race_edition), method: :delete, data: {confirm: 'Delete this race edition?'}, class: 'btn btn-danger btn-block' %>
+      <% end %>
       <%= link_to '[ Cancel ]', @race_edition.new_record? ? races_path : race_edition_path(@race_edition) %>
     <% end %>
   </div>
