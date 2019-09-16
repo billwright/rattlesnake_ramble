@@ -9,7 +9,7 @@ class RaceEditionsController < ApplicationController
   end
 
   def new
-    @race_edition = RaceEdition.new
+    @race_edition = RaceEdition.new(obj_params)
   end
 
   def create

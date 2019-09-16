@@ -1,7 +1,7 @@
 <%= render 'shared/page_title', title: @race.name %>
 
 <div class="col-md-12 pull-right new-model-button">
-  <%= link_to "New Race Edition", new_race_edition_path, class: "btn btn-success pull-left" %>
+  <%= link_to "New Race Edition", new_race_edition_path(race_edition: {race_id: @race.id}), class: "btn btn-success pull-left" %>
 </div>
 
 <div class="row">
