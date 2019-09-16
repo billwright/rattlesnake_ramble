@@ -24,7 +24,6 @@ class RaceEditionsController < ApplicationController
   end
 
   def edit
-    @race_edition = RaceEdition.friendly.find(params[:id])
   end
 
   def update
