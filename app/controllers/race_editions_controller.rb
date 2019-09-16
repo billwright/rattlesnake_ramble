@@ -9,7 +9,7 @@ class RaceEditionsController < ApplicationController
   end
 
   def new
-    @race_edition = RaceEdition.new
+    @race_edition = RaceEdition.new(obj_params)
   end
 
   def create
@@ -17,14 +17,13 @@ class RaceEditionsController < ApplicationController
 
     if @race_edition.save
       flash[:success] = "Your race edition was created successfully!"
-      redirect_to race_editions_path
+      redirect_to race_edition_path(@race_edition)
     else
       render :new
     end
   end
 
   def edit
-    @race_edition = RaceEdition.friendly.find(params[:id])
   end
 
   def update
@@ -33,6 +32,13 @@ class RaceEditionsController < ApplicationController
       redirect_to race_edition_path(@race_edition)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @race_edition.destroy
+      flash[:success] = "Your race edition was deleted"
+      redirect_to races_path
     end
   end
 
@@ -91,7 +97,7 @@ class RaceEditionsController < ApplicationController
 
   def obj_params
     params.require(:race_edition)
-        .permit(:date, :male_offset_minutes, :female_offset_minutes,
+        .permit(:race_id, :date, :entry_fee, :male_offset_minutes, :female_offset_minutes,
                 racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state])
   end
 
