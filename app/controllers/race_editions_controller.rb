@@ -17,7 +17,7 @@ class RaceEditionsController < ApplicationController
 
     if @race_edition.save
       flash[:success] = "Your race edition was created successfully!"
-      redirect_to race_editions_path
+      redirect_to race_edition_path(@race_edition)
     else
       render :new
     end
