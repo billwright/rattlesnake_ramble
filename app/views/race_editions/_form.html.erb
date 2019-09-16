@@ -3,6 +3,10 @@
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_edition do |f| %>
+      <%= f.label :race %>
+      <%= f.select :race_id, Race.all.map { |race| [race.name, race.id] },
+                   {prompt: true}, {class: "form-control dropdown-select-field"} %>
+
       <%= f.label :date %>
       <%= datepicker_input(form: f,
                            field: :date,
