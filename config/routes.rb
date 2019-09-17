@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/enter', to: 'pages#enter'
   get '/thanks', to: 'pages#thanks'
   get '/charity', to: 'pages#charity'
-  
+  get '/race_report', to: 'pages#race_report_2019'
+
   # get '/races', to: 'races#index'
   # get '/races/:id', to: 'races#show', as: 'race'
   # get '/races/new', to: 'races#new', as: 'new_race'
