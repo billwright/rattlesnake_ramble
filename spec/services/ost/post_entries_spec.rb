@@ -9,7 +9,7 @@ RSpec.describe OST::PostEntries do
     it 'sends a properly constructed URL to RestClient' do
       allow(RestClient).to receive(:post)
       OST::PostEntries.perform(race_edition: race_edition, ost_event_id: 'test-event', token: token)
-      expected_url = 'https://ost-stage.herokuapp.com/api/v1/events/test-event/import'
+      expected_url = "#{ENV['OST_URL']}/api/v1/events/test-event/import"
       expect(RestClient).to have_received(:post).with(expected_url, anything, anything)
     end
 
