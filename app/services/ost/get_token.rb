@@ -1,9 +1,9 @@
 module OST
   class GetToken
     def self.perform
-      full_url = "#{ENV['OST_URL']}#{OST::Constants::AUTH_ENDPOINT}"
-      response = RestClient.post(full_url, {user: {email: ENV['OST_EMAIL'],
-                                                   password: ENV['OST_PASSWORD']}})
+      full_url = "#{RambleConfig.ost_url}#{OST::Constants::AUTH_ENDPOINT}"
+      response = RestClient.post(full_url, {user: {email: RambleConfig.ost_email,
+                                                   password: RambleConfig.ost_password}})
       OST::Response.new(response)
 
     rescue RestClient::ExceptionWithResponse => e
