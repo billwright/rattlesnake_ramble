@@ -22,7 +22,7 @@ module OST
     attr_reader :race_edition, :ost_event_id, :token
 
     def import_url
-      ENV['OST_URL'] + import_endpoint
+      "#{RambleConfig.ost_url}#{import_endpoint}"
     end
 
     def import_endpoint
