@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190913124555) do
+ActiveRecord::Schema.define(version: 20200904043442) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20190913124555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "bib_number"
+    t.datetime "scheduled_start_time"
     t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
     t.index ["racer_id"], name: "index_race_entries_on_racer_id"
   end
