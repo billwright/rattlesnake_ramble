@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200904043442) do
+ActiveRecord::Schema.define(version: 20200905154353) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20200904043442) do
     t.string "slug"
     t.integer "male_offset", default: 0
     t.integer "female_offset", default: 0
+    t.datetime "default_start_time_male"
+    t.datetime "default_start_time_female"
     t.index ["race_id", "date"], name: "index_race_editions_on_race_id_and_date", unique: true
     t.index ["race_id"], name: "index_race_editions_on_race_id"
     t.index ["slug"], name: "index_race_editions_on_slug", unique: true
