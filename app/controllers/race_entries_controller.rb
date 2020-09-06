@@ -1,13 +1,11 @@
 class RaceEntriesController < ApplicationController
-
   def index
     sort = params[:sort] || 'racers.last_name'
-    @race_entries = RaceEntry.includes(:racer, :race_edition).order(sort)
+    @race_entries = RaceEntry.includes(:racer, :race_edition).order(sort).map { |re| RaceEntryPresenter.new(re) }
   end
   
   def show
-    @race_entry = RaceEntry.find(params[:id])
-    # binding.pry
+    @race_entry = RaceEntryPresenter.new(RaceEntry.find(params[:id]))
   end
   
   def new
@@ -15,7 +13,6 @@ class RaceEntriesController < ApplicationController
   end
   
   def create
-    # binding.pry
     @race_entry = RaceEntry.new(obj_params)
     
     if @race_entry.save
@@ -64,6 +61,6 @@ class RaceEntriesController < ApplicationController
   private
   
     def obj_params
-      params.require(:race_entry).permit(:racer, :race_edition, :paid, :time, :bib_number)
+      params.require(:race_entry).permit(:racer, :race_edition, :paid, :time, :bib_number, :scheduled_start_time_local)
     end
 end
