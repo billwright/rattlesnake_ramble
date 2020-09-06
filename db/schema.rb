@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200905154353) do
+ActiveRecord::Schema.define(version: 20200906200341) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20200905154353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "male_offset", default: 0
-    t.integer "female_offset", default: 0
     t.datetime "default_start_time_male"
     t.datetime "default_start_time_female"
     t.index ["race_id", "date"], name: "index_race_editions_on_race_id_and_date", unique: true
@@ -79,6 +77,15 @@ ActiveRecord::Schema.define(version: 20200905154353) do
     t.string "slug"
     t.index ["name"], name: "index_races_on_name", unique: true
     t.index ["slug"], name: "index_races_on_slug", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index [nil], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
