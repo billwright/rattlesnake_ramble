@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   root 'pages#home'
   
   get 'welcome/index'
@@ -11,13 +9,8 @@ Rails.application.routes.draw do
   get '/charity', to: 'pages#charity'
   get '/race_report', to: 'pages#race_report_2019'
 
-  # get '/races', to: 'races#index'
-  # get '/races/:id', to: 'races#show', as: 'race'
-  # get '/races/new', to: 'races#new', as: 'new_race'
-  # post '/races', to: 'races#create'
-  # get '/races/:id/edit', to: 'races#edit', as: 'edit_race'
-  # patch '/races', to: 'races#create'
-  # delete 'races/:id', to: 'races#destroy'
+  devise_for :users
+
   resources :races
   resources :racers
   
@@ -27,10 +20,11 @@ Rails.application.routes.draw do
       post 'create_entry'
       get 'racer_emails'
       get 'racer_info_csv'
+      get 'race_entries'
     end
   end
   
-  resources :race_entries do
+  resources :race_entries, except: [:index, :show, :new, :create] do
     member do
       get 'successful_entry'  
       get 'cancelled_payment'
@@ -38,5 +32,4 @@ Rails.application.routes.draw do
   end
   
   resources :products
-
 end
