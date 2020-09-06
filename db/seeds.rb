@@ -79,4 +79,5 @@ prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, s
 ProductImage.create(product: prod, url: 'RattlesnakeRambleHoodie.png', alt_text: "Sweatshirt Front")
 prod = Product.create(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size extra-large", quantity: 3, price: 40)
 ProductImage.create(product: prod, url: 'RattlesnakeRambleHoodie.png', alt_text: "Sweatshirt Front")
-  
+
+User.create(email: 'admin@example.com', password: 'password')
