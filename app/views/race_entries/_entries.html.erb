@@ -4,6 +4,7 @@
     <th>Race</th>
     <th><%= link_to 'Age', race_entries_path(sort: 'racers.birth_date desc') %></th>
     <th><%= link_to 'Bib #', race_entries_path(sort: 'bib_number') %></th>
+    <th><%= link_to 'Start Time', race_entries_path(sort: 'scheduled_start_time') %></th>
     <th><%= link_to 'Paid?', race_entries_path(sort: 'paid') %></th>
     <th><%= link_to 'Time', race_entries_path(sort: 'time') %></th>
   </tr>
@@ -14,6 +15,7 @@
       <td><%= race_entry.race_edition.name %></td>
       <td><%= race_entry.racer.current_age %></td>
       <td><%= race_entry.bib_number %></td>
+      <td><%= race_entry.scheduled_start_time_military %></td>
       <td><%= race_entry.paid %></td>
       <td><%= race_entry.elapsed_time %></td>
     </tr>
