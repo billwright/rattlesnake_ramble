@@ -1,8 +1,4 @@
 class RaceEntriesController < ApplicationController
-  def show
-    @race_entry = RaceEntryPresenter.new(RaceEntry.find(params[:id]))
-  end
-  
   def edit
     @race_entry = RaceEntryPresenter.new(RaceEntry.find(params[:id]))
   end

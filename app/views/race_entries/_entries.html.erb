@@ -11,7 +11,7 @@
   
   <% race_entries.each do |race_entry| %>
     <tr>
-      <td><%= link_to race_entry.racer.name, race_entry_path(race_entry)  %></td>
+      <td><%= link_to race_entry.racer.name, edit_race_entry_path(race_entry)  %></td>
       <td><%= race_entry.race_edition.name %></td>
       <td><%= race_entry.racer.current_age %></td>
       <td><%= race_entry.bib_number %></td>
