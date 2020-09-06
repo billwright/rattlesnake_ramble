@@ -1,0 +1,4 @@
+<h1>Race Entries for <%= @race_edition.name %></h1>
+<hr/>
+
+<%= render 'race_entries/entries', race_entries: @race_edition.sorted_race_entries %>

@@ -46,6 +46,10 @@ class RaceEditionsController < ApplicationController
     @racer = Racer.new
   end
 
+  def race_entries
+    @race_edition = RaceEditionPresenter.new(@race_edition, params)
+  end
+
   def create_entry
     @racer = Racer.new(obj_params[:racers_attributes]['0'])
 

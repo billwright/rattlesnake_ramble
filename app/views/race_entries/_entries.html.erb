@@ -1,15 +1,15 @@
 <table class="table">
   <tr>
-    <th><%= link_to 'Racer', race_entries_path(sort: 'racers.last_name') %></th>
+    <th><%= link_to 'Racer', request.params.merge(sort: 'racers.last_name') %></th>
     <th>Race</th>
-    <th><%= link_to 'Age', race_entries_path(sort: 'racers.birth_date desc') %></th>
-    <th><%= link_to 'Bib #', race_entries_path(sort: 'bib_number') %></th>
-    <th><%= link_to 'Start Time', race_entries_path(sort: 'scheduled_start_time') %></th>
-    <th><%= link_to 'Paid?', race_entries_path(sort: 'paid') %></th>
-    <th><%= link_to 'Time', race_entries_path(sort: 'time') %></th>
+    <th><%= link_to 'Age', request.params.merge(sort: 'racers.birth_date desc') %></th>
+    <th><%= link_to 'Bib #', request.params.merge(sort: 'bib_number') %></th>
+    <th><%= link_to 'Start Time', request.params.merge(sort: 'scheduled_start_time') %></th>
+    <th><%= link_to 'Paid?', request.params.merge(sort: 'paid') %></th>
+    <th><%= link_to 'Time', request.params.merge(sort: 'time') %></th>
   </tr>
   
-  <% @race_entries.each do |race_entry| %>
+  <% race_entries.each do |race_entry| %>
     <tr>
       <td><%= link_to race_entry.racer.name, race_entry_path(race_entry)  %></td>
       <td><%= race_entry.race_edition.name %></td>

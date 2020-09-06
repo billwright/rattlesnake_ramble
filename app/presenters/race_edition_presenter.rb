@@ -17,7 +17,7 @@ class RaceEditionPresenter < SimpleDelegator
   end
 
   def sorted_race_entries
-    race_entries.joins(:racer).order(sort_param)
+    race_entries.joins(:racer).order(sort_param).map { |re| RaceEntryPresenter.new(re) }
   end
 
   private

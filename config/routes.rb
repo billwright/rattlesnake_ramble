@@ -27,10 +27,11 @@ Rails.application.routes.draw do
       post 'create_entry'
       get 'racer_emails'
       get 'racer_info_csv'
+      get 'race_entries'
     end
   end
   
-  resources :race_entries do
+  resources :race_entries, except: [:index, :new, :create] do
     member do
       get 'successful_entry'  
       get 'cancelled_payment'
