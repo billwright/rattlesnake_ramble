@@ -1,3 +1,15 @@
 <div class="footer">
-  <p>&copy Rattlesnake Ramble Charity</p>
+  <div class="row">
+    <div class="col-md-6">
+      <p>&copy Rattlesnake Ramble Charity</p>
+    </div>
+    <div class="col-md-6">
+      <% if current_user %>
+        <%= "Logged in as #{current_user.email}" %>
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-xs btn-primary' %>
+      <% else %>
+        <%= link_to 'Admin Log In', new_user_session_path, class: 'btn btn-xs btn-default' %>
+      <% end %>
+    </div>
+  </div>
 </div>

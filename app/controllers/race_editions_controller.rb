@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RaceEditionsController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :enter, :create_entry]
   before_action :set_race_edition, except: [:index, :new, :create]
 
   def show
@@ -84,7 +85,7 @@ class RaceEditionsController < ApplicationController
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 
   end
-  
+
   helper_method :paypal_url
 
   def racer_emails
@@ -96,7 +97,7 @@ class RaceEditionsController < ApplicationController
 
   def racer_info_csv
   end
-  
+
   private
 
   def obj_params
