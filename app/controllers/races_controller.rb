@@ -1,4 +1,5 @@
 class RacesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_race, except: [:index, :new, :create]
 
   def index

@@ -1,27 +1,47 @@
 <div class="container">
   <header class="navbar navbar-fixed-top navbar-default">
     <div class="container">
-       <div class="nav_item">
-        <%= link_to "Rattlesnake Ramble Race", root_path, class: "btn btn-lg btn-success", id: "logo" %>
+      <div class="nav_item">
+        <%= link_to "Rattlesnake Ramble Race", root_path, class: "btn btn-success", id: "logo" %>
       </div>
       <div class="nav_item">
-        <%= link_to "Long Course Entrants", race_edition_path('rattlesnake-ramble-trail-race-even-year-on-2020-09-12'), class: "btn btn-default btn-warning" %>
-      </div> 
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Entrants
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><%= link_to "Full Course", race_edition_path(current_full_course_edition), id: "logo" %></li>
+            <li><%= link_to "Kids Course", race_edition_path(current_kids_course_edition), id: "logo" %></li>
+          </ul>
+        </div>
+      </div>
       <div class="nav_item">
-        <%= link_to "Kids Course Entrants", race_edition_path('rattlesnake-ramble-kids-race-on-2020-09-12'), class: "btn btn-default btn-warning" %>
-      </div> 
-       <div class="nav_item">
         <%= link_to "Products", products_path, class: "btn btn-default btn-warning" %>
-      </div> 
-       <div class="nav_item">
-        <%= link_to "Rattlesnake Ramble Charity", charity_path, class: "btn btn-lg btn-success", id: "logo" %>
       </div>
+      <div class="nav_item">
+        <%= link_to "Rattlesnake Ramble Charity", charity_path, class: "btn btn-success", id: "logo" %>
+      </div>
+      <% if user_signed_in? %>
+        <div class="nav_item">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Edit Entries
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to "Full Course", race_entries_race_edition_path(current_full_course_edition), id: "logo" %></li>
+              <li><%= link_to "Kids Course", race_entries_race_edition_path(current_kids_course_edition), id: "logo" %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
       <div class="container">
         <div class="nav_item">
           <%= link_to "2019 Rattlesnake Ramble Race Report", race_report_path, class: "btn btn-sm" %>
         </div>
       </div>
-    </div>  
+    </div>
   </header>
 </div>
