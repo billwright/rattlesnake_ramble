@@ -34,7 +34,7 @@ namespace :ost do
 
   desc 'Posts all 2020 race_entry and related racer data to OpenSplitTime.org'
   task post_entries_2020: :environment do
-    editions = {'rattlesnake-ramble-trail-race-on-2020-09-12' => '2020-rattlesnake-ramble',
+    editions = {'rattlesnake-ramble-trail-race-even-year-on-2020-09-12' => '2020-rattlesnake-ramble',
                 'rattlesnake-ramble-kids-race-on-2020-09-12' => '2020-rattlesnake-ramble-kids-run'}
 
     editions.each do |race_edition_id, ost_event_id|
@@ -62,11 +62,9 @@ namespace :ost do
     puts 'authenticated'
     token = auth_response.token
 
-    begin
-      race_edition = RaceEdition.where(id: race_edition_id).or(RaceEdition.where(slug: race_edition_id)).eager_load(race_entries: :racer).first
-    rescue ActiveRecord::RecordNotFound
-      abort("Aborted: Race edition id #{race_edition_id} not found") unless race_edition
-    end
+    race_edition = RaceEdition.where(id: race_edition_id).or(RaceEdition.where(slug: race_edition_id)).eager_load(race_entries: :racer).first
+    abort("Aborted: Race edition id #{race_edition_id} not found") unless race_edition.present?
+
     puts "Located race_edition: #{race_edition.name}"
 
     puts "Posting data to opensplittime.org event #{ost_event_id}"
