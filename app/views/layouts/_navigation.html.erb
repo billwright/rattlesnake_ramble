@@ -11,8 +11,8 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><%= link_to "Full Course", race_edition_path('rattlesnake-ramble-trail-race-even-year-on-2020-09-12'), id: "logo" %></li>
-            <li><%= link_to "Kids Course", race_edition_path('rattlesnake-ramble-kids-race-on-2020-09-12'), id: "logo" %></li>
+            <li><%= link_to "Full Course", race_edition_path(current_full_course_edition), id: "logo" %></li>
+            <li><%= link_to "Kids Course", race_edition_path(current_kids_course_edition), id: "logo" %></li>
           </ul>
         </div>
       </div>
@@ -30,8 +30,8 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to "Full Course", race_entries_race_edition_path('rattlesnake-ramble-trail-race-even-year-on-2020-09-12'), id: "logo" %></li>
-              <li><%= link_to "Kids Course", race_entries_race_edition_path('rattlesnake-ramble-kids-race-on-2020-09-12'), id: "logo" %></li>
+              <li><%= link_to "Full Course", race_entries_race_edition_path(current_full_course_edition), id: "logo" %></li>
+              <li><%= link_to "Kids Course", race_entries_race_edition_path(current_kids_course_edition), id: "logo" %></li>
             </ul>
           </div>
         </div>

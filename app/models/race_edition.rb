@@ -16,6 +16,9 @@ class RaceEdition < ActiveRecord::Base
   validates :entry_fee, presence: true
   validates_uniqueness_of :race_id, scope: :date
 
+  scope :kids_race, -> { joins(:race).where(races: {name: "Rattlesnake Ramble Kids Race"}) }
+  scope :full_course, -> { joins(:race).where.not(races: {name: "Rattlesnake Ramble Kids Race"}) }
+
   def name
     "#{race&.name} on #{date}"
   end
