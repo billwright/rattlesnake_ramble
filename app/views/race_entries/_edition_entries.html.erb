@@ -2,6 +2,7 @@
   <tr>
     <th><%= link_to 'Racer', request.params.merge(sort: 'racers.last_name') %></th>
     <th><%= link_to 'Bib #', request.params.merge(sort: 'race_entries.bib_number,racers.last_name') %></th>
+    <th><%= link_to 'Start Time', request.params.merge(sort: 'race_entries.scheduled_start_time,racers.bib_number') %></th>
     <th><%= link_to 'Age', request.params.merge(sort: 'racers.birth_date desc') %></th>
     <th><%= link_to 'Paid?', request.params.merge(sort: 'race_entries.paid,race_entries.bib_number,racers.last_name') %></th>
     <th></th>
@@ -12,6 +13,7 @@
     <tr>
       <td><%= race_entry.racer.name %></td>
       <td><%= race_entry.bib_number %></td>
+      <td><%= race_entry.scheduled_start_time_military %></td>
       <td><%= race_entry.racer.current_age %></td>
       <td><%= race_entry.paid %></td>
       <td>
