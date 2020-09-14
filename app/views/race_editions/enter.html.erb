@@ -6,7 +6,7 @@
 
     <%= race_edition_form.fields_for :racers, @racer do |racer_fields| %>
       <%= racer_fields.label :first_name %>
-      <%= racer_fields.text_field :first_name %>
+      <%= racer_fields.text_field :first_name, autofocus: true %>
     
       <%= racer_fields.label :last_name %>
       <%= racer_fields.text_field :last_name %>
@@ -15,7 +15,7 @@
       <%= racer_fields.text_field :email %>
     
       <%= racer_fields.label :gender %>
-      <%= racer_fields.select :gender, Racer.genders.keys, {} %>
+      <%= racer_fields.select :gender, Racer.genders.keys, include_blank: true %>
     
       <%= racer_fields.label :birth_date %>
       <%= datepicker_input(form: racer_fields,

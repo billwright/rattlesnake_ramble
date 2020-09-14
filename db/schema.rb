@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200906200341) do
+ActiveRecord::Schema.define(version: 20200913140801) do
 
   create_table "product_images", force: :cascade do |t|
     t.integer "product_id", null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20200906200341) do
   create_table "racers", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.integer "gender", default: 0
+    t.integer "gender"
     t.string "email", null: false
     t.string "city"
     t.string "state"
