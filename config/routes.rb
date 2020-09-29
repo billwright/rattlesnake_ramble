@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get '/enter', to: 'pages#enter'
   get '/thanks', to: 'pages#thanks'
   get '/charity', to: 'pages#charity'
-  get '/race_report', to: 'pages#race_report_2019'
+  get '/race_report_2020', to: 'pages/raceReports#2020'
+  get '/race_report_2019', to: 'pages/raceReports#2019'
 
   devise_for :users
 
