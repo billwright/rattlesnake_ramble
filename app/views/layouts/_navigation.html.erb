@@ -48,8 +48,9 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="reportDropdownMenu">
-              <li><%= link_to "2020 Race Report", race_report_path("2020"), class: "btn btn-sm" %></li>
-              <li><%= link_to "2019 Race Report", race_report_path("2019"), class: "btn btn-sm" %></li>
+              <% available_race_reports.each do |year| %>
+                <li><%= link_to "#{year} Race Report", race_reports_path(year: year), class: "btn btn-sm" %></li>
+              <% end %>
             </ul>
           </div>
         </div>
