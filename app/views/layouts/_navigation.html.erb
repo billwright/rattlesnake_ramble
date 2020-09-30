@@ -42,7 +42,17 @@
 
       <div class="container">
         <div class="nav_item">
-          <%= link_to "2019 Rattlesnake Ramble Race Report", race_report_path, class: "btn btn-sm" %>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Race Reports
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="reportDropdownMenu">
+              <% available_race_reports.each do |year| %>
+                <li><%= link_to "#{year} Race Report", race_reports_path(year: year), class: "btn btn-sm" %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
