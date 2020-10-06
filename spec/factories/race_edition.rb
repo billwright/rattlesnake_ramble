@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :race_edition do
     date { FFaker::Time.date }
     race
