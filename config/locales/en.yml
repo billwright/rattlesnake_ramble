@@ -34,3 +34,4 @@ en:
   time:
     formats:
       military: "%H:%M:%S"
+      ampm: "%r"

@@ -1,12 +1,20 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Ratttlesnake Ramble 2020 Information</h3>
+    <h3 class="panel-title"><%= "Rattlesnake Ramble #{current_full_course_edition.year} Information" %></h3>
   </div>
   <div class="table">
     <table class="table">
       <tr>
-        <td>When</td>
-        <td>Saturday, September 11, 2021, <b> New Start Time! </b>7:45 AM Kids' Wave, 7:47 AM Men, 8:00 AM Kids</td>
+        <td>Date</td>
+        <td><%= l current_full_course_edition.date, format: :long %></td>
+      </tr>
+      <tr>
+        <td>Start Times</td>
+        <td>
+          <p><b>Men: </b><%= l current_full_course_edition.default_start_time_male_local, format: :ampm %></p>
+          <p><b>Women: </b><%= l current_full_course_edition.default_start_time_female_local, format: :ampm %></p>
+          <p><b>Kids: </b><%= l current_kids_course_edition.default_start_time_male_local, format: :ampm %></p>
+        </td>
       </tr>
       <tr>
         <td>Where</td>
@@ -14,20 +22,23 @@
       </tr>
       <tr>
         <td>Cost</td>
-        <td>$30 for long course (13 and older), $10 for Kids Course (12 and under)</td>
+        <td><%= "$#{current_full_course_edition.entry_fee} for long course (13 and older), $#{current_kids_course_edition.entry_fee} for Kids Course (12 and under)" %></td>
       </tr>
       <tr>
-        <td>Fowler Spur First</td>
+        <td colspan="2"><%= current_full_course_edition.short_description %></td>
       </tr>
     </table>
   </div>
 </div>
 
 <div class="center jumbotron">
-  <h1>Sign up for the 2021 Edition</h1>
-  <p>The 16th Annual Ramble</p>
+  <% if current_full_course_edition.date > Time.current %>
+    <h1><%= "Sign up for the #{current_full_course_edition.year} Edition" %></h1>
+    <p><%= "The #{current_full_course_edition.edition_count.ordinalize} Annual Ramble" %></p>
 
-   <%= link_to "Enter now!", enter_race_edition_path('rattlesnake-ramble-trail-race-odd-year-on-2021-09-11'), class: "btn btn-lg btn-success" %>
-   <%= link_to "Enter Kids' Race (12 & Under Only)", enter_race_edition_path('rattlesnake-ramble-kids-race-on-2021-09-11'), class: "btn btn-lg btn-success" %>
-
+    <%= link_to "Enter now!", enter_race_edition_path(current_full_course_edition), class: "btn btn-lg btn-success" %>
+    <%= link_to "Enter Kids' Race (12 & Under Only)", enter_race_edition_path(current_kids_course_edition), class: "btn btn-lg btn-success" %>
+  <% else %>
+    <h1><%= "Check back here soon for information about the #{current_full_course_edition.year + 1} Edition" %></h1>
+  <% end %>
 </div>
