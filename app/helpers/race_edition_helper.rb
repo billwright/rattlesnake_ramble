@@ -14,4 +14,8 @@ module RaceEditionHelper
           RaceEditionPresenter.new(race_edition)
         end
   end
+
+  def race_editions_not_aligned?
+    current_full_course_edition.date != current_kids_course_edition.date
+  end
 end
