@@ -15,7 +15,7 @@
       <td><%= race_entry.bib_number %></td>
       <td><%= race_entry.scheduled_start_time_military %></td>
       <td><%= race_entry.racer.current_age %></td>
-      <td><%= race_entry.paid %></td>
+      <td><%= boolean_yes_no(race_entry.paid) %></td>
       <td>
       <% unless race_entry.paid %>
         <a href="<%= paypal_url(race_entry) %>"><image src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"></image></a>

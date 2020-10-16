@@ -19,4 +19,8 @@ module ApplicationHelper
                     placeholder: 'mm/dd/yyyy',
                     data: {provide: 'datepicker', date_default_view_date: default_date, date_start_view: start_view}
   end
+
+  def boolean_yes_no(boolean)
+    boolean ? "Yes" : "No"
+  end
 end
