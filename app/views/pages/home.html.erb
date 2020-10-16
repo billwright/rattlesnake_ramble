@@ -11,9 +11,9 @@
       <tr>
         <td>Start Times</td>
         <td>
-          <p><b>Men: </b><%= l current_full_course_edition.default_start_time_male_local, format: :ampm %></p>
-          <p><b>Women: </b><%= l current_full_course_edition.default_start_time_female_local, format: :ampm %></p>
-          <p><b>Kids: </b><%= l current_kids_course_edition.default_start_time_male_local, format: :ampm %></p>
+          <p><b>Men: </b><%= l(current_full_course_edition.default_start_time_male_local, format: :ampm) if current_full_course_edition.default_start_time_male_local.present? %></p>
+          <p><b>Women: </b><%= l(current_full_course_edition.default_start_time_female_local, format: :ampm) if current_full_course_edition.default_start_time_female_local.present? %></p>
+          <p><b>Kids: </b><%= l(current_kids_course_edition.default_start_time_male_local, format: :ampm) if current_kids_course_edition.default_start_time_male_local.present? %></p>
         </td>
       </tr>
       <tr>
