@@ -19,12 +19,4 @@ module ApplicationHelper
                     placeholder: 'mm/dd/yyyy',
                     data: {provide: 'datepicker', date_default_view_date: default_date, date_start_view: start_view}
   end
-
-  def current_full_course_edition
-    RaceEdition.full_course.order(date: :desc).first
-  end
-
-  def current_kids_course_edition
-    RaceEdition.kids_race.order(date: :desc).first
-  end
 end

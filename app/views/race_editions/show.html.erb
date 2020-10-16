@@ -7,13 +7,13 @@
   </div>
 
   <div class="col-md-4">
-    <p><%= @presenter.race_entries.size %> entered. 
-    <% if (100 - @presenter.race_entries.size > 0) %>
-      <%= "#{100 - @presenter.race_entries.size} entries available." %> 
-    <% end %>
+    <p><%= @presenter.race_entries.size %> entered.
+      <% if (100 - @presenter.race_entries.size > 0) %>
+        <%= "#{100 - @presenter.race_entries.size} entries available." %>
+      <% end %>
     </p>
   </div>
-      
+
 </div>
 
 <hr/>
@@ -25,7 +25,12 @@
 </div>
 <hr/>
 
-<h5><%= link_to "Enter Race", enter_race_edition_path(@presenter), class: "btn btn-warning btn-small" %></h5>
+<div class="row">
+  <div class="col">
+    <%= link_to "Edit Race Edition", edit_race_edition_path(@presenter), class: "btn btn-success btn-small" %>
+  </div>
+</div>
+<br/>
 
 <%= render 'race_entries/edition_entries', view_object: @presenter %>
 

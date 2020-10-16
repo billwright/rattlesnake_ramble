@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RaceEditionPresenter < SimpleDelegator
-
   ADULT_CATEGORY_KEYS = %i[men_under_20 women_under_20 men_20s women_20s men_30s women_30s men_40s women_40s men_50s women_50s men_60_plus women_60_plus]
   KIDS_CATEGORY_KEYS = %i[boys girls]
 
@@ -16,8 +15,31 @@ class RaceEditionPresenter < SimpleDelegator
     categories.map { |category| [category.name, grouped_race_entries[category.name]&.size || 0] }
   end
 
+  def edition_count
+    return nil unless year.present?
+
+    year - 2004
+  end
+
+  def short_description
+    case race&.name
+      when "Rattlesnake Ramble Trail Race"
+        "Fowler Trail First"
+      when "Rattlesnake Ramble Trail Race Even-Year"
+        "Eldorado Trail First"
+      when "Rattlesnake Ramble Kids Race"
+        "Kids Race"
+      else
+        nil
+    end
+  end
+
   def sorted_race_entries
     race_entries.joins(:racer).order(sort_param).map { |re| RaceEntryPresenter.new(re) }
+  end
+
+  def year
+    date&.year
   end
 
   private

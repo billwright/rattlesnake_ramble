@@ -31,6 +31,10 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      long_with_day: "%A, %B %-d, %Y"
   time:
     formats:
+      ampm: "%I:%M %p"
       military: "%H:%M:%S"

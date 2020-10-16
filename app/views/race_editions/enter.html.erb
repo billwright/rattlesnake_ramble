@@ -1,6 +1,5 @@
 <%= render 'shared/errors', model_object: @racer %>
-
-<%= render 'shared/page_title', title: "Enter #{@race_edition.name}" %>
+<%= render 'shared/page_title', title: "Enter the Race" %>
 
 <%= form_for @race_edition, method: :post, url: create_entry_race_edition_path(@race_edition) do |race_edition_form| %>
 
