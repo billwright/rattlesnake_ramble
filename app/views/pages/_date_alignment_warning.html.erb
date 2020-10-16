@@ -1,0 +1,9 @@
+<% if current_user && race_editions_not_aligned? %>
+  <div class="row">
+    <div class="alert alert-danger">
+      <p><b><%= "Warning: Full Course and Kids Course Race Edition dates are not aligned!" %></b></p>
+      <p><%= "Full course date: #{l current_full_course_edition.date, format: :long_with_day}" %></p>
+      <p><%= "Kids course date: #{l current_kids_course_edition.date, format: :long_with_day}" %></p>
+    </div>
+  </div>
+<% end %>
