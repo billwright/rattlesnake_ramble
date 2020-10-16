@@ -36,5 +36,5 @@ en:
       long_with_day: "%A, %B %-d, %Y"
   time:
     formats:
-      ampm: "%r"
+      ampm: "%I:%M %p"
       military: "%H:%M:%S"
