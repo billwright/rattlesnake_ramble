@@ -15,9 +15,11 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'strip_attributes/matchers'
+require 'capitalize_attributes/matchers'
 
 RSpec.configure do |config|
   config.include StripAttributes::Matchers
+  config.include CapitalizeAttributes::Matchers
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

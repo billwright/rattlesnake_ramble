@@ -23,6 +23,7 @@ gem 'rest-client', '~> 2.0'
 gem 'dotenv-rails', '~> 2.2'
 gem 'strip_attributes', '~> 1.8'
 gem 'devise'
+gem 'capitalize_attributes'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
