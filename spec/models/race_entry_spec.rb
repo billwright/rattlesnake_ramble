@@ -1,10 +1,12 @@
 require 'rails_helper'
 
-# t.integer "racer_id"
-# t.integer "race_edition_id"
+# t.integer "racer_id", null: false
+# t.integer "race_edition_id", null: false
 # t.integer "time"
 # t.boolean "paid", default: false
 # t.integer "bib_number"
+# t.datetime "scheduled_start_time"
+# t.integer "predicted_time"
 
 RSpec.describe RaceEntry, type: :model do
   describe '#initialize' do
@@ -48,52 +50,93 @@ RSpec.describe RaceEntry, type: :model do
     end
   end
 
-  describe '#elapsed_time' do
-    context 'when the time attribute is present' do
-      subject { build_stubbed(:race_entry, time: 1800) }
+  describe 'time-related virtual attributes' do
+    real_attributes = [:predicted_time, :time]
 
-      it 'returns a human-readable string representing elapsed time' do
-        expect(subject.elapsed_time).to eq('30 mins')
+    real_attributes.each do |real_attribute|
+      virtual_getter = "elapsed_#{real_attribute}"
+      virtual_setter = "elapsed_#{real_attribute}="
+
+      describe "##{virtual_getter}" do
+        subject { build_stubbed(:race_entry, real_attribute => time) }
+        let(:result) { subject.send(virtual_getter) }
+
+        context 'when the time attribute is present' do
+          let(:time) { 1800 }
+          it 'returns a human-readable string representing elapsed time' do
+            expect(result).to eq('30 mins')
+          end
+        end
+
+        context 'when the time attribute contains a seconds component' do
+          let(:time) { 1830 }
+          it 'returns a human-readable string representing elapsed time' do
+            expect(result).to eq('30 mins 30 secs')
+          end
+        end
+
+        context 'when the time attribute is not present' do
+          let(:time) { nil }
+          it 'returns "NA"' do
+            expect(result).to eq('NA')
+          end
+        end
       end
-    end
 
-    context 'when the time attribute is not present' do
-      subject { build_stubbed(:race_entry, time: nil) }
+      describe "##{virtual_setter}" do
+        subject { build_stubbed(:race_entry, time: nil) }
+        let(:result) { subject.send(real_attribute) }
 
-      it 'returns "NA"' do
-        expect(subject.elapsed_time).to eq('NA')
-      end
-    end
-  end
+        before { subject.send(virtual_setter, time_string) }
 
-  describe '#elapsed_time=' do
-    context 'when passed a human-readable string' do
-      subject { build_stubbed(:race_entry, time: nil)}
-      let(:time_string) { '30 mins' }
+        context 'when passed a human-readable string' do
+          let(:time_string) { '30 mins' }
+          it 'sets the time attribute to the equivalent number of seconds' do
+            expect(result).to eq(1800)
+          end
+        end
 
-      it 'sets the time attribute to the equivalent number of seconds' do
-        subject.elapsed_time = time_string
-        expect(subject.time).to eq(1800)
-      end
-    end
+        context 'when passed a human-readable string with seconds' do
+          let(:time_string) { '30 mins 30 secs' }
+          it 'sets the time attribute to the equivalent number of seconds' do
+            expect(result).to eq(1830)
+          end
+        end
 
-    context 'when passed an empty string' do
-      subject { build_stubbed(:race_entry, time: 1800)}
-      let(:time_string) { '' }
+        context 'when passed a string in mm:ss format' do
+          let(:time_string) { '30:30' }
+          it 'sets the time attribute to the equivalent number of seconds' do
+            expect(result).to eq(1830)
+          end
+        end
 
-      it 'sets the time attribute to nil' do
-        subject.elapsed_time = time_string
-        expect(subject.time).to be_nil
-      end
-    end
+        context 'when passed a string in hh:mm:ss format' do
+          let(:time_string) { '01:30:30' }
+          it 'sets the time attribute to the equivalent number of seconds' do
+            expect(result).to eq(5430)
+          end
+        end
 
-    context 'when passed nil' do
-      subject { build_stubbed(:race_entry, time: 1800)}
-      let(:time_string) { nil }
+        context 'when passed a string in h:mm:ss format' do
+          let(:time_string) { '1:30:30' }
+          it 'sets the time attribute to the equivalent number of seconds' do
+            expect(result).to eq(5430)
+          end
+        end
 
-      it 'sets the time attribute to nil' do
-        subject.elapsed_time = time_string
-        expect(subject.time).to be_nil
+        context 'when passed an empty string' do
+          let(:time_string) { '' }
+          it 'sets the time attribute to nil' do
+            expect(result).to be_nil
+          end
+        end
+
+        context 'when passed nil' do
+          let(:time_string) { nil }
+          it 'sets the time attribute to nil' do
+            expect(result).to be_nil
+          end
+        end
       end
     end
   end
