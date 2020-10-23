@@ -77,8 +77,8 @@ RSpec.describe RaceEntry, type: :model do
 
         context 'when the time attribute is not present' do
           let(:time) { nil }
-          it 'returns "NA"' do
-            expect(result).to eq('NA')
+          it 'returns nil' do
+            expect(result).to be_nil
           end
         end
       end

@@ -27,7 +27,7 @@ class RaceEntry < ActiveRecord::Base
   end
 
   def elapsed_predicted_time
-    predicted_time && ChronicDuration.output(predicted_time) || 'NA'
+    predicted_time && ChronicDuration.output(predicted_time)
   end
 
   def elapsed_predicted_time=(time_string)
@@ -36,7 +36,7 @@ class RaceEntry < ActiveRecord::Base
   end
 
   def elapsed_time
-    time && ChronicDuration.output(time) || 'NA'
+    time && ChronicDuration.output(time)
   end
 
   def elapsed_time=(time_string)
