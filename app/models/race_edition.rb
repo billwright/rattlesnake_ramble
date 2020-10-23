@@ -9,6 +9,7 @@ class RaceEdition < ActiveRecord::Base
   zonable_attributes :default_start_time_female, :default_start_time_male
 
   accepts_nested_attributes_for :racers
+  accepts_nested_attributes_for :race_entries
   friendly_id :name, use: :slugged
 
   validates :race_id, presence: true
