@@ -29,6 +29,13 @@
       <%= racer_fields.label :state %>
       <%= racer_fields.select :state, StatesHelper::STATES  %>
     <% end %>
+
+    <%= race_edition_form.fields_for :race_entries, @race_entry do |race_entry_fields| %>
+      <%= race_entry_fields.label :predicted_finish_time %>
+      <%= race_entry_fields.text_field :elapsed_predicted_time, placeholder: 'h:mm:ss' %>
+    <% end %>
+
+    <hr/>
     
     <%= race_edition_form.submit 'Enter the race', class: 'btn-lg btn-success' %>
 

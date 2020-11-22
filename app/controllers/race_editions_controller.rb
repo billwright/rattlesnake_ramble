@@ -45,6 +45,7 @@ class RaceEditionsController < ApplicationController
 
   def enter
     @racer = Racer.new
+    @race_entry = RaceEntry.new
   end
 
   def race_entries
@@ -54,11 +55,16 @@ class RaceEditionsController < ApplicationController
   def create_entry
     @racer = Racer.new(obj_params[:racers_attributes]['0'])
 
-    if @racer.save
-      race_entry = RaceEntry.create(race_edition: @race_edition, racer: @racer)
+    default_race_entry_attributes = {race_edition: @race_edition, racer: @racer}
+    provided_race_entry_attributes = obj_params[:race_entries_attributes]['0'] || {}
+    @race_entry = RaceEntry.new(default_race_entry_attributes.merge(provided_race_entry_attributes))
+
+    if @racer.save && @race_entry.save
       flash[:success] = "Thank you for entering #{@race_edition.name}"
-      redirect_to paypal_url(race_entry)
+      redirect_to paypal_url(@race_entry)
     else
+      @race_entry.validate
+      @racer.errors.merge!(@race_entry.errors)
       render 'enter'
     end
   end
@@ -103,7 +109,8 @@ class RaceEditionsController < ApplicationController
   def obj_params
     params.require(:race_edition)
         .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local,
-                racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state])
+                racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state],
+                race_entries_attributes: [:elapsed_predicted_time])
   end
 
   def set_race_edition

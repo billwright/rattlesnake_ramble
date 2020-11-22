@@ -26,8 +26,17 @@ class RaceEntry < ActiveRecord::Base
     self.paid = false if self.paid.nil?
   end
 
+  def elapsed_predicted_time
+    predicted_time && ChronicDuration.output(predicted_time)
+  end
+
+  def elapsed_predicted_time=(time_string)
+    time_string ||= ''
+    self.predicted_time = ChronicDuration.parse(time_string)
+  end
+
   def elapsed_time
-    time && ChronicDuration.output(time) || 'NA'
+    time && ChronicDuration.output(time)
   end
 
   def elapsed_time=(time_string)
