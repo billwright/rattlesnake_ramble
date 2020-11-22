@@ -12,8 +12,12 @@ require 'rails_helper'
 
 RSpec.describe Racer, type: :model do
   include ActiveSupport::Testing::TimeHelpers
+  it { is_expected.to capitalize_attribute(:first_name) }
+  it { is_expected.to capitalize_attribute(:last_name) }
+  it { is_expected.to capitalize_attribute(:city) }
+
   # strip_attribute tests do not work on first_name, last_name, or city
-  # because RSpec matcher is confused by the fix_lazy_capitalization validation
+  # because RSpec matcher is confused by the capitalize_attributes gem
   it { is_expected.to strip_attribute(:state).collapse_spaces }
   it { is_expected.to strip_attribute(:email).collapse_spaces }
 
