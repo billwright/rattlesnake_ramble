@@ -29,8 +29,7 @@ jobs:
 
     steps:
     - name: Install PostgreSQL 11 client
-        run: |
-          sudo apt-get -yqq install libpq-dev
+      run: sudo apt-get -yqq install libpq-dev
     - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
