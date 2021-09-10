@@ -45,7 +45,7 @@ namespace :ost do
 
   desc 'Posts all 2021 race_entry and related racer data to OpenSplitTime.org'
   task post_entries_2021: :environment do
-    editions = {'rattlesnake-ramble-trail-race--on-2021-09-11' => '2021-rattlesnake-ramble-full-course',
+    editions = {'rattlesnake-ramble-trail-race-on-2021-09-11' => '2021-rattlesnake-ramble-full-course',
                 'rattlesnake-ramble-kids-race-on-2021-09-11' => '2021-rattlesnake-ramble-kids-run'}
 
     editions.each do |race_edition_id, ost_event_id|
