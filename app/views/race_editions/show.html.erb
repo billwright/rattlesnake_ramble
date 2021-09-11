@@ -25,13 +25,17 @@
 </div>
 <hr/>
 
-<div class="row">
-  <div class="col">
-    <%= link_to "Edit Race Edition", edit_race_edition_path(@presenter), class: "btn btn-success btn-small" %>
+<% if current_user.present? %>
+  <div class="row">
+    <div class="col">
+      <%= link_to "Edit Race Edition", edit_race_edition_path(@presenter), class: "btn btn-success btn-small" %>
+    </div>
   </div>
-</div>
-<br/>
+  <br/>
+<% end %>
 
 <%= render 'race_entries/edition_entries', view_object: @presenter %>
 
-<h5><%= link_to "Return to Races Listing", races_path, class: "btn btn-warning btn-small" %></h5>
+<% if current_user.present? %>
+  <h5><%= link_to "Return to Races Listing", races_path, class: "btn btn-warning btn-small" %></h5>
+<% end %>

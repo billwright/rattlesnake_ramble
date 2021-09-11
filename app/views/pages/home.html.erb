@@ -34,7 +34,7 @@
 </div>
 
 <div class="center jumbotron">
-  <% if current_full_course_edition.date > Time.current %>
+  <% if current_full_course_edition.date >= Date.today %>
     <h1><%= "Sign up for the #{current_full_course_edition.year} Edition" %></h1>
     <p><%= "The #{current_full_course_edition.edition_count.ordinalize} Annual Ramble" %></p>
 

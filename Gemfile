@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+ruby '2.7.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 6.0'
+gem 'rails', '< 6.1'
 gem 'puma', '~> 4.3'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -23,6 +23,8 @@ gem 'rest-client', '~> 2.0'
 gem 'dotenv-rails', '~> 2.2'
 gem 'strip_attributes', '~> 1.8'
 gem 'devise'
+gem 'capitalize_attributes'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -38,12 +40,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'sqlite3'
   gem 'pry'
-end
-
-group :production do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
