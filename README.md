@@ -1,17 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the repository for the Rattlesnake Ramble website, hosted at https://www.rattlesnakeramble.org.
 
-Things you may want to cover:
+Local setup requires the following:
 
 * Ruby version: 2.7
-
 * Rails version: 6.0
-
-* System dependencies
-
-* Configuration
+* Postgres
 
 * Database creation
 - Install Postgres if you don't have it already:
