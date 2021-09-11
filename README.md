@@ -6,6 +6,26 @@ Local setup requires the following:
 
 * Ruby version: 2.7
 * Rails version: 6.0
+* Postgres
+
+* Database creation
+- Install Postgres if you don't have it already:
+##### Using Homebrew on MacOS
+> `$ brew install postgres`
+
+Follow the instructions for automatically starting postgres when you start your machine.
+
+* Database initialization
+> `$ bundle exec rails db:reset`
+
+* How to run the test suite
+> `$ bundle exec rspec`
+
+* Deployment instruction
+
+Once your local master is up to date and you have Heroku CLI credentials in place, run the following command:
+
+> `$ git push heroku master`
  
 ## Models
 
