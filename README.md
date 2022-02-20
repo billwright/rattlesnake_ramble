@@ -119,7 +119,33 @@ alias start='rails server -b $IP -p $PORT'
 alias pushToHeroku='git push heroku master'
 ```
 
-## To see all the route that this application supports, run:
+#### Useful things
+
+I use [rvm](https://rvm.io/) to manage my ruby versions. 
+To install a new version do this:
+
+```shell
+rvm install 2.7.5
+```
+
+If you need to mess with the database (not recommended, as we prefer admin pages on the site), you can
+do so via the Heroku [console](https://dashboard.heroku.com/apps/rattlesnake-ramble?web-console=rattlesnake-ramble).
+Once there you can run the Rails Console
+
+```shell
+heroku run console
+```
+
+Then you can select Active Record models, modify them, and commit them to the database like this:
+
+```ruby
+latest = RaceEdition.find_by(:date => '2022-09-10')
+latest.date = Date.new(2022, 9, 17)
+latest.default_start_time_female = Time.zone.parse('2022-09-17 13:52:00')
+latest.save
+```
+
+## To see all the routes that this application supports, run:
 
 ```bash
 rails routes
