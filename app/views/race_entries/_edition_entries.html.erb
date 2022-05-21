@@ -21,7 +21,7 @@
         <a href="<%= paypal_url(race_entry) %>"><image src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"></image></a>
       <% end %>
       </td>
-      <td><%= race_entry.elapsed_time %></td>
+      <td><%= race_entry.elapsed_time_na_if_nil %></td>
     </tr>
   <% end %>
 </table>

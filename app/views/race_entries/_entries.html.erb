@@ -17,7 +17,7 @@
       <td><%= race_entry.bib_number %></td>
       <td><%= race_entry.scheduled_start_time_military %></td>
       <td><%= race_entry.paid %></td>
-      <td><%= race_entry.elapsed_time %></td>
+      <td><%= race_entry.elapsed_time_na_if_nil %></td>
     </tr>
   <% end %>
 </table>
