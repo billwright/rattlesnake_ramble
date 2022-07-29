@@ -1,4 +1,4 @@
-<%= render 'shared/page_title', title: "Racer emails for #{@race_edition.name}" %>
+<%= render 'shared/page_title', title: "Racer emails for #{@race_edition.date}" %>
 
 <%= link_to 'All', racer_emails_race_edition_path(@race_edition), class: 'btn btn-primary' %>
 <%= link_to 'Paid', racer_emails_race_edition_path(@race_edition, filter: {paid: 'true'}), class: 'btn btn-primary' %>
