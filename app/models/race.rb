@@ -5,5 +5,5 @@ class Race < ActiveRecord::Base
   has_many :race_editions
   validates :name, presence: true, length: { minimum: 5, maximum: 100 }
   validates_uniqueness_of :name, case_sensitive: false
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :history]
 end
