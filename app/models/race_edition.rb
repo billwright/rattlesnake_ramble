@@ -21,10 +21,16 @@ class RaceEdition < ActiveRecord::Base
   scope :full_course, -> { joins(:race).where.not(races: {name: "Rattlesnake Ramble Kids Race"}) }
 
   def name
-    "#{race&.name} on #{date}"
+    "#{race&.short_name} on #{date}"
   end
 
   def home_time_zone
     ::RambleConfig.home_time_zone
+  end
+
+  private
+
+  def should_generate_new_friendly_id?
+    true
   end
 end
