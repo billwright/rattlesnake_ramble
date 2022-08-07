@@ -25,7 +25,7 @@ RSpec.describe RaceEditionPresenter do
     end
 
     context 'when the race includes "kids" in the name' do
-      let(:race) { build_stubbed(:race, name: '2019 Ramble Kids') }
+      let(:race) { build_stubbed(:race, name: '2019 Ramble Kids', short_name: 'Kids Race') }
 
       it 'uses the kids categories' do
         expect(subject.category_size_map.size).to eq(2)
