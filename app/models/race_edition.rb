@@ -10,7 +10,7 @@ class RaceEdition < ActiveRecord::Base
 
   accepts_nested_attributes_for :racers
   accepts_nested_attributes_for :race_entries
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :history]
 
   validates :race_id, presence: true
   validates :date, presence: true
