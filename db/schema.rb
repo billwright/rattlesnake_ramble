@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.string "short_name"
     t.index ["name"], name: "index_races_on_name", unique: true
     t.index ["slug"], name: "index_races_on_slug", unique: true
   end

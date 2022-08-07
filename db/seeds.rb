@@ -7,16 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 races = Race.create!([
-    { name: "Rattlesnake Ramble Trail Race", description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
-    { name: "Rattlesnake Ramble Trail Race Even-Year", description: "A 4.25-mile Y-course that goes out-and-back on the Eldorado Trail before doing the same on the Fowler Trail." },
-    { name: "Rattlesnake Ramble Kids Race", description: "A 1.7-mile out-and-back course on the main road through Eldorado Canyon. The Kids Race is for 12 & Under only." },
+    { name: "Rattlesnake Ramble Trail Race - Odd Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
+    { name: "Rattlesnake Ramble Trail Race - Even Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Eldorado Trail before doing the same on the Fowler Trail." },
+    { name: "Rattlesnake Ramble Kids Race", short_name: 'Kids Course', description: "A 1.7-mile out-and-back course on the main road through Eldorado Canyon. The Kids Race is for 12 & Under only." },
   ])
-  
-current_race = races.first
+
+odd_year_race = races.first
+even_year_race = races[1]
+current_race = even_year_race
 kids_race = races.last
 
-current_edition = RaceEdition.create!(race: current_race, date: "2017-09-09", entry_fee: 25)
-kids_edition = RaceEdition.create!(race: kids_race, date: "2017-09-09", entry_fee: 10)
+RaceEdition.create!(race: odd_year_race, date: "2021-09-17", entry_fee: 35)
+current_edition = RaceEdition.create!(race: current_race, date: "2022-09-17", entry_fee: 35)
+kids_edition = RaceEdition.create!(race: kids_race, date: "2022-09-17", entry_fee: 10)
 
 racer_bill = Racer.create!(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
 racer_sheri = Racer.create!(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
