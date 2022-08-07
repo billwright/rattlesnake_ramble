@@ -115,5 +115,7 @@ class RaceEditionsController < ApplicationController
 
   def set_race_edition
     @race_edition = RaceEdition.friendly.find(params[:id])
+
+    friendly_redirect(@race_edition, params[:id])
   end
 end

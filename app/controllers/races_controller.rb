@@ -42,5 +42,7 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.friendly.find(params[:id])
+
+    friendly_redirect(@race, params[:id])
   end
 end
