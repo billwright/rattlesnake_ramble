@@ -4,7 +4,7 @@ This is the repository for the Rattlesnake Ramble website, hosted at https://www
 
 Local setup requires the following:
 
-* Ruby version: 2.7
+* Ruby version: 3.0
 * Rails version: 6.1
 * Postgres
 
@@ -125,7 +125,7 @@ I use [rvm](https://rvm.io/) to manage my ruby versions.
 To install a new version do this:
 
 ```shell
-rvm install 2.7.5
+rvm install 3.0.4
 ```
 
 If you need to mess with the database (not recommended, as we prefer admin pages on the site), you can
