@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.7.6'
+ruby '3.0.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -18,7 +18,7 @@ gem 'chronic_duration'
 gem 'jquery-rails', '~> 4.3'
 gem 'bootstrap-datepicker-rails', '~> 1.6'
 gem 'american_date', '~> 1.1'
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'
 gem 'rest-client', '~> 2.0'
 gem 'dotenv-rails', '~> 2.2'
 gem 'strip_attributes', '~> 1.8'
@@ -37,7 +37,7 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
