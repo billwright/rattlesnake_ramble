@@ -242,3 +242,9 @@ http://www.rattlesnakeramble.org/racers
 #### Exporting racer information to a spreadsheet
 
 http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-2019-09-14/racer_info_csv
+
+#### Posting race entries to OpenSplitTime.org
+
+1. Set up the event group in OpenSplitTime.org
+2. Make a new rake task for the specific year. There are several examples in `lib/tasks/ost/post_entries.rake`
+3. Run the rake task, then ensure the race entries appear in OpenSplitTime.org.
