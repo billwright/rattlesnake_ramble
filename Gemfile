@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.4'
+ruby '3.1.2'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -25,6 +25,7 @@ gem 'strip_attributes', '~> 1.8'
 gem 'devise'
 gem 'capitalize_attributes'
 gem 'pg'
+gem 'net-smtp' # This can be removed after upgrading to Rails 7 (which requires it as a dependency)
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
