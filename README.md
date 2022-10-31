@@ -4,7 +4,7 @@ This is the repository for the Rattlesnake Ramble website, hosted at https://www
 
 Local setup requires the following:
 
-* Ruby version: 3.0
+* Ruby version: 3.1
 * Rails version: 6.1
 * Postgres
 
