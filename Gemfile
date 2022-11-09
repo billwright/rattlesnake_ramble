@@ -25,7 +25,11 @@ gem 'strip_attributes', '~> 1.8'
 gem 'devise'
 gem 'capitalize_attributes'
 gem 'pg'
-gem 'net-smtp' # This can be removed after upgrading to Rails 7 (which requires it as a dependency)
+
+# These three can be removed after upgrading to Rails 7 (which requires them as dependencies)
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
