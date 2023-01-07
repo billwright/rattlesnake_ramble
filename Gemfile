@@ -26,11 +26,6 @@ gem 'devise'
 gem 'capitalize_attributes'
 gem 'pg'
 
-# These three can be removed after upgrading to Rails 7 (which requires them as dependencies)
-gem 'net-smtp', require: false
-gem 'net-imap', require: false
-gem 'net-pop', require: false
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
