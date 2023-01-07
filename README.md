@@ -247,4 +247,4 @@ http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-
 
 1. Set up the event group in OpenSplitTime.org
 2. Make a new rake task for the specific year. There are several examples in `lib/tasks/ost/post_entries.rake`
-3. Run the rake task, then ensure the race entries appear in OpenSplitTime.org.
+3. Run the rake task, then ensure the race entries appear within the new event group in OpenSplitTime.org.
