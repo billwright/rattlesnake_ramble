@@ -329,6 +329,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets-rails
   strip_attributes (~> 1.8)
   turbolinks (~> 5)
   tzinfo-data
