@@ -2,16 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_07_134041) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_03_05_150149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
@@ -31,8 +30,8 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.integer "product_id", null: false
     t.string "url", null: false
     t.string "alt_text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 
@@ -40,19 +39,19 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.string "description", null: false
     t.integer "quantity", null: false
     t.integer "price", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "race_editions", force: :cascade do |t|
     t.integer "race_id", null: false
     t.date "date", null: false
     t.integer "entry_fee", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
-    t.datetime "default_start_time_male"
-    t.datetime "default_start_time_female"
+    t.datetime "default_start_time_male", precision: nil
+    t.datetime "default_start_time_female", precision: nil
     t.index ["race_id", "date"], name: "index_race_editions_on_race_id_and_date", unique: true
     t.index ["race_id"], name: "index_race_editions_on_race_id"
     t.index ["slug"], name: "index_race_editions_on_slug", unique: true
@@ -63,10 +62,10 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.integer "racer_id", null: false
     t.integer "time"
     t.boolean "paid", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "bib_number"
-    t.datetime "scheduled_start_time"
+    t.datetime "scheduled_start_time", precision: nil
     t.integer "predicted_time"
     t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
     t.index ["racer_id"], name: "index_race_entries_on_racer_id"
@@ -80,16 +79,16 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
     t.string "city"
     t.string "state"
     t.date "birth_date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "races", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.text "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "short_name"
     t.index ["name"], name: "index_races_on_name", unique: true
@@ -99,8 +98,8 @@ ActiveRecord::Schema.define(version: 2022_08_07_134041) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
