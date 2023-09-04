@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def authenticate_with_params!
+    user = User.find_by(email: params.dig(:user, :email))
+
+    unless user.present? && user.valid_password?(params.dig(:user, :password))
+      render json: { errors: ["Invalid email or password"] }, status: :unauthorized
+    end
+  end
+
   # If an old friendly id or a numeric id was used to find the record, then
   # the request id will not match the current friendly id, and we should do
   # a 301 redirect that uses the current friendly id.
