@@ -5,8 +5,12 @@ class RaceEditionsController < ApplicationController
   before_action :set_race_edition, except: [:index, :new, :create]
 
   def show
-    race_edition = RaceEdition.where(id: @race_edition).includes(:race, race_entries: :racer).first
-    @presenter = RaceEditionPresenter.new(race_edition, params)
+    @race_edition = RaceEdition.includes(:race, race_entries: :racer).find_by(id: @race_edition.id)
+
+    respond_to do |format|
+      format.html { @presenter = RaceEditionPresenter.new(@race_edition, params) }
+      format.json
+    end
   end
 
   def new
