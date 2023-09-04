@@ -9,7 +9,7 @@ class RaceEditionsController < ApplicationController
 
     respond_to do |format|
       format.html { @presenter = RaceEditionPresenter.new(@race_edition, params) }
-      format.json
+      format.json { authenticate_with_params! }
     end
   end
 
