@@ -1,9 +1,6 @@
 class PagesController < ApplicationController
   include RaceReportsHelper
 
-  def enter
-  end
-
   def home
   end
 

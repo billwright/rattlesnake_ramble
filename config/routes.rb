@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get '/home', to: 'pages#home'
-  get '/enter', to: 'pages#enter'
   get '/thanks', to: 'pages#thanks'
   get '/charity', to: 'pages#charity'
   get '/race_reports', to: 'pages#race_reports'
