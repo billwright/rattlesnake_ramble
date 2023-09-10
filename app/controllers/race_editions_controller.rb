@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 class RaceEditionsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :enter, :create_entry]
+  before_action :authenticate_user!, except: [:index, :show, :enter, :create_entry]
   before_action :set_race_edition, except: [:index, :new, :create]
+
+  def index
+    respond_to do |format|
+      format.json { authenticate_with_params! }
+    end
+  end
 
   def show
     @race_edition = RaceEdition.includes(:race, race_entries: :racer).find_by(id: @race_edition.id)
