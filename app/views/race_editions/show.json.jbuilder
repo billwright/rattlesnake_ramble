@@ -13,8 +13,11 @@ json.race do
 end
 
 json.race_entries @race_edition.race_entries do |race_entry|
+  default_scheduled_start_time =
+    race_entry.female? ? @race_edition.default_start_time_female : @race_edition.default_start_time_male
+
   json.bib_number race_entry.bib_number
-  json.scheduled_start_time race_entry.scheduled_start_time
+  json.scheduled_start_time race_entry.scheduled_start_time || default_scheduled_start_time
   json.racer do
     json.first_name race_entry.racer.first_name
     json.last_name race_entry.racer.last_name
