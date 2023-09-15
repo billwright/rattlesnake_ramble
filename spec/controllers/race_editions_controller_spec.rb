@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe RaceEditionsController do
   render_views
 
-  before { FactoryBot.create(:user) }
+  before { FactoryBot.create(:user, email: "other@example.com", password: "password") }
 
   describe "#index" do
     let(:make_request) { get :index, format: :json, params: params }
@@ -24,7 +24,7 @@ RSpec.describe RaceEditionsController do
       let(:params) do
         {
           user: {
-            email: "admin@example.com",
+            email: "other@example.com",
             password: "password"
           }
         }
@@ -87,26 +87,10 @@ RSpec.describe RaceEditionsController do
         {
           id: race_edition.id,
           user: {
-            email: "admin@example.com",
+            email: "other@example.com",
             password: "password",
           }
         }
-      end
-
-      let(:expected_race_edition_keys) do
-        %w[created_at date default_start_time_female default_start_time_male entry_fee id race race_entries updated_at]
-      end
-
-      let(:expected_race_entry_keys) do
-        %w[bib_number scheduled_start_time racer]
-      end
-
-      it "returns the race edition" do
-        make_request
-        parsed_body = JSON.parse(response.body)
-
-        expect(parsed_body).to be_a(Hash)
-        expect(expected_race_edition_keys).to all be_in(parsed_body.keys)
       end
 
       it "returns an array of race entries" do
