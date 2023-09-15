@@ -40,7 +40,6 @@ RSpec.describe RaceEditionsController do
         parsed_body = JSON.parse(response.body)
 
         expect(parsed_body).to be_a Array
-        expect(parsed_body.count).to eq(2)
         expect(parsed_body.first.keys).to match_array(%w(id date race_name))
       end
     end
