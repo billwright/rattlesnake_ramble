@@ -14,6 +14,7 @@ RSpec.describe OST::GetToken do
       allow(RestClient).to receive(:post)
       allow(RambleConfig).to receive(:ost_email).and_return(example_email)
       allow(RambleConfig).to receive(:ost_password).and_return(example_password)
+      allow(RambleConfig).to receive(:ost_url).and_return("https://www.opensplittime.org")
     end
 
     it 'returns an OST::Response containing a JSON Web Token' do
