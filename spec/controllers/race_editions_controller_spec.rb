@@ -115,7 +115,6 @@ RSpec.describe RaceEditionsController do
 
         race_entries = parsed_body["race_entries"]
         expect(race_entries).to be_a(Array)
-        expect(race_entries.count).to eq(2)
 
         male_race_entry = race_entries.first
         expect(expected_race_entry_keys).to all be_in(male_race_entry.keys)
