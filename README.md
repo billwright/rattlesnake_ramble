@@ -4,11 +4,38 @@ This is the repository for the Rattlesnake Ramble website, hosted at https://www
 
 Local setup requires the following:
 
-* Ruby version: 3.1
+* Ruby version: 3.2.2
 * Rails version: 6.1
-* Postgres
+* Postgres 11 
 
-* Database creation
+The actual versions used in this project can be seen in the Gemfile 
+and the .ruby-version file.
+
+This project uses rbenv to manage Ruby versions. If you don't have rbenv installed, you can install it with Homebrew:
+
+```bash
+brew install rbenv
+```
+
+The version for the project is specified in the `.ruby-version` file of this project. To install the correct Ruby version, run:
+
+```bash
+rbenv install
+```
+
+Then, make sure to initialize rbenv in your shell:
+
+```bash
+rbenv init
+```
+
+Also, put this in your `.zshrc`:
+
+```bash
+eval "$(rbenv init - zsh)"
+```
+
+## Database creation
 - Install Postgres if you don't have it already:
 ##### Using Homebrew on MacOS
 > `$ brew install postgres`
