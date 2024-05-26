@@ -71,7 +71,7 @@ class RaceEditionsController < ApplicationController
 
     if @racer.save && @race_entry.save
       flash[:success] = "Thank you for entering #{@race_edition.name}"
-      redirect_to paypal_url(@race_entry)
+      redirect_to paypal_url(@race_entry), allow_other_host: true
     else
       @race_entry.validate
       @racer.errors.merge!(@race_entry.errors)
