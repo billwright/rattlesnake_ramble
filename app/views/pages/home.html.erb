@@ -37,9 +37,8 @@
   <% if current_full_course_edition.date >= Date.today %>
     <h1><%= "Sign up for the #{current_full_course_edition.year} Edition" %></h1>
     <p><%= "The #{current_full_course_edition.edition_count.ordinalize} Annual Ramble" %></p>
-    <h1>The Rattlesnake Ramble is FULL! Sign up earlier next year!</h1>
-    <%#= link_to "Enter now!", enter_race_edition_path(current_full_course_edition), class: "btn btn-lg btn-success" %>
-    <%#= link_to "Enter Kids' Race (12 & Under Only)", enter_race_edition_path(current_kids_course_edition), class: "btn btn-lg btn-success" %>
+    <%= link_to "Enter now!", enter_race_edition_path(current_full_course_edition), class: "btn btn-lg btn-success" %>
+    <%= link_to "Enter Kids' Race (12 & Under Only)", enter_race_edition_path(current_kids_course_edition), class: "btn btn-lg btn-success" %>
   <% else %>
     <h1><%= "Check back here soon for information about the #{current_full_course_edition.year + 1} Edition" %></h1>
   <% end %>
