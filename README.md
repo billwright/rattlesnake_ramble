@@ -6,9 +6,9 @@ Local setup requires the following:
 
 * Ruby version: 3.2.2
 * Rails version: 6.1
-* Postgres 11 
+* Postgres 11
 
-The actual versions used in this project can be seen in the Gemfile 
+The actual versions used in this project can be seen in the Gemfile
 and the .ruby-version file.
 
 This project uses rbenv to manage Ruby versions. If you don't have rbenv installed, you can install it with Homebrew:
@@ -17,7 +17,8 @@ This project uses rbenv to manage Ruby versions. If you don't have rbenv install
 brew install rbenv
 ```
 
-The version for the project is specified in the `.ruby-version` file of this project. To install the correct Ruby version, run:
+The version for the project is specified in the `.ruby-version` file of this project. To install the correct Ruby
+version, run:
 
 ```bash
 rbenv install
@@ -36,16 +37,21 @@ eval "$(rbenv init - zsh)"
 ```
 
 ## Database creation
+
 - Install Postgres if you don't have it already:
+
 ##### Using Homebrew on MacOS
+
 > `$ brew install postgres`
 
 Follow the instructions for automatically starting postgres when you start your machine.
 
 * Database initialization
+
 > `$ bundle exec rails db:reset`
 
 * How to run the test suite
+
 > `$ bundle exec rspec`
 
 * Deployment instruction
@@ -53,7 +59,7 @@ Follow the instructions for automatically starting postgres when you start your 
 Once your local master is up to date and you have Heroku CLI credentials in place, run the following command:
 
 > `$ git push heroku master`
- 
+
 ## Models
 
 ### Racers
@@ -65,7 +71,7 @@ Once your local master is up to date and you have Heroku CLI credentials in plac
 * gender (required)
 * city
 * state
- 
+
 ### Races
 
 * name (required)
@@ -102,10 +108,13 @@ Once your local master is up to date and you have Heroku CLI credentials in plac
 * maximum_age
 
 Examples:
-  | Under 20 Male | :male   |  0 |  20 |
-  | 20-29 Male    | :male   | 20 |  29 |
-  | 60+ Female    | :female | 60 | 200 |
-  | 50-59 Female  | :female | 50 |  59 |
+
+| Category Name | Gender  | Min Age | Max Age |
+|---------------|---------|---------|---------|
+| Under 20 Male | :male   | 0       | 20      |
+| 20-29 Male    | :male   | 20      | 29      |
+| 60+ Female    | :female | 60      | 200     |
+| 50-59 Female  | :female | 50      | 59      |
 
 ### Race Placement Package
 
@@ -116,25 +125,29 @@ Examples:
 * categories
 
 Examples:
-  | Rattlesnake Ramble Long Course | 3 | 3 | 40 |
-  | Rattlesnake Ramble Kids Course | 0 | 0 | 40 |
-  
-  
+
+| Race Edition                   | Overall Finishers to Remove | Masters Finishers to Remove | Starting Masters' Age |
+|--------------------------------|-----------------------------|-----------------------------|-----------------------|
+| Rattlesnake Ramble Long Course | 3                           | 3                           | 40                    |
+| Rattlesnake Ramble Kids Course | 0                           | 0                           | 40                    |
+
 Placement Test:
 
 Given the following results:
 
-|   Name    | Age | Gender | Seconds |
-| Joe Smith | 35  |  Male  |   1750  |
-| Jim Smith | 41  |  Male  |   2000  |
-| Sue Smith | 25  | Female |   2100  |
-| Pam Smith | 33  | Female |   2250  |
-| Bob Smith | 51  |  Male  |   2500  |
-| Sal Smith | 42  |  Male  |   1950  |
-| Cal Smith | 21  |  Male  |   1800  |
-| Sam Smith | 32  |  Male  |   1900  |
+| Name      | Age | Gender | Seconds |
+|-----------|-----|--------|---------|
+| Joe Smith | 35  | Male   | 1750    |
+| Jim Smith | 41  | Male   | 2000    |
+| Sue Smith | 25  | Female | 2100    |
+| Pam Smith | 33  | Female | 2250    |
+| Bob Smith | 51  | Male   | 2500    |
+| Sal Smith | 42  | Male   | 1950    |
+| Cal Smith | 21  | Male   | 1800    |
+| Sam Smith | 32  | Male   | 1900    |
 
 #### Useful Aliases
+
 ```bash
 alias gs='git status'
 alias gp='git push'
@@ -148,7 +161,7 @@ alias pushToHeroku='git push heroku master'
 
 #### Useful things
 
-I use [rvm](https://rvm.io/) to manage my ruby versions. 
+I use [rvm](https://rvm.io/) to manage my ruby versions.
 To install a new version do this:
 
 ```shell
@@ -179,6 +192,7 @@ rails routes
 ```
 
 It shows something like this:
+
 ```bash
                       Prefix Verb   URI Pattern                                                                              Controller#Action
                         root GET    /                                                                                        pages#home
@@ -244,9 +258,13 @@ cancelled_payment_race_entry GET    /race_entries/:id/cancelled_payment(.:format
 
 You create a new race edition, do the following:
 
-1. From the Admin menu, select "Races"
+1. From the Admin menu, select "Races" (or just go [here](https://www.rattlesnakeramble.org/races))
+
+   ![AdminMenu.png](doc_images%2FAdminMenu.png)
 2. Click on the race for which you want to make a new edition
+
 3. Enter the date and default start times for men and women
+
 
 ## Updating entries
 
@@ -254,11 +272,11 @@ You create a new race edition, do the following:
 
 From the Admin menu, select "View Full Course Emails" or "View Kids Course Emails"
 
-On this page are three buttons: All, Paid, Unpaid
+On this page there are three buttons: All, Paid, Unpaid
 
 #### Updating payment and bib number for entrants
 
-http://www.rattlesnakeramble.org/race_entries 
+http://www.rattlesnakeramble.org/race_entries
 
 Make sure to find the entry for the correct race editions
 
