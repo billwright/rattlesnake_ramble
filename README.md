@@ -4,7 +4,7 @@ This is the repository for the Rattlesnake Ramble website, hosted at https://www
 
 Local setup requires the following:
 
-* Ruby version: 3.2.2
+* Ruby version: 3.2.4
 * Rails version: 6.1
 * Postgres 11
 
@@ -54,7 +54,35 @@ Follow the instructions for automatically starting postgres when you start your 
 
 > `$ bundle exec rspec`
 
-* Deployment instruction
+## Deployment instruction
+
+### Installing the Heroku CLI
+
+Go [here](https://devcenter.heroku.com/articles/heroku-cli) to install the CLI.
+
+Once you have it installed (or to check that you have it installed), do this:
+
+```shell
+heroku --version
+```
+
+Now login:
+
+```
+heroku login
+```
+In order to push to heroku, you need to have added heroku as a remote repository. You can 
+check if this has been added by running:
+
+```shell
+git remote show heroku
+```
+
+If it doesn't exist, add it with the heroku CLI:
+
+```shell
+heroku git:remote -a rattlesnake-ramble
+```
 
 Once your local master is up to date and you have Heroku CLI credentials in place, run the following command:
 
