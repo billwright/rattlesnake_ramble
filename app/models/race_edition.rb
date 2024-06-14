@@ -15,6 +15,8 @@ class RaceEdition < ActiveRecord::Base
   validates :race_id, presence: true
   validates :date, presence: true
   validates :entry_fee, presence: true
+  validates :default_start_time_male, presence: true
+  validates :default_start_time_female, presence: true
   validates_uniqueness_of :race_id, scope: :date
 
   scope :kids_race, -> { joins(:race).where(races: {name: "Rattlesnake Ramble Kids Race"}) }

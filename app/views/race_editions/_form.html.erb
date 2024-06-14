@@ -23,6 +23,9 @@
       <%= f.label 'Female default start time' %>
       <%= f.text_field :default_start_time_female_local, placeholder: 'hh:mm' %>
 
+      <%= f.label 'Accepting Entries' %>
+      <%= f.check_box :accepting_entries %>
+
       <hr/>
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
       <hr/>
