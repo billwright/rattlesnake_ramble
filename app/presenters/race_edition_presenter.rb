@@ -25,7 +25,7 @@ class RaceEditionPresenter < SimpleDelegator
     case race&.name
       when "Rattlesnake Ramble Trail Race"
         "Fowler Trail First"
-      when "Rattlesnake Ramble Trail Race Even-Year"
+      when "Rattlesnake Ramble Trail Race - Even Years"
         "Eldorado Trail First"
       when "Rattlesnake Ramble Kids Race"
         "Kids Race"
