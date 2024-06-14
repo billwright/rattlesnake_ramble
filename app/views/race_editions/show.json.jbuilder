@@ -5,6 +5,7 @@ json.(
     :default_start_time_male,
     :default_start_time_female,
     :entry_fee,
+    :accepting_entries,
     :created_at,
     :updated_at,
 )
