@@ -34,7 +34,9 @@
       </tr>
       <tr>
         <td>Course Description</td>
-        <td><%= current_full_course_edition.short_description %></td>
+        <td>
+          <%= link_to current_full_course_edition.short_description, current_full_course_edition.description_path %>
+        </td>
       </tr>
     </table>
   </div>

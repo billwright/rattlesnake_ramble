@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get '/thanks', to: 'pages#thanks'
   get '/charity', to: 'pages#charity'
   get '/race_reports', to: 'pages#race_reports'
+  get '/kids_course_description', to: 'pages#kids_course_description'
+  get '/odd_year_course_description', to: 'pages#odd_year_course_description'
+  get '/even_year_course_description', to: 'pages#even_year_course_description'
 
   devise_for :users
 
