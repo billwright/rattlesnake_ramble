@@ -19,7 +19,7 @@ kids_race = races.last
 
 RaceEdition.create!(race: odd_year_race, date: "2021-09-17", default_start_time_male: "2024-09-21 7:47:00-0600", default_start_time_female: "2024-09-21 7:52:00-0600", entry_fee: 35)
 current_edition = RaceEdition.create!(race: current_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:47:00-0600", default_start_time_female: "2024-09-21 7:52:00-0600", entry_fee: 35)
-kids_edition = RaceEdition.create!(race: kids_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:45:00-0600", entry_fee: 15)
+kids_edition = RaceEdition.create!(race: kids_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:45:00-0600", default_start_time_female: "2024-09-21 7:45:00-0600", entry_fee: 15)
 
 racer_bill = Racer.create!(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
 racer_sheri = Racer.create!(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
