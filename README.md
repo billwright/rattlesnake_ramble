@@ -111,7 +111,10 @@ Once your local master is up to date and you have Heroku CLI credentials in plac
 
 * race (required)
 * date (required)
-* entry_fee
+* entry_fee (required)
+* default_start_time_male (required)
+* default_start_time_female (required)
+* accepting_entries
 * entries
 
 ### Race Entry

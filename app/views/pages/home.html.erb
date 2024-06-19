@@ -13,9 +13,15 @@
       <tr>
         <td>Start Times</td>
         <td>
-          <p><b>Men: </b><%= l(current_full_course_edition.default_start_time_male_local, format: :ampm) if current_full_course_edition.default_start_time_male_local.present? %></p>
-          <p><b>Women: </b><%= l(current_full_course_edition.default_start_time_female_local, format: :ampm) if current_full_course_edition.default_start_time_female_local.present? %></p>
-          <p><b>Kids: </b><%= l(current_kids_course_edition.default_start_time_male_local, format: :ampm) if current_kids_course_edition.default_start_time_male_local.present? %></p>
+          <p>
+            <b>Men: </b><%= l(current_full_course_edition.default_start_time_male_local, format: :ampm) if current_full_course_edition.default_start_time_male_local.present? %>
+          </p>
+          <p>
+            <b>Women: </b><%= l(current_full_course_edition.default_start_time_female_local, format: :ampm) if current_full_course_edition.default_start_time_female_local.present? %>
+          </p>
+          <p>
+            <b>Kids: </b><%= l(current_kids_course_edition.default_start_time_male_local, format: :ampm) if current_kids_course_edition.default_start_time_male_local.present? %>
+          </p>
         </td>
       </tr>
       <tr>
@@ -27,7 +33,8 @@
         <td><%= "$#{current_full_course_edition.entry_fee} for long course (13 and older), $#{current_kids_course_edition.entry_fee} for Kids Course (12 and under)" %></td>
       </tr>
       <tr>
-        <td colspan="2"><%= current_full_course_edition.short_description %></td>
+        <td>Course Description</td>
+        <td><%= current_full_course_edition.short_description %></td>
       </tr>
     </table>
   </div>
@@ -37,7 +44,11 @@
   <% if current_full_course_edition.date >= Date.today %>
     <h1><%= "Sign up for the #{current_full_course_edition.year} Edition" %></h1>
     <p><%= "The #{current_full_course_edition.edition_count.ordinalize} Annual Ramble" %></p>
-    <%= link_to "Enter now!", enter_race_edition_path(current_full_course_edition), class: "btn btn-lg btn-success" %>
+    <% if current_full_course_edition.accepting_entries %>
+      <%= link_to "Enter now!", enter_race_edition_path(current_full_course_edition), class: "btn btn-lg btn-success" %>
+    <% else %>
+      <h1>The race is full! Sign up earlier next year. But kids can still enter. Sign them up!</h1>
+    <% end %>
     <%= link_to "Enter Kids' Race (12 & Under Only)", enter_race_edition_path(current_kids_course_edition), class: "btn btn-lg btn-success" %>
   <% else %>
     <h1><%= "Check back here soon for information about the #{current_full_course_edition.year + 1} Edition" %></h1>
