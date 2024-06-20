@@ -42,6 +42,14 @@ class RaceEditionPresenter < SimpleDelegator
     date&.year
   end
 
+  def description_path
+    if date&.year.even?
+      'even_year_course_description'
+    else
+      'odd_year_course_description'
+    end
+  end
+
   private
 
   attr_reader :params
