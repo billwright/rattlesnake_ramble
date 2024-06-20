@@ -22,25 +22,6 @@
       <div class="nav_item">
         <%= link_to "Rattlesnake Ramble Charity", charity_path, class: "btn btn-success", id: "logo" %>
       </div>
-      <% if user_signed_in? %>
-        <div class="nav_item">
-          <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Admin
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to "Edit Full Course Entries", race_entries_race_edition_path(current_full_course_edition), id: "logo" %></li>
-              <li><%= link_to "Edit Kids Course Entries", race_entries_race_edition_path(current_kids_course_edition), id: "logo" %></li>
-              <li class="divider" role="separator"></li>
-              <li><%= link_to "View Full Course Emails", racer_emails_race_edition_path(current_full_course_edition), id: "logo" %></li>
-              <li><%= link_to "View Kids Course Emails", racer_emails_race_edition_path(current_kids_course_edition), id: "logo" %></li>
-              <li class="divider" role="separator"></li>
-              <li><%= link_to "Races", races_path, id: "logo" %></li>
-            </ul>
-          </div>
-        </div>
-      <% end %>
 
       <div class="container">
 
@@ -100,6 +81,26 @@
             </ul>
           </div>
         </div>
+
+      <% if user_signed_in? %>
+        <div class="nav_item">
+          <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Admin
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to "Edit Full Course Entries", race_entries_race_edition_path(current_full_course_edition), id: "logo" %></li>
+              <li><%= link_to "Edit Kids Course Entries", race_entries_race_edition_path(current_kids_course_edition), id: "logo" %></li>
+              <li class="divider" role="separator"></li>
+              <li><%= link_to "View Full Course Emails", racer_emails_race_edition_path(current_full_course_edition), id: "logo" %></li>
+              <li><%= link_to "View Kids Course Emails", racer_emails_race_edition_path(current_kids_course_edition), id: "logo" %></li>
+              <li class="divider" role="separator"></li>
+              <li><%= link_to "Races", races_path, id: "logo" %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
       </div>
     </div>
