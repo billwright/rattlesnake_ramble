@@ -42,7 +42,7 @@
         Only <%= "$#{@race_edition.merchandise_price}" %>
       </h4>
       <%= race_entry_fields.label :merchandise_size %>
-      <%= race_entry_fields.select :merchandise_size, ["Women S", "Women M", "Women L", "Men S", "Men M", "Men L", "Men XL"], include_blank: true %>
+      <%= race_entry_fields.select :merchandise_size, RaceEdition::MERCHANDISE_SIZES, include_blank: true %>
       <%= image_tag @race_edition.merchandise_image_file_name, width: '400' %>
     <% end %>
   <% end %>

@@ -123,7 +123,7 @@ class RaceEditionsController < ApplicationController
 
   def obj_params
     params.require(:race_edition)
-        .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries,
+        .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries, :selling_merchandise, :merchandise_description, :merchandise_image_file_name, :merchandise_price,
                 racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state],
                 race_entries_attributes: [:elapsed_predicted_time, :merchandise_size])
   end

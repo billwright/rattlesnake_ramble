@@ -5,7 +5,15 @@
     <%= form_for @race_entry do |f| %>
 
       <%= f.label 'Racer name:' %>
-      <%= "#{@race_entry.racer&.name}" %><hr/>
+      <%= "#{@race_entry.racer&.name}" %>
+      <hr/>
+
+      <%= f.label 'Gender:' %>
+      <%= "#{@race_entry.racer&.gender}" %>
+      <hr/>
+
+      <!-- TODO: What I really want to do here is something like this to edit the gender of this entry -->
+      <!--      f.select @race_entry.racer&.gender, Racer.genders.keys-->
 
       <%= f.label :bib_number %>
       <%= f.text_field :bib_number, autofocus: true %>
@@ -16,15 +24,19 @@
       <%= f.label 'paid?' %>
       <%= f.select :paid, [true, false], {} %>
 
-      <%= f.label :time %>
-      <%= f.text_field :time %>
+      <%= f.label 'Merchandise Size' %>
+      <%= f.select :merchandise_size, RaceEdition::MERCHANDISE_SIZES, include_blank: true %>
+      <hr/>
+
+      <%#= f.label :time %>
+      <%#= f.text_field :time %>
 
       <%= f.submit(@race_entry.new_record? ? 'Create Race Entry' : 'Update Race Entry', class: "btn btn-success") %>
     <% end %>
 
     <hr/>
     <% unless @race_entry.new_record? %>
-      <%= link_to 'Delete Race Entry', race_entry_path(@race_entry), method: :delete, data: {confirm: 'Delete this entry?'}, class: 'btn btn-danger btn-block' %>
+      <%= link_to 'Delete Race Entry', race_entry_path(@race_entry), method: :delete, data: { confirm: 'Delete this entry?' }, class: 'btn btn-danger btn-block' %>
     <% end %>
   </div>
 </div>
