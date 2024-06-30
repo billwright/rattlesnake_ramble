@@ -324,3 +324,25 @@ http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-
 1. Set up the event group in OpenSplitTime.org
 2. Make a new rake task for the specific year. There are several examples in `lib/tasks/ost/post_entries.rake`
 3. Run the rake task, then ensure the race entries appear within the new event group in OpenSplitTime.org.
+
+## Features
+
+### Optional Merchandise (mostly shirts) Buy
+
+Upon signing up for the race, if the 
+current race edition is selling a product,
+then an image of the product should be
+displayed, a text description of the product
+should be displayed and a dropdown should
+be displayed with options the user
+should be displayed ('Female Small', 'Male Medium', etc.),
+and the price should be displayed.
+If the product is selected, then the 
+price of the product is added to the 
+PayPal total and the sale is recorded
+in the Sales table.
+
+The Sales table should reference the
+product, specify the option, the date
+purchased, and the racer purchasing 
+the product. 

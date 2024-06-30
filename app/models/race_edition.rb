@@ -2,6 +2,8 @@ class RaceEdition < ActiveRecord::Base
   extend FriendlyId
   include TimeZonable
 
+  MERCHANDISE_SIZES = ["Women S", "Women M", "Women L", "Men S", "Men M", "Men L", "Men XL"]
+
   belongs_to :race
   has_many :race_entries, dependent: :destroy
   has_many :racers, through: :race_entries

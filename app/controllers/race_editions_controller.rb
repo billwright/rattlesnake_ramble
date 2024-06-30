@@ -81,6 +81,11 @@ class RaceEditionsController < ApplicationController
 
   def paypal_url(race_entry)
     item_number = "RaceEdition#{@race_edition.id}-Racer#{race_entry.racer.id}"
+    total_value = @race_edition.entry_fee
+    if race_entry.merchandise_size?
+      total_value += @race_edition.merchandise_price
+    end
+
     values = {
         business: "bwright@rattlesnakeramble.org",
         cmd: "_xclick",
@@ -88,7 +93,7 @@ class RaceEditionsController < ApplicationController
         return: "#{Rails.application.secrets.app_host}#{successful_entry_race_entry_path(race_entry)}",
         cancel_return: "#{Rails.application.secrets.app_host}#{cancelled_payment_race_entry_path(race_entry)}",
         invoice: "RaceEntry#{race_entry.id}",
-        amount: @race_edition.entry_fee,
+        amount: total_value,
         item_name: @race_edition.name,
         item_number: item_number,
         quantity: '1',
@@ -118,9 +123,9 @@ class RaceEditionsController < ApplicationController
 
   def obj_params
     params.require(:race_edition)
-        .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries,
+        .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries, :selling_merchandise, :merchandise_description, :merchandise_image_file_name, :merchandise_price,
                 racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state],
-                race_entries_attributes: [:elapsed_predicted_time])
+                race_entries_attributes: [:elapsed_predicted_time, :merchandise_size])
   end
 
   def set_race_edition

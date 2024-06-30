@@ -3,40 +3,52 @@
 
 <%= form_for @race_edition, method: :post, url: create_entry_race_edition_path(@race_edition) do |race_edition_form| %>
 
-    <%= race_edition_form.fields_for :racers, @racer do |racer_fields| %>
-      <%= racer_fields.label :first_name %>
-      <%= racer_fields.text_field :first_name, autofocus: true %>
-    
-      <%= racer_fields.label :last_name %>
-      <%= racer_fields.text_field :last_name %>
-    
-      <%= racer_fields.label :email %>
-      <%= racer_fields.text_field :email %>
-    
-      <%= racer_fields.label :gender %>
-      <%= racer_fields.select :gender, Racer.genders.keys, include_blank: true %>
-    
-      <%= racer_fields.label :birth_date %>
-      <%= datepicker_input(form: racer_fields,
-                           field: :birth_date,
-                           existing_date: nil,
-                           default_date: {year: 1900, month: 0, day: 1},
-                           default_view: 'decades') %>
-    
-      <%= racer_fields.label :city %>
-      <%= racer_fields.text_field :city %>
-    
-      <%= racer_fields.label :state %>
-      <%= racer_fields.select :state, StatesHelper::STATES  %>
-    <% end %>
+  <%= race_edition_form.fields_for :racers, @racer do |racer_fields| %>
+    <%= racer_fields.label :first_name %>
+    <%= racer_fields.text_field :first_name, autofocus: true %>
 
-    <%= race_edition_form.fields_for :race_entries, @race_entry do |race_entry_fields| %>
-      <%= race_entry_fields.label :predicted_finish_time %>
-      <%= race_entry_fields.text_field :elapsed_predicted_time, placeholder: 'h:mm:ss' %>
-    <% end %>
+    <%= racer_fields.label :last_name %>
+    <%= racer_fields.text_field :last_name %>
 
-    <hr/>
-    
-    <%= race_edition_form.submit 'Enter the race', class: 'btn-lg btn-success' %>
+    <%= racer_fields.label :email %>
+    <%= racer_fields.text_field :email %>
+
+    <%= racer_fields.label :gender %>
+    <%= racer_fields.select :gender, Racer.genders.keys, include_blank: true %>
+
+    <%= racer_fields.label :birth_date %>
+    <%= datepicker_input(form: racer_fields,
+                         field: :birth_date,
+                         existing_date: nil,
+                         default_date: { year: 1900, month: 0, day: 1 },
+                         default_view: 'decades') %>
+
+    <%= racer_fields.label :city %>
+    <%= racer_fields.text_field :city %>
+
+    <%= racer_fields.label :state %>
+    <%= racer_fields.select :state, StatesHelper::STATES %>
+  <% end %>
+
+  <%= race_edition_form.fields_for :race_entries, @race_entry do |race_entry_fields| %>
+    <%= race_entry_fields.label :predicted_finish_time %>
+    <%= race_entry_fields.text_field :elapsed_predicted_time, placeholder: 'h:mm:ss' %>
+
+    <% if @race_edition.selling_merchandise? %>
+      <h3>
+        <%= race_entry_fields.label @race_edition.merchandise_description %>
+      </h3>
+      <h4>
+        Only <%= "$#{@race_edition.merchandise_price}" %>
+      </h4>
+      <%= race_entry_fields.label :merchandise_size %>
+      <%= race_entry_fields.select :merchandise_size, RaceEdition::MERCHANDISE_SIZES, include_blank: true %>
+      <%= image_tag @race_edition.merchandise_image_file_name, width: '400' %>
+    <% end %>
+  <% end %>
+
+  <hr/>
+
+  <%= race_edition_form.submit 'Enter the race', class: 'btn-lg btn-success' %>
 
 <% end %>

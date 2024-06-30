@@ -26,6 +26,18 @@
       <%= f.label 'Accepting Entries' %>
       <%= f.check_box :accepting_entries %>
 
+      <%= f.label 'Selling Merchandise' %>
+      <%= f.check_box :selling_merchandise %>
+
+      <%= f.label 'Merchandise Description' %>
+      <%= f.text_field :merchandise_description %>
+
+      <%= f.label 'Merchandise Image File Name' %>
+      <%= f.text_field :merchandise_image_file_name %>
+
+      <%= f.label 'Merchandise Price' %>
+      <%= f.text_field :merchandise_price %>
+
       <hr/>
       <%= f.submit(@race_edition.new_record? ? 'Create Race Edition' : 'Update Race Edition', class: "btn btn-success") %>
       <hr/>
