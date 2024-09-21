@@ -2,13 +2,16 @@
 
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
-    <%= form_for @race_entry do |f| %>
-      <%= "Racer: #{@race_entry.racer&.name}, #{@race_entry.racer&.gender}, #{@race_entry.racer&.birth_date}" %>
+    <h4>
+      <%= "Racer: #{@race_entry.racer&.name}, #{@race_entry.racer&.gender}, #{@race_entry.racer&.birth_date.present? ? l(@race_entry.racer.birth_date, format: :long) : nil}" %>
       <% if @race_entry.racer.present? %>
         <hr/>
         <%= link_to "Edit Racer", edit_racer_path(@race_entry.racer, return_to: edit_race_entry_path(@race_entry)), class: "btn btn-sm btn-success" %>
       <% end %>
-      <hr/>
+    </h4>
+  </div>
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @race_entry do |f| %>
 
       <%= f.label :bib_number %>
       <%= f.text_field :bib_number, autofocus: true %>
