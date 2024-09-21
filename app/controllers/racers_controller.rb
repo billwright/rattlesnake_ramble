@@ -32,7 +32,7 @@ class RacersController < ApplicationController
     @racer = Racer.find(params[:id])
     if @racer.update(obj_params)
       flash[:success] = "Your racer was updated successfully"
-      redirect_to racer_path(@racer)
+      redirect_to params.dig(:racer, :return_to) || racer_path(@racer)
     end
   end
 

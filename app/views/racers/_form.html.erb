@@ -27,6 +27,8 @@
 
       <%= f.label :state %>
       <%= f.text_field :state %>
+
+      <%= f.hidden_field :return_to, value: params[:return_to] %>
       
       <%= f.submit(@racer.new_record? ? 'Create Racer' : 'Update Racer', class: "btn btn-success") %>
     <% end %>

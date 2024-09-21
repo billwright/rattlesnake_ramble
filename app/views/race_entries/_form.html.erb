@@ -3,17 +3,12 @@
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_entry do |f| %>
-
-      <%= f.label 'Racer name:' %>
-      <%= "#{@race_entry.racer&.name}" %>
+      <%= "Racer: #{@race_entry.racer&.name}, #{@race_entry.racer&.gender}, #{@race_entry.racer&.birth_date}" %>
+      <% if @race_entry.racer.present? %>
+        <hr/>
+        <%= link_to "Edit Racer", edit_racer_path(@race_entry.racer, return_to: edit_race_entry_path(@race_entry)), class: "btn btn-sm btn-success" %>
+      <% end %>
       <hr/>
-
-      <%= f.label 'Gender:' %>
-      <%= "#{@race_entry.racer&.gender}" %>
-      <hr/>
-
-      <!-- TODO: What I really want to do here is something like this to edit the gender of this entry -->
-      <!--      f.select @race_entry.racer&.gender, Racer.genders.keys-->
 
       <%= f.label :bib_number %>
       <%= f.text_field :bib_number, autofocus: true %>
