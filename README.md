@@ -4,9 +4,9 @@ This is the repository for the Rattlesnake Ramble website, hosted at https://www
 
 Local setup requires the following:
 
-* Ruby version: 3.2.4
+* Ruby version: 3.2.5
 * Rails version: 6.1
-* Postgres 11
+* Postgres 11 (16 is the latest version)
 
 The actual versions used in this project can be seen in the Gemfile
 and the .ruby-version file.
@@ -42,7 +42,7 @@ eval "$(rbenv init - zsh)"
 
 ##### Using Homebrew on MacOS
 
-> `$ brew install postgres`
+> `$ brew install postgresql@16`
 
 Follow the instructions for automatically starting postgres when you start your machine.
 
@@ -198,6 +198,18 @@ To install a new version do this:
 ```shell
 rvm install 3.0.4
 ```
+
+I had trouble with rvm and then used rbenv with some luck. Until Heroku started complaining about the version of Ruby I was using (3.2.4) and
+rbenv didn't even list that version (maxed at 3.2.4) and only went to 3.3.1 (Heroku supports 3.3.5), but still couldn't
+install rvm, so then did:
+
+```shell
+> brew install install-ruby
+```
+
+This ran for a *long* time, but eventually installed Ruby 3.2.5.
+
+
 
 If you need to mess with the database (not recommended, as we prefer admin pages on the site), you can
 do so via the Heroku [console](https://dashboard.heroku.com/apps/rattlesnake-ramble?web-console=rattlesnake-ramble).
