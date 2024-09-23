@@ -23,7 +23,7 @@ class RaceEditionPresenter < SimpleDelegator
 
   def short_description
     case race&.name
-      when "Rattlesnake Ramble Trail Race"
+      when "Rattlesnake Ramble Trail Race - Odd Years"
         "Fowler Trail First"
       when "Rattlesnake Ramble Trail Race - Even Years"
         "Eldorado Trail First"
