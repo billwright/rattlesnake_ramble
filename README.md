@@ -339,7 +339,7 @@ http://www.rattlesnakeramble.org/race_editions/rattlesnake-ramble-trail-race-on-
 
 ## Features
 
-### Optional Merchandise (mostly shirts) Buy
+### Optional Merchandise (mostly shirts) Vending
 
 Upon signing up for the race, if the 
 current race edition is selling a product,
