@@ -2,6 +2,8 @@ class RaceEdition < ActiveRecord::Base
   extend FriendlyId
   include TimeZonable
 
+  MERCHANDISE_SIZES = ["Women S", "Women M", "Women L", "Men S", "Men M", "Men L", "Men XL"]
+
   belongs_to :race
   has_many :race_entries, dependent: :destroy
   has_many :racers, through: :race_entries
@@ -15,6 +17,8 @@ class RaceEdition < ActiveRecord::Base
   validates :race_id, presence: true
   validates :date, presence: true
   validates :entry_fee, presence: true
+  validates :default_start_time_male, presence: true
+  validates :default_start_time_female, presence: true
   validates_uniqueness_of :race_id, scope: :date
 
   scope :kids_race, -> { joins(:race).where(races: {name: "Rattlesnake Ramble Kids Race"}) }

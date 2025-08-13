@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_150149) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_26_020154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_150149) do
     t.string "slug"
     t.datetime "default_start_time_male", precision: nil
     t.datetime "default_start_time_female", precision: nil
+    t.boolean "accepting_entries", default: true
+    t.boolean "selling_merchandise", default: false
+    t.string "merchandise_description"
+    t.string "merchandise_image_file_name"
+    t.integer "merchandise_price"
     t.index ["race_id", "date"], name: "index_race_editions_on_race_id_and_date", unique: true
     t.index ["race_id"], name: "index_race_editions_on_race_id"
     t.index ["slug"], name: "index_race_editions_on_slug", unique: true
@@ -67,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_150149) do
     t.integer "bib_number"
     t.datetime "scheduled_start_time", precision: nil
     t.integer "predicted_time"
+    t.string "merchandise_size"
     t.index ["race_edition_id"], name: "index_race_entries_on_race_edition_id"
     t.index ["racer_id"], name: "index_race_entries_on_racer_id"
   end

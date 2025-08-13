@@ -175,7 +175,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.3)
-    puma (5.6.7)
+    puma (5.6.8)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8.1)
@@ -257,10 +257,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    spring (2.1.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
+    spring (4.2.1)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -301,6 +298,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-20
   x86_64-darwin-21
   x86_64-linux
@@ -323,14 +321,13 @@ DEPENDENCIES
   listen
   pg
   pry
-  puma (~> 5.0)
+  puma (~> 5.6)
   rails (< 7.1)
   rest-client (~> 2.0)
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
-  spring-watcher-listen (~> 2.0.0)
   sprockets-rails
   strip_attributes (~> 1.8)
   terser
@@ -339,7 +336,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.2.5p208
 
 BUNDLED WITH
-   2.3.21
+   2.5.18

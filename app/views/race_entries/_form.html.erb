@@ -2,10 +2,16 @@
 
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
+    <h4>
+      <%= "Racer: #{@race_entry.racer&.name}, #{@race_entry.racer&.gender}, #{@race_entry.racer&.birth_date.present? ? l(@race_entry.racer.birth_date, format: :long) : nil}" %>
+      <% if @race_entry.racer.present? %>
+        <hr/>
+        <%= link_to "Edit Racer", edit_racer_path(@race_entry.racer, return_to: edit_race_entry_path(@race_entry)), class: "btn btn-sm btn-success" %>
+      <% end %>
+    </h4>
+  </div>
+  <div class="well col-md-8 col-md-offset-2">
     <%= form_for @race_entry do |f| %>
-
-      <%= f.label 'Racer name:' %>
-      <%= "#{@race_entry.racer&.name}" %><hr/>
 
       <%= f.label :bib_number %>
       <%= f.text_field :bib_number, autofocus: true %>
@@ -16,15 +22,19 @@
       <%= f.label 'paid?' %>
       <%= f.select :paid, [true, false], {} %>
 
-      <%= f.label :time %>
-      <%= f.text_field :time %>
+      <%= f.label 'Merchandise Size' %>
+      <%= f.select :merchandise_size, RaceEdition::MERCHANDISE_SIZES, include_blank: true %>
+      <hr/>
+
+      <%#= f.label :time %>
+      <%#= f.text_field :time %>
 
       <%= f.submit(@race_entry.new_record? ? 'Create Race Entry' : 'Update Race Entry', class: "btn btn-success") %>
     <% end %>
 
     <hr/>
     <% unless @race_entry.new_record? %>
-      <%= link_to 'Delete Race Entry', race_entry_path(@race_entry), method: :delete, data: {confirm: 'Delete this entry?'}, class: 'btn btn-danger btn-block' %>
+      <%= link_to 'Delete Race Entry', race_entry_path(@race_entry), method: :delete, data: { confirm: 'Delete this entry?' }, class: 'btn btn-danger btn-block' %>
     <% end %>
   </div>
 </div>

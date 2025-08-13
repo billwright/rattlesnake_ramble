@@ -23,9 +23,9 @@ class RaceEditionPresenter < SimpleDelegator
 
   def short_description
     case race&.name
-      when "Rattlesnake Ramble Trail Race"
+      when "Rattlesnake Ramble Trail Race - Odd Years"
         "Fowler Trail First"
-      when "Rattlesnake Ramble Trail Race Even-Year"
+      when "Rattlesnake Ramble Trail Race - Even Years"
         "Eldorado Trail First"
       when "Rattlesnake Ramble Kids Race"
         "Kids Race"
@@ -40,6 +40,14 @@ class RaceEditionPresenter < SimpleDelegator
 
   def year
     date&.year
+  end
+
+  def description_path
+    if date&.year.even?
+      'even_year_course_description'
+    else
+      'odd_year_course_description'
+    end
   end
 
   private

@@ -1,23 +1,28 @@
 <table class="table">
   <tr>
     <th><%= link_to 'Racer', request.params.merge(sort: 'racers.last_name') %></th>
+   <th><%= link_to 'Email', request.params.merge(sort: 'racers.email') %></th>
     <th><%= link_to 'Gender', request.params.merge(sort: 'racers.gender,racers.birth_date desc') %></th>
     <th><%= link_to 'Age', request.params.merge(sort: 'racers.birth_date desc') %></th>
     <th><%= link_to 'Bib #', request.params.merge(sort: 'bib_number') %></th>
-    <th><%= link_to 'Start Time', request.params.merge(sort: 'race_entries.scheduled_start_time,race_entries.bib_number') %></th>
+<!--    <th><%#= link_to 'Start Time', request.params.merge(sort: 'race_entries.scheduled_start_time,race_entries.bib_number') %></th>-->
     <th><%= link_to 'Paid?', request.params.merge(sort: 'paid') %></th>
-    <th><%= link_to 'Time', request.params.merge(sort: 'time') %></th>
+<!--    <th><%#= link_to 'Time', request.params.merge(sort: 'time') %></th>-->
+    <th><%= link_to 'Merchandise Size', request.params.merge(sort: 'merchandise_size') %></th>
   </tr>
-  
+
+  <h3>Total entries: <%= race_entries.size %></h3>
   <% race_entries.each do |race_entry| %>
     <tr>
       <td><%= link_to race_entry.racer.name, edit_race_entry_path(race_entry)  %></td>
+      <td><%= race_entry.racer.email %></td>
       <td><%= race_entry.racer.gender.titleize %></td>
       <td><%= race_entry.racer.current_age %></td>
       <td><%= race_entry.bib_number %></td>
-      <td><%= race_entry.scheduled_start_time_military %></td>
+<!--      <td><%#= race_entry.scheduled_start_time_military %></td>-->
       <td><%= race_entry.paid %></td>
-      <td><%= race_entry.elapsed_time_na_if_nil %></td>
+      <td><%= race_entry.merchandise_size %></td>
+<!--      <td><%#= race_entry.elapsed_time_na_if_nil %></td>-->
     </tr>
   <% end %>
 </table>

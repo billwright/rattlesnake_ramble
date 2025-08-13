@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.2.5'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -9,7 +9,7 @@ end
 
 gem 'rails', '< 7.1'
 gem 'sprockets-rails'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.6'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'terser'
@@ -40,7 +40,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
 end
 
