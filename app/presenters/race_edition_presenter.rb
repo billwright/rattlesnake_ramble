@@ -71,6 +71,10 @@ class RaceEditionPresenter < SimpleDelegator
   end
 
   def sort_param
-    params[:sort] || 'race_entries.bib_number,racers.last_name'
+    if params[:sort].present?
+      params[:sort]
+    else
+      'race_entries.paid ASC, race_entries.bib_number, racers.last_name'
+    end
   end
 end
