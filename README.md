@@ -68,7 +68,7 @@ heroku --version
 
 Now login:
 
-```
+```shell
 heroku login
 ```
 In order to push to heroku, you need to have added heroku as a remote repository. You can 
@@ -86,7 +86,9 @@ heroku git:remote -a rattlesnake-ramble
 
 Once your local master is up to date and you have Heroku CLI credentials in place, run the following command:
 
-> `$ git push heroku master`
+```shell
+git push heroku master
+```
 
 ## Models
 
