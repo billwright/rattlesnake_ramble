@@ -65,14 +65,16 @@ class RaceEditionsController < ApplicationController
   def create_entry
     @racer = Racer.new(obj_params[:racers_attributes]['0'])
 
-    default_race_entry_attributes = {race_edition: @race_edition, racer: @racer}
+    # capture race-entry attributes the form collected (e.g., merchandise_size)
     provided_race_entry_attributes = obj_params[:race_entries_attributes]['0'] || {}
-    @race_entry = RaceEntry.new(default_race_entry_attributes.merge(provided_race_entry_attributes))
+    merch_size = provided_race_entry_attributes['merchandise_size'].presence
 
-    if @racer.save && @race_entry.save
-      flash[:success] = "Thank you for entering #{@race_edition.name}"
-      redirect_to paypal_url(@race_entry), allow_other_host: true
+    if @racer.save
+      # hand the user to PayPal; on return we'll create the RaceEntry as paid: true
+      redirect_to paypal_checkout_url_for(@racer, merch_size), allow_other_host: true
     else
+      # re-render form with errors; ensure @race_entry exists for fields_for
+      @race_entry = RaceEntry.new(provided_race_entry_attributes)
       @race_entry.validate
       @racer.errors.merge!(@race_entry.errors)
       render 'enter'
@@ -109,6 +111,37 @@ class RaceEditionsController < ApplicationController
 
   helper_method :paypal_url
 
+  def paypal_checkout_url_for(racer, merch_size)
+  total_value = @race_edition.entry_fee
+  total_value += @race_edition.merchandise_price if merch_size.present?
+
+  values = {
+    business: "bwright@rattlesnakeramble.org",
+    cmd: "_xclick",
+    upload: 1,
+
+    # Return to the RaceEdition, not a RaceEntry (we don’t have an entry yet)
+    return: "#{Rails.application.secrets.app_host}#{payment_success_race_edition_path(@race_edition, racer_id: racer.id, merchandise_size: merch_size)}",
+    cancel_return: "#{Rails.application.secrets.app_host}#{payment_cancelled_race_edition_path(@race_edition)}",
+
+    # Use an invoice that identifies racer + edition (no RaceEntry id yet)
+    invoice: "RaceEdition#{@race_edition.id}-Racer#{racer.id}",
+
+    amount: total_value,
+    item_name: @race_edition.name,
+    quantity: 1,
+    currency_code: "USD",
+    shipping: 0,
+    handling: 0,
+    no_shipping: 1,
+    no_note: 1,
+  }
+
+  "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+  end
+  helper_method :paypal_checkout_url_for
+
+
   def racer_emails
     all_entries = @race_edition.race_entries.eager_load(:racer)
     paid_filter = params[:filter] && (params[:filter][:paid] == 'true')
@@ -118,6 +151,30 @@ class RaceEditionsController < ApplicationController
 
   def racer_info_csv
   end
+
+  def payment_success
+    # set_race_edition already ran; we also need the racer
+    racer = Racer.find(params[:racer_id])
+
+    attrs = {}
+    attrs[:merchandise_size] = params[:merchandise_size] if params[:merchandise_size].present?
+
+    RaceEntry.create!(
+      race_edition: @race_edition,
+      racer: racer,
+      paid: true,
+      **attrs
+    )
+
+    flash[:success] = "Get ready to Ramble, because you are entered!"
+    redirect_to race_edition_path(@race_edition)
+  end
+
+  def payment_cancelled
+    flash[:success] = "Until you pay, you are not officially in the Rattlesnake Ramble. Please pay via PayPal promptly or contact the race director (bwright@rattlesnakeramble.org)."
+    redirect_to race_edition_path(@race_edition)
+  end
+
 
   private
 

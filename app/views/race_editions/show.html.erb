@@ -34,17 +34,6 @@
   <br/>
 <% end %>
 
-<% if current_user.present? %>
-  <div class="row">
-    <div class="col">
-      <%= link_to "Unpaid Emails",
-          racer_emails_race_edition_path(@presenter, filter: { paid: 'false' }),
-          class: "btn btn-danger btn-small" %>
-    </div>
-  </div>
-  <br/>
-<% end %>
-
 
 <%= render 'race_entries/edition_entries', view_object: @presenter %>
 
