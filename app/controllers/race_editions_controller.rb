@@ -74,7 +74,8 @@ class RaceEditionsController < ApplicationController
       redirect_to paypal_checkout_url_for(@racer, merch_size), allow_other_host: true
     else
       # re-render form with errors; ensure @race_entry exists for fields_for
-      @race_entry = RaceEntry.new(provided_race_entry_attributes)
+      default_race_entry_attributes = { race_edition: @race_edition, racer: @racer }
+      @race_entry = RaceEntry.new(default_race_entry_attributes.merge(provided_race_entry_attributes))
       @race_entry.validate
       @racer.errors.merge!(@race_entry.errors)
       render 'enter'
@@ -89,20 +90,20 @@ class RaceEditionsController < ApplicationController
     end
 
     values = {
-        business: "bwright@rattlesnakeramble.org",
-        cmd: "_xclick",
-        upload: 1,
-        return: "#{Rails.application.secrets.app_host}#{successful_entry_race_entry_path(race_entry)}",
-        cancel_return: "#{Rails.application.secrets.app_host}#{cancelled_payment_race_entry_path(race_entry)}",
-        invoice: "RaceEntry#{race_entry.id}",
-        amount: total_value,
-        item_name: @race_edition.name,
-        item_number: item_number,
-        quantity: '1',
-        shipping: 0,
-        handling: 0,
-        no_shipping: 1,
-        no_note: 1,
+      business: "bwright@rattlesnakeramble.org",
+      cmd: "_xclick",
+      upload: 1,
+      return: "#{Rails.application.secrets.app_host}#{successful_entry_race_entry_path(race_entry)}",
+      cancel_return: "#{Rails.application.secrets.app_host}#{cancelled_payment_race_entry_path(race_entry)}",
+      invoice: "RaceEntry#{race_entry.id}",
+      amount: total_value,
+      item_name: @race_edition.name,
+      item_number: item_number,
+      quantity: '1',
+      shipping: 0,
+      handling: 0,
+      no_shipping: 1,
+      no_note: 1,
     }
 
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
@@ -112,35 +113,35 @@ class RaceEditionsController < ApplicationController
   helper_method :paypal_url
 
   def paypal_checkout_url_for(racer, merch_size)
-  total_value = @race_edition.entry_fee
-  total_value += @race_edition.merchandise_price if merch_size.present?
+    total_value = @race_edition.entry_fee
+    total_value += @race_edition.merchandise_price if merch_size.present?
 
-  values = {
-    business: "bwright@rattlesnakeramble.org",
-    cmd: "_xclick",
-    upload: 1,
+    values = {
+      business: "bwright@rattlesnakeramble.org",
+      cmd: "_xclick",
+      upload: 1,
 
-    # Return to the RaceEdition, not a RaceEntry (we don’t have an entry yet)
-    return: "#{Rails.application.secrets.app_host}#{payment_success_race_edition_path(@race_edition, racer_id: racer.id, merchandise_size: merch_size)}",
-    cancel_return: "#{Rails.application.secrets.app_host}#{payment_cancelled_race_edition_path(@race_edition)}",
+      # Return to the RaceEdition, not a RaceEntry (we don’t have an entry yet)
+      return: "#{Rails.application.secrets.app_host}#{payment_success_race_edition_path(@race_edition, racer_id: racer.id, merchandise_size: merch_size)}",
+      cancel_return: "#{Rails.application.secrets.app_host}#{payment_cancelled_race_edition_path(@race_edition)}",
 
-    # Use an invoice that identifies racer + edition (no RaceEntry id yet)
-    invoice: "RaceEdition#{@race_edition.id}-Racer#{racer.id}",
+      # Use an invoice that identifies racer + edition (no RaceEntry id yet)
+      invoice: "RaceEdition#{@race_edition.id}-Racer#{racer.id}",
 
-    amount: total_value,
-    item_name: @race_edition.name,
-    quantity: 1,
-    currency_code: "USD",
-    shipping: 0,
-    handling: 0,
-    no_shipping: 1,
-    no_note: 1,
-  }
+      amount: total_value,
+      item_name: @race_edition.name,
+      quantity: 1,
+      currency_code: "USD",
+      shipping: 0,
+      handling: 0,
+      no_shipping: 1,
+      no_note: 1,
+    }
 
-  "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
-  helper_method :paypal_checkout_url_for
 
+  helper_method :paypal_checkout_url_for
 
   def racer_emails
     all_entries = @race_edition.race_entries.eager_load(:racer)
@@ -175,14 +176,13 @@ class RaceEditionsController < ApplicationController
     redirect_to race_edition_path(@race_edition)
   end
 
-
   private
 
   def obj_params
     params.require(:race_edition)
-        .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries, :selling_merchandise, :merchandise_description, :merchandise_image_file_name, :merchandise_price,
-                racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state],
-                race_entries_attributes: [:elapsed_predicted_time, :merchandise_size])
+      .permit(:race_id, :date, :entry_fee, :default_start_time_male_local, :default_start_time_female_local, :accepting_entries, :selling_merchandise, :merchandise_description, :merchandise_image_file_name, :merchandise_price,
+              racers_attributes: [:id, :first_name, :last_name, :email, :gender, :birth_date, :city, :state],
+              race_entries_attributes: [:elapsed_predicted_time, :merchandise_size])
   end
 
   def set_race_edition
