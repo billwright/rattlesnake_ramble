@@ -122,7 +122,7 @@ class RaceEditionsController < ApplicationController
       upload: 1,
 
       # Return to the RaceEdition, not a RaceEntry (we don’t have an entry yet)
-      return: "#{Rails.application.secrets.app_host}#{payment_success_race_edition_path(@race_edition, racer_id: racer.id, merchandise_size: merch_size)}",
+      return: "#{Rails.application.secrets.app_host}#{payment_success_race_edition_path(@race_edition)}?racer_id=#{racer.id}&merchandise_size=#{merch_size}",
       cancel_return: "#{Rails.application.secrets.app_host}#{payment_cancelled_race_edition_path(@race_edition)}",
 
       # Use an invoice that identifies racer + edition (no RaceEntry id yet)
