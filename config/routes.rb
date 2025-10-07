@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       get 'racer_emails'
       get 'racer_info_csv'
       get 'race_entries'
+      get 'payment_success'
+      get 'payment_cancelled'
     end
   end
   
