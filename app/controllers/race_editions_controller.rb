@@ -106,7 +106,9 @@ class RaceEditionsController < ApplicationController
       no_note: 1,
     }
 
-    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    paypal_url = "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    Rails.logger.debug "From RaceEditionsController>>paypal_url: #{paypal_url}"
+    paypal_url
 
   end
 
@@ -138,7 +140,10 @@ class RaceEditionsController < ApplicationController
       no_note: 1,
     }
 
-    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    # "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    paypal_url = "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    Rails.logger.debug "From RaceEditionsController>>paypal_checkout_url_for: #{paypal_url}"
+    paypal_url
   end
 
   helper_method :paypal_checkout_url_for
