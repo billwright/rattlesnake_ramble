@@ -183,7 +183,10 @@ class RaceEditionsController < ApplicationController
 
   def checkin_sheet
     @race_edition = RaceEdition.friendly.find(params[:id])
-    @entries = @race_edition.race_entries.order(:bib_number)
+    @entries = @race_edition.race_entries
+                             .includes(:racer)
+                             .joins(:racer)
+                             .order('LOWER(racers.last_name), LOWER(racers.first_name)')
     render :checkin_sheet
   end
 
