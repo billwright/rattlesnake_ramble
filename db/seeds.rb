@@ -19,7 +19,19 @@ kids_race = races.last
 
 RaceEdition.create!(race: odd_year_race, date: "2021-09-17", default_start_time_male: "2024-09-21 7:47:00-0600", default_start_time_female: "2024-09-21 7:52:00-0600", entry_fee: 35)
 current_edition = RaceEdition.create!(race: current_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:47:00-0600", default_start_time_female: "2024-09-21 7:52:00-0600", entry_fee: 35, selling_merchandise: true, merchandise_description: 'Buy a limited-edition 20th anniversary race shirt before we sell out!', merchandise_image_file_name: 'Ramble20thAnniversaryShirt.png', merchandise_price: 25)
+future_edition = RaceEdition.create!(
+  race: current_race,
+  date: "2026-09-19",
+  default_start_time_male: "2026-09-19 7:47:00-0600",
+  default_start_time_female: "2026-09-19 7:52:00-0600",
+  entry_fee: 35,
+  selling_merchandise: true,
+  merchandise_description: 'Reserve your 2026 commemorative tee before race day!',
+  merchandise_image_file_name: 'Ramble20thAnniversaryShirt.png',
+  merchandise_price: 30
+)
 kids_edition = RaceEdition.create!(race: kids_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:45:00-0600", default_start_time_female: "2024-09-21 7:45:00-0600", entry_fee: 15)
+future_kids_edition = RaceEdition.create!(race: kids_race, date: "2026-09-19", default_start_time_male: "2026-09-19 7:45:00-0600", default_start_time_female: "2026-09-19 7:45:00-0600", entry_fee: 15)
 
 racer_bill = Racer.create!(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
 racer_sheri = Racer.create!(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
@@ -32,6 +44,29 @@ RaceEntry.create!(racer: racer_sheri, race_edition: current_edition, bib_number:
 RaceEntry.create!(racer: racer_derek, race_edition: current_edition, paid: false)
 RaceEntry.create!(racer: racer_jason, race_edition: kids_edition, bib_number: 3, paid: true)
 RaceEntry.create!(racer: racer_spencer, race_edition: kids_edition, paid: false)
+
+additional_future_racers = [
+  { first_name: "Owen", last_name: "Adams", email: "owen.adams@example.com", gender: :male, birth_date: "1991-08-14", city: "Golden", state: "Colorado", bib_number: 301, paid: true },
+  { first_name: "Lena", last_name: "Brooks", email: "lena.brooks@example.com", gender: :female, birth_date: "1996-04-02", city: "Boulder", state: "Colorado", bib_number: 188, paid: false },
+  { first_name: "Jake", last_name: "DiSanto", email: "jake.disanto@example.com", gender: :male, birth_date: "1994-06-12", city: "Denver", state: "Colorado", bib_number: 145, paid: true },
+  { first_name: "Priya", last_name: "Evans", email: "priya.evans@example.com", gender: :female, birth_date: "1989-11-23", city: "Louisville", state: "Colorado", bib_number: nil, paid: true },
+  { first_name: "Marcus", last_name: "Foster", email: "marcus.foster@example.com", gender: :male, birth_date: "1984-02-17", city: "Longmont", state: "Colorado", bib_number: 212, paid: true },
+  { first_name: "Amelie", last_name: "Martinez", email: "amelie.martinez@example.com", gender: :female, birth_date: "1997-09-05", city: "Superior", state: "Colorado", bib_number: 176, paid: false },
+  { first_name: "Noah", last_name: "Smith", email: "noah.smith@example.com", gender: :male, birth_date: "1990-01-28", city: "Arvada", state: "Colorado", bib_number: 167, paid: true },
+  { first_name: "Carlos", last_name: "Zamora", email: "carlos.zamora@example.com", gender: :male, birth_date: "1993-07-23", city: "Erie", state: "Colorado", bib_number: 333, paid: false }
+]
+
+additional_future_racers.each do |attrs|
+  racer_attrs = attrs.except(:bib_number, :paid)
+  entry_attrs = attrs.slice(:bib_number, :paid)
+  racer = Racer.create!(racer_attrs)
+  RaceEntry.create!(
+    racer: racer,
+    race_edition: future_edition,
+    bib_number: entry_attrs[:bib_number],
+    paid: entry_attrs[:paid]
+  )
+end
 
 
 # 2017 Merchandise
