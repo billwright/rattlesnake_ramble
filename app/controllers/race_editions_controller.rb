@@ -181,6 +181,16 @@ class RaceEditionsController < ApplicationController
     redirect_to race_edition_path(@race_edition)
   end
 
+  def checkin_sheet
+    @race_edition = RaceEdition.friendly.find(params[:id])
+    @entries = @race_edition.race_entries
+                             .includes(:racer)
+                             .joins(:racer)
+                             .order('LOWER(racers.last_name), LOWER(racers.first_name)')
+    render :checkin_sheet
+  end
+
+
   private
 
   def obj_params
