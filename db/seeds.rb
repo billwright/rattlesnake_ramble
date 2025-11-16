@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 races = Race.create!([
-    { name: "Rattlesnake Ramble Trail Race - Odd Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
-    { name: "Rattlesnake Ramble Trail Race - Even Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Eldorado Trail before doing the same on the Fowler Trail." },
-    { name: "Rattlesnake Ramble Kids Race", short_name: 'Kids Course', description: "A 1.7-mile out-and-back course on the main road through Eldorado Canyon. The Kids Race is for 12 & Under only." },
-  ])
+                       { name: "Rattlesnake Ramble Trail Race - Odd Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Fowler Trail before doing the same on the Eldorado Trail." },
+                       { name: "Rattlesnake Ramble Trail Race - Even Years", short_name: 'Full Course', description: "A 4.25-mile Y-course that goes out-and-back on the Eldorado Trail before doing the same on the Fowler Trail." },
+                       { name: "Rattlesnake Ramble Kids Race", short_name: 'Kids Course', description: "A 1.7-mile out-and-back course on the main road through Eldorado Canyon. The Kids Race is for 12 & Under only." },
+                     ])
 
 odd_year_race = races.first
 even_year_race = races[1]
@@ -33,46 +33,55 @@ future_edition = RaceEdition.create!(
 kids_edition = RaceEdition.create!(race: kids_race, date: "2024-09-21", default_start_time_male: "2024-09-21 7:45:00-0600", default_start_time_female: "2024-09-21 7:45:00-0600", entry_fee: 15)
 future_kids_edition = RaceEdition.create!(race: kids_race, date: "2026-09-19", default_start_time_male: "2026-09-19 7:45:00-0600", default_start_time_female: "2026-09-19 7:45:00-0600", entry_fee: 15)
 
-racer_bill = Racer.create!(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado")
-racer_sheri = Racer.create!(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado")
-racer_derek = Racer.create!(first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: :male, birth_date: "1998-01-29", city: "Superior", state: "Colorado")
-racer_jason = Racer.create!(first_name: "Jason", last_name: "Oveson", email: "jason@example.com", gender: :male, birth_date: "2014-01-01", city: "Louisville", state: "Colorado")
-racer_spencer = Racer.create!(first_name: "Spencer", last_name: "Oveson", email: "spencer@example.com", gender: :male, birth_date: "2014-01-01", city: "Louisville", state: "Colorado")
-
-RaceEntry.create!(racer: racer_bill, race_edition: current_edition, bib_number: 123, paid: true)
-RaceEntry.create!(racer: racer_sheri, race_edition: current_edition, bib_number: 234, paid: true)
-RaceEntry.create!(racer: racer_derek, race_edition: current_edition, paid: false)
-RaceEntry.create!(racer: racer_jason, race_edition: kids_edition, bib_number: 3, paid: true)
-RaceEntry.create!(racer: racer_spencer, race_edition: kids_edition, paid: false)
-
-additional_future_racers = [
-  { first_name: "Owen", last_name: "Adams", email: "owen.adams@example.com", gender: :male, birth_date: "1991-08-14", city: "Golden", state: "Colorado", bib_number: 301, paid: true },
-  { first_name: "Lena", last_name: "Brooks", email: "lena.brooks@example.com", gender: :female, birth_date: "1996-04-02", city: "Boulder", state: "Colorado", bib_number: 188, paid: false },
-  { first_name: "Jake", last_name: "DiSanto", email: "jake.disanto@example.com", gender: :male, birth_date: "1994-06-12", city: "Denver", state: "Colorado", bib_number: 145, paid: true },
-  { first_name: "Priya", last_name: "Evans", email: "priya.evans@example.com", gender: :female, birth_date: "1989-11-23", city: "Louisville", state: "Colorado", bib_number: nil, paid: true },
-  { first_name: "Marcus", last_name: "Foster", email: "marcus.foster@example.com", gender: :male, birth_date: "1984-02-17", city: "Longmont", state: "Colorado", bib_number: 212, paid: true },
-  { first_name: "Amelie", last_name: "Martinez", email: "amelie.martinez@example.com", gender: :female, birth_date: "1997-09-05", city: "Superior", state: "Colorado", bib_number: 176, paid: false },
-  { first_name: "Noah", last_name: "Smith", email: "noah.smith@example.com", gender: :male, birth_date: "1990-01-28", city: "Arvada", state: "Colorado", bib_number: 167, paid: true },
-  { first_name: "Carlos", last_name: "Zamora", email: "carlos.zamora@example.com", gender: :male, birth_date: "1993-07-23", city: "Erie", state: "Colorado", bib_number: 333, paid: false }
+adult_racers = [
+  Racer.create!(first_name: "Bill", last_name: "Wright", email: "bill@wwwright.com", gender: :male, birth_date: "1962-04-26", city: "Superior", state: "Colorado"),
+  Racer.create!(first_name: "Sheri", last_name: "Wright", email: "sheri_wright@oracle.com", gender: :female, birth_date: "1963-12-18", city: "Superior", state: "Colorado"),
+]
+unpaid_racers = [
+  Racer.create!(first_name: "Derek", last_name: "Wright", email: "poochito@gmail.com", gender: :male, birth_date: "1998-01-29", city: "Superior", state: "Colorado"),
+  Racer.create!(first_name: "Jake", last_name: "DiSanto", email: "jake.disanto@gmail.com", gender: :male, birth_date: "1992-01-29", city: "Boulder", state: "Colorado")
+]
+kid_racers = [
+  Racer.create!(first_name: "Jason", last_name: "Oveson", email: "jason@example.com", gender: :male, birth_date: "2014-01-01", city: "Louisville", state: "Colorado"),
+  Racer.create!(first_name: "Spencer", last_name: "Oveson", email: "spencer@example.com", gender: :male, birth_date: "2014-01-01", city: "Louisville", state: "Colorado")
 ]
 
-additional_future_racers.each do |attrs|
-  racer_attrs = attrs.except(:bib_number, :paid)
-  entry_attrs = attrs.slice(:bib_number, :paid)
-  racer = Racer.create!(racer_attrs)
-  RaceEntry.create!(
-    racer: racer,
-    race_edition: future_edition,
-    bib_number: entry_attrs[:bib_number],
-    paid: entry_attrs[:paid]
-  )
-end
+print "Unique racers created..."
 
+bib_number = 123
+adult_racers.each do |racer|
+  RaceEntry.create!(racer: racer, race_edition: current_edition, bib_number: bib_number, paid: true)
+  bib_number += 1
+end
+print "Unique racers added to current race..."
+
+unpaid_racers.each do |racer|
+  RaceEntry.create!(racer: racer, race_edition: current_edition, bib_number: bib_number, paid: false)
+  bib_number += 1
+end
+print "Unpaid racers added to current race..."
+
+kid_racers.each do |racer|
+  RaceEntry.create!(racer: racer, race_edition: kids_edition, bib_number: bib_number, paid: true)
+  bib_number += 1
+end
+print "Kids added to kids race..."
+
+# More racers for testing checkin printout sheet
+40.times do |i|
+  last_name = "Smith" + i.to_s
+  first_name = "John" + i.to_s
+  email = first_name + "@example.com"
+  bib_number = i + 1
+  racer = Racer.create!(first_name: first_name, last_name: last_name, email: email, gender: :male, birth_date: "1990-01-01", city: "Anytown", state: "Colorado")
+  RaceEntry.create!(racer: racer, race_edition: current_edition, bib_number: bib_number, paid: true)
+end
+print "Automatic racers created and added to current race..."
 
 # 2017 Merchandise
 
 Product.all.each do |prod|
-    prod.destroy
+  prod.destroy
 end
 
 prod = Product.create!(description: "Men's Cotton 2017 Race Shirt, size medium", quantity: 10, price: 25)
@@ -118,4 +127,4 @@ ProductImage.create!(product: prod, url: 'RattlesnakeRambleHoodie.png', alt_text
 prod = Product.create!(description: "Black, Cotton, Hooded, Uni-Sex Sweatshirt, size extra-large", quantity: 3, price: 40)
 ProductImage.create!(product: prod, url: 'RattlesnakeRambleHoodie.png', alt_text: "Sweatshirt Front")
 
-User.create!(email: 'admin@example.com', password: 'password')
+User.create!(email: 'admin@example.com', password: 'password', admin: true)
