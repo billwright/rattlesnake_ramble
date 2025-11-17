@@ -7,6 +7,13 @@
       <%= link_to "Unpaid Emails",
           racer_emails_race_edition_path(@race_edition, filter: { paid: 'false' }),
           class: "btn btn-danger btn-small" %>
+    
+      <% if current_user.admin? %>
+        <%= link_to "Print CheckIn Sheet",
+            checkin_sheet_race_edition_path(@race_edition),
+            class: "btn btn-primary btn-small ms-2",
+            target: "_blank" %>
+      <% end %>
     </div>
   </div>
   <br/>

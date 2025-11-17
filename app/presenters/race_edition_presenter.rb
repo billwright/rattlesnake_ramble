@@ -35,7 +35,15 @@ class RaceEditionPresenter < SimpleDelegator
   end
 
   def sorted_race_entries
-    race_entries.joins(:racer).order(sort_param).map { |re| RaceEntryPresenter.new(re) }
+    ordered_entries = race_entries.includes(:racer).joins(:racer)
+
+    if params[:sort].present?
+      ordered_entries = ordered_entries.order(params[:sort])
+    else
+      ordered_entries = ordered_entries.order('LOWER(racers.last_name), LOWER(racers.first_name)')
+    end
+
+    ordered_entries.map { |re| RaceEntryPresenter.new(re) }
   end
 
   def year
@@ -71,10 +79,6 @@ class RaceEditionPresenter < SimpleDelegator
   end
 
   def sort_param
-    if params[:sort].present?
-      params[:sort]
-    else
-      'race_entries.paid ASC, race_entries.bib_number, racers.last_name'
-    end
+    params[:sort]
   end
 end

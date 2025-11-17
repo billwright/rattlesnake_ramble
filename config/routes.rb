@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       get 'race_entries'
       get 'payment_success'
       get 'payment_cancelled'
+      get 'checkin_sheet'
+
     end
   end
   
