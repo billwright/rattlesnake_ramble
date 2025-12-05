@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RaceEditionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :enter, :create_entry]
+  before_action :authenticate_user!, except: [:index, :show, :enter, :create_entry, :payment_success, :payment_cancelled]
   before_action :set_race_edition, except: [:index, :new, :create]
 
   def index
